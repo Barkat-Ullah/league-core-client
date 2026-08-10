@@ -46,8 +46,8 @@ export default function AboutPage() {
             style={{ fontFamily: "Open Sans" }}
           >
             <p>
-              In South America, it&apos;s dirt lots between buildings. In
-              Europe, it&apos;s parking lots and the street.
+              In Dhaka, it&apos;s dirt lots between buildings. In Europe,
+              it&apos;s parking lots and the street.
             </p>
             <p>
               <strong>
@@ -213,7 +213,7 @@ export default function AboutPage() {
           <div className="space-y-6 mb-8">
             <div>
               <h3 className="text-[#CCFF00] font-bold text-xl mb-2 font-['Oswald']">
-                Brent Acuff - Founder
+                Demo - Founder
               </h3>
               <p className="text-gray-300" style={{ fontFamily: "Open Sans" }}>
                 Soccer player, coach, referee, and advocate for making quality
@@ -223,7 +223,7 @@ export default function AboutPage() {
             </div>
             <div>
               <h3 className="text-[#CCFF00] font-bold text-xl mb-2 font-['Oswald']">
-                Dean Robertson - Tournament Director
+                Demo - Tournament Director
               </h3>
               <p className="text-gray-300" style={{ fontFamily: "Open Sans" }}>
                 Experienced player, coach, and tournament operations specialist

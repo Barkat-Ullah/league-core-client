@@ -35,13 +35,13 @@ export default function FAQPage() {
           q: "What payment methods do you accept?",
           a: "We accept credit cards (Visa, MasterCard, American Express) and digital payment methods through our secure payment portal.",
         },
+        // {
+        //   id: "reg-3",
+        //   q: "What's your refund policy?",
+        //   a: "See our full Refund Policy for complete details.",
+        // },
         {
           id: "reg-3",
-          q: "What's your refund policy?",
-          a: "See our full Refund Policy for complete details.",
-        },
-        {
-          id: "reg-4",
           q: "Are there any additional fees?",
           a: "A 3% processing fee is applied at checkout to cover payment processing costs. This fee is shown transparently before you complete your registration.",
         },
@@ -237,7 +237,7 @@ export default function FAQPage() {
                           <p>
                             See our full{" "}
                             <Link
-                              href="/refund-policy"
+                              href="#"
                               className="text-[#CCFF00] hover:underline"
                             >
                               Refund Policy
@@ -253,7 +253,7 @@ export default function FAQPage() {
                           For bad weather delays, cancellations, and credits,
                           see our{" "}
                           <Link
-                            href="/refund-policy"
+                            href="/#"
                             className="text-[#CCFF00] hover:underline"
                           >
                             Refund Policy

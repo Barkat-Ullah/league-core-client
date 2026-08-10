@@ -17,9 +17,9 @@ const footerLinks = {
     { name: "FAQ", href: "/faq" },
   ],
   legal: [
-    { name: "Refund Policy", href: "/refund-policy" },
-    { name: "Terms and Conditions", href: "/terms-and-conditions" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Refund Policy", href: "#" },
+    { name: "Terms and Conditions", href: "#" },
+    { name: "Privacy Policy", href: "#" },
   ],
   contact: [
     {
