@@ -83,7 +83,7 @@ const CoachDashboard = () => {
       {/* Header Section */}
       <div className="flex justify-between items-start mb-8">
         <div>
-          <h1 className="text-4xl font-bold text-white mb-2">
+          <h1 className="text-lg lg:text-4xl font-bold text-white mb-2">
             WELCOME BACK, {coachName.toUpperCase()}
           </h1>
           <p className="text-gray-400">

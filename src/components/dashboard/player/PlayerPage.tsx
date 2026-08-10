@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React from "react";
 import { Trophy, MapPin, Clock, AlertCircle, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { useGetPlayerDashbaordQuery } from "@/redux/apiHooks/playerApi/playerApi";

@@ -19,7 +19,17 @@ export default function RefereePage() {
     phoneNumber: "",
   });
 
-  const { data: referees = [], isLoading, error } = useGetRefereesQuery();
+  const [page, setPage] = useState(1);
+  const LIMIT = 10;
+
+  const { data, isLoading, isFetching, error } = useGetRefereesQuery({
+    page,
+    limit: LIMIT,
+  });
+
+  const referees = data?.data ?? [];
+  const meta = data?.meta;
+  const hasMore = meta ? page < meta.totalPages : false;
   const [createReferee, { isLoading: isCreating }] = useCreateRefereeMutation();
   const [updateReferee, { isLoading: isUpdating }] = useUpdateRefereeMutation();
   const [deleteReferee] = useDeleteRefereeMutation();
@@ -81,6 +91,10 @@ export default function RefereePage() {
       );
     }
   };
+
+    const handleSeeMore = () => {
+      setPage((p) => p + 1);
+    };
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
@@ -172,6 +186,24 @@ export default function RefereePage() {
           </div>
         </div>
       </div>
+
+      {hasMore && (
+        <div className="flex justify-center py-6">
+          <button
+            onClick={handleSeeMore}
+            disabled={isFetching}
+            className="px-6 py-2.5 border border-gray-700 text-gray-300 rounded-lg font-semibold hover:border-[#CCFF00] hover:text-[#CCFF00] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {isFetching ? (
+              <>
+                <Loader className="w-4 h-4 animate-spin" /> Loading...
+              </>
+            ) : (
+              "See More"
+            )}
+          </button>
+        </div>
+      )}
 
       {/* Add Referee Modal */}
       {showModal && (

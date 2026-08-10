@@ -13,7 +13,7 @@ import {
   useGetTeamsByDivisionQuery,
   useRegenerateScheduleMutation,
 } from "@/redux/apiHooks/tournament/tournamentApi";
-import { useGetRefereesQuery } from "@/redux/apiHooks/referee/refereeApi";
+import { useGetAllRefereesQuery } from "@/redux/apiHooks/referee/refereeApi";
 
 interface Match {
   id: number | string;
@@ -86,11 +86,11 @@ export default function BracketsSchedule({
   );
 
   // Referees
-  const {
-    data: refereesData,
-    isLoading: refereesLoading,
-    error: refereesError,
-  } = useGetRefereesQuery();
+const {
+  data: refereesData,
+  isLoading: refereesLoading,
+  error: refereesError,
+} = useGetAllRefereesQuery();
 
   // ===== Helpers for date/time autofill =====
   const pad2 = (n: number) => String(n).padStart(2, "0");

@@ -28,7 +28,7 @@ import { usePathname, useRouter } from "next/navigation";
 import type * as React from "react";
 import { NavMain } from "./nav-main";
 // import { TeamSwitcher } from "./team-switcher";
-import Logo from "@/assets/dashboardlogo.png";
+// import Logo from "@/bglogo.png";
 import { useGetMeQuery } from "@/redux/apiHooks/auth/authApi";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useDispatch } from "react-redux";
@@ -37,6 +37,7 @@ import { NavUser } from "./nav-user";
 
 type Role = "coach" | "player" | "admin";
 
+const Logo = "/logo/logo.png";
 const navByRole = {
   player: [
     {
@@ -200,8 +201,8 @@ export function AppSidebar({
             <Image
               src={Logo}
               alt="Crown & Pitch"
-              width={100}
-              height={100}
+              width={50}
+              height={50}
               priority
             />
           </Link>

@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Link from "next/link";
 import {
   DollarSign,
@@ -21,7 +20,7 @@ export default function AdminDashboardPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-5xl font-bold mb-2">WELCOME BACK, ADMIN</h1>
+          <h1 className="text-lg md:text-2xl lg:text-5xl font-bold mb-2">WELCOME BACK, ADMIN</h1>
           <p className="text-gray-400">Your tournament management dashboard</p>
         </div>
 
