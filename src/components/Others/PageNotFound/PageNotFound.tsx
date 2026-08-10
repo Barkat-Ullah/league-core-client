@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 interface NotFoundProps {
@@ -23,10 +24,18 @@ const PageNotFound: React.FC<NotFoundProps> = ({ pageName = "This page" }) => {
 
       {/* Minimal Content */}
       <div className="text-center space-y-3">
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold font-['Oswald'] text-white">
           The {pageName} Page Not Found
         </h1>
       </div>
+
+      {/* Back to Home Button */}
+      <Link
+        href="/"
+        className="mt-6 rounded bg-[#CCFF00] px-6 py-2.5 text-center font-semibold text-black transition hover:bg-[#B8E600]"
+      >
+        Back to Home
+      </Link>
     </div>
   );
 };

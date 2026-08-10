@@ -46,7 +46,7 @@ export default function AboutPage() {
             style={{ fontFamily: "Open Sans" }}
           >
             <p>
-              In Dhaka, it&apos;s dirt lots between buildings. In Europe,
+              In Dhaka, it&apos;s dirt lots between buildings. In Asia,
               it&apos;s parking lots and the street.
             </p>
             <p>
@@ -57,11 +57,11 @@ export default function AboutPage() {
               </strong>{" "}
             </p>
             <p className="text-gray-400">
-              America doesn&apos;t have those fields.
+              Dhaka doesn&apos;t have those fields.
             </p>
             <p>
               <span className="text-[#CCFF00] font-bold">
-                Crown & Pitch is the American field.
+                Crown & Pitch is the Dhaka field.
               </span>
             </p>
             <p>
@@ -74,10 +74,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* What's Broken in American Soccer */}
+        {/* What's Broken in Dhakan Soccer */}
         <section className="bg-[#1a1a1a] border-l-4 border-l-[#FF6B35] border-r-2 border-r-[#00CCFF] rounded-lg p-6 mb-12">
           <h2 className="text-white font-bold text-2xl mb-6 font-['Oswald']">
-            WHAT&apos;S BROKEN IN AMERICAN SOCCER
+            WHAT&apos;S BROKEN IN DhakaN SOCCER
           </h2>
           <div className="space-y-4" style={{ fontFamily: "Open Sans" }}>
             <div>
