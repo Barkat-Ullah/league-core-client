@@ -6,7 +6,8 @@ export const metadata: Metadata = {
   description:
     "Read Crown & Pitch terms and conditions for registration, eligibility, conduct, waivers, and liability.",
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/terms-and-conditions",
+    canonical:
+      "https://platform.leaguecore.barkatullah.dev/terms-and-conditions",
   },
 };
 

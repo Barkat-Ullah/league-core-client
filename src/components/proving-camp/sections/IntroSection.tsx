@@ -52,12 +52,12 @@ export default function IntroSection() {
       <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 md:py-16 lg:px-8">
         <div className="grid items-center gap-7 md:grid-cols-[1.02fr_0.98fr] md:gap-10">
           <div className="text-center md:text-left">
-            <h2 className="font-['Oswald'] text-[clamp(2.2rem,5.2vw,4.1rem)] leading-[0.98] text-white">
+            <h2 className="font-['Oswald'] text-xl text-[clamp(1.5rem,5.2vw,4.1rem)] leading-[0.98] text-white">
               More Than a Summer Camp.
             </h2>
             <div className="mx-auto mt-3 h-0.75 w-44 rounded-full bg-[#ccff00] md:mx-0 md:w-60" />
 
-            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-gray-300 sm:text-lg md:mx-0 md:max-w-none md:text-base">
+            <p className="mx-auto mt-4 max-w-3xl text-left text-base leading-7 text-gray-300 sm:text-lg md:mx-0 md:max-w-none md:text-base">
               Crown & Pitch Proving Camp isn&lsquo;t your average summer
               program. Every session is run by former professional, current
               semi-professional, and college-level players and coaches who bring

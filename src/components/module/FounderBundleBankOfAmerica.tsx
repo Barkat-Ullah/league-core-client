@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useMemo, useState } from "react";
 
-import { useInitialPaymentMutation } from "@/redux/apiHooks/BankofAmerica/boa";
 import { toast } from "sonner";
 
 type CategoryKey = "youth" | "adult";
@@ -512,8 +511,8 @@ function PaymentForm({
 export default function FounderBundleBankOfAmericaPage() {
   const router = useRouter();
 
-  const [initialPaymentMutation, { isLoading: initialPaymentLoading }] =
-    useInitialPaymentMutation();
+  // const [initialPaymentMutation, { isLoading: initialPaymentLoading }] =
+  //   useInitialPaymentMutation();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedCategory, setSelectedCategory] =
     useState<CategoryKey>("youth");
@@ -532,132 +531,132 @@ export default function FounderBundleBankOfAmericaPage() {
       return;
     }
 
-    try {
-      const result = await initialPaymentMutation({
-        amount: selected.price,
-        category: selected.type,
-        isCredit: true,
-        transactionType: "sale",
-        cardholderName: cardData.cardholderName.trim(),
-        billToAddressLine1: cardData.addressLine1.trim(),
-        billToAddressCity: cardData.city.trim(),
-        billToAddressState: cardData.state.trim(),
-        billToAddressPostalCode: onlyDigits(cardData.zipCode),
-        billToAddressCountry: cardData.country.trim().toUpperCase(),
-      }).unwrap();
+    // try {
+    //   const result = await initialPaymentMutation({
+    //     amount: selected.price,
+    //     category: selected.type,
+    //     isCredit: true,
+    //     transactionType: "sale",
+    //     cardholderName: cardData.cardholderName.trim(),
+    //     billToAddressLine1: cardData.addressLine1.trim(),
+    //     billToAddressCity: cardData.city.trim(),
+    //     billToAddressState: cardData.state.trim(),
+    //     billToAddressPostalCode: onlyDigits(cardData.zipCode),
+    //     billToAddressCountry: cardData.country.trim().toUpperCase(),
+    //   }).unwrap();
 
-      if (!result?.success) {
-        throw new Error(result?.message || "Initial payment failed.");
-      }
+    //   if (!result?.success) {
+    //     throw new Error(result?.message || "Initial payment failed.");
+    //   }
 
-      const data: BoaInitData | undefined = result?.data;
-      const fields = data?.fields;
-      const formAction = data?.formAction;
+    //   const data: BoaInitData | undefined = result?.data;
+    //   const fields = data?.fields;
+    //   const formAction = data?.formAction;
 
-      if (!formAction || !fields) {
-        throw new Error(
-          "Invalid Bank of America response. Missing form fields.",
-        );
-      }
+    //   if (!formAction || !fields) {
+    //     throw new Error(
+    //       "Invalid Bank of America response. Missing form fields.",
+    //     );
+    //   }
 
-      logInitPayloadDebug(formAction, fields);
+    //   logInitPayloadDebug(formAction, fields);
 
-      const form = document.createElement("form");
-      form.setAttribute("method", "POST");
-      form.setAttribute("action", formAction);
-      form.setAttribute("accept-charset", "UTF-8");
-      form.style.display = "none";
+    //   const form = document.createElement("form");
+    //   form.setAttribute("method", "POST");
+    //   form.setAttribute("action", formAction);
+    //   form.setAttribute("accept-charset", "UTF-8");
+    //   form.style.display = "none";
 
-      const normalizedFields = { ...fields };
-      const unsignedFieldNames = parseFieldNames(
-        normalizedFields.unsigned_field_names || "",
-      );
-      const requiredUnsigned = [
-        "card_type",
-        "card_number",
-        "card_expiry_date",
-        "card_cvn",
-      ];
-      const missingUnsigned = requiredUnsigned.filter(
-        (k) => !unsignedFieldNames.includes(k),
-      );
+    //   const normalizedFields = { ...fields };
+    //   const unsignedFieldNames = parseFieldNames(
+    //     normalizedFields.unsigned_field_names || "",
+    //   );
+    //   const requiredUnsigned = [
+    //     "card_type",
+    //     "card_number",
+    //     "card_expiry_date",
+    //     "card_cvn",
+    //   ];
+    //   const missingUnsigned = requiredUnsigned.filter(
+    //     (k) => !unsignedFieldNames.includes(k),
+    //   );
 
-      if (missingUnsigned.length) {
-        throw new Error(
-          `Invalid signed payload from backend. unsigned_field_names is missing: ${missingUnsigned.join(", ")}`,
-        );
-      }
+    //   if (missingUnsigned.length) {
+    //     throw new Error(
+    //       `Invalid signed payload from backend. unsigned_field_names is missing: ${missingUnsigned.join(", ")}`,
+    //     );
+    //   }
 
-      const fieldEntries: Array<[string, string]> = [
-        ...Object.entries(normalizedFields),
-        ["card_type", cardType],
-        ["card_number", onlyDigits(cardData.cardNumber)],
-        [
-          "card_expiry_date",
-          `${cardData.expiryMonth.padStart(2, "0")}-20${cardData.expiryYear}`,
-        ],
-        ["card_cvn", cardData.cvv],
-      ];
+    //   const fieldEntries: Array<[string, string]> = [
+    //     ...Object.entries(normalizedFields),
+    //     ["card_type", cardType],
+    //     ["card_number", onlyDigits(cardData.cardNumber)],
+    //     [
+    //       "card_expiry_date",
+    //       `${cardData.expiryMonth.padStart(2, "0")}-20${cardData.expiryYear}`,
+    //     ],
+    //     ["card_cvn", cardData.cvv],
+    //   ];
 
-      const finalFields = Object.fromEntries(fieldEntries);
+    //   const finalFields = Object.fromEntries(fieldEntries);
 
-      if (process.env.NODE_ENV !== "production") {
-        console.group("[BOA DEBUG] Card input summary");
-        console.log("card_type", cardType);
-        console.log(
-          "card_number_length",
-          onlyDigits(cardData.cardNumber).length,
-        );
-        console.log(
-          "card_expiry_date",
-          `${cardData.expiryMonth.padStart(2, "0")}-20${cardData.expiryYear}`,
-        );
-        console.log("cvn_length", cardData.cvv.length);
-        console.groupEnd();
-      }
+    //   if (process.env.NODE_ENV !== "production") {
+    //     console.group("[BOA DEBUG] Card input summary");
+    //     console.log("card_type", cardType);
+    //     console.log(
+    //       "card_number_length",
+    //       onlyDigits(cardData.cardNumber).length,
+    //     );
+    //     console.log(
+    //       "card_expiry_date",
+    //       `${cardData.expiryMonth.padStart(2, "0")}-20${cardData.expiryYear}`,
+    //     );
+    //     console.log("cvn_length", cardData.cvv.length);
+    //     console.groupEnd();
+    //   }
 
-      logSecureAcceptanceDebug(formAction, finalFields);
+    //   logSecureAcceptanceDebug(formAction, finalFields);
 
-      if (typeof window !== "undefined") {
-        sessionStorage.setItem(
-          "boa-checkout-summary",
-          JSON.stringify({
-            categoryKey: selectedCategory,
-            categoryName: selected.name,
-            categoryType: selected.type,
-            referenceNumber:
-              data?.referenceNumber || finalFields.reference_number,
-            feeBreakdown: data?.feeBreakdown || null,
-          }),
-        );
+    //   if (typeof window !== "undefined") {
+    //     sessionStorage.setItem(
+    //       "boa-checkout-summary",
+    //       JSON.stringify({
+    //         categoryKey: selectedCategory,
+    //         categoryName: selected.name,
+    //         categoryType: selected.type,
+    //         referenceNumber:
+    //           data?.referenceNumber || finalFields.reference_number,
+    //         feeBreakdown: data?.feeBreakdown || null,
+    //       }),
+    //     );
 
-        sessionStorage.setItem(
-          "boa-submit-debug",
-          JSON.stringify({
-            action: formAction,
-            signed_field_names: finalFields.signed_field_names,
-            unsigned_field_names: finalFields.unsigned_field_names,
-            final_field_keys: Object.keys(finalFields).sort(),
-            reference_number: finalFields.reference_number,
-            transaction_uuid: finalFields.transaction_uuid,
-            signed_date_time: finalFields.signed_date_time,
-          }),
-        );
-      }
+    //     sessionStorage.setItem(
+    //       "boa-submit-debug",
+    //       JSON.stringify({
+    //         action: formAction,
+    //         signed_field_names: finalFields.signed_field_names,
+    //         unsigned_field_names: finalFields.unsigned_field_names,
+    //         final_field_keys: Object.keys(finalFields).sort(),
+    //         reference_number: finalFields.reference_number,
+    //         transaction_uuid: finalFields.transaction_uuid,
+    //         signed_date_time: finalFields.signed_date_time,
+    //       }),
+    //     );
+    //   }
 
-      fieldEntries.forEach(([name, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-      });
+    //   fieldEntries.forEach(([name, value]) => {
+    //     const input = document.createElement("input");
+    //     input.type = "hidden";
+    //     input.name = name;
+    //     input.value = value;
+    //     form.appendChild(input);
+    //   });
 
-      document.body.appendChild(form);
-      form.submit();
-    } catch (error: any) {
-      toast.error(error?.message || "Payment initialization failed.");
-    }
+    //   document.body.appendChild(form);
+    //   form.submit();
+    // } catch (error: any) {
+    //   toast.error(error?.message || "Payment initialization failed.");
+    // }
   };
 
   return (
@@ -741,7 +740,7 @@ export default function FounderBundleBankOfAmericaPage() {
 
               <PaymentForm
                 selectedCategory={selectedCategory}
-                isSubmitting={initialPaymentLoading}
+                isSubmitting={false}
                 onPay={handleSubmitToGateway}
               />
             </>

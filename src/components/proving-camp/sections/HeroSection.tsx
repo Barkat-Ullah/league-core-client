@@ -59,8 +59,9 @@ export default function HeroSection({
       <div className="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div className="flex items-center justify-center">
           <div className="w-full max-w-6xl text-center">
-            <h1 className="mx-auto mb-5 max-w-6xl font-oswald text-[clamp(2rem,7vw,5rem)] leading-[1.12] font-bold tracking-tight text-white uppercase">
-              Crown and Pitch Proving Camp
+            <h1 className="mx-auto mb-5 max-w-6xl font-oswald text-[clamp(1.5rem,7vw,5rem)] leading-[1.12] font-bold tracking-tight text-white uppercase">
+              Crown and <span className="text-[#ccff00]">Pitch</span> Proving
+              Camp
             </h1>
 
             <p className="mx-auto mt-3 font-['Oswald'] text-[clamp(1.5rem,5vw,3rem)] font-semibold text-[#ccff00]">

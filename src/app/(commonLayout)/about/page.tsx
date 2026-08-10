@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     "lifestyle",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/about",
+    canonical: "https://platform.leaguecore.barkatullah.dev/about",
   },
   openGraph: {
     title: "About Crown & Pitch | Where Players Rise",
     description:
       "Crown & Pitch is building the first merit-based small-sided soccer tournament series across DFW. For the players. For the game.",
-    url: "https://www.league.barkatullah.dev/about",
+    url: "https://platform.leaguecore.barkatullah.dev/about",
     siteName: "Crown & Pitch",
     type: "website",
   },

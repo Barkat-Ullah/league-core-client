@@ -184,7 +184,8 @@ export const Navbar = () => {
     </div>
   );
 
-  const isHeroPage = pathname === "/" || pathname === "/proving-camp";
+  const isHeroPage = pathname === "/";
+  // const isHeroPage = pathname === "/" || pathname === "/proving-camp";
 
   return (
     <header

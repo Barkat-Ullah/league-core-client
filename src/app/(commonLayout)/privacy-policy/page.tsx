@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Learn how Crown & Pitch collects, uses, shares, stores, and protects participant and website data.",
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/privacy-policy",
+    canonical: "https://platform.leaguecore.barkatullah.dev/privacy-policy",
   },
 };
 

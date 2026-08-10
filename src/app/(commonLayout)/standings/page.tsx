@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "sports leaderboard",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/standings",
+    canonical: "https://platform.leaguecore.barkatullah.dev/standings",
   },
   openGraph: {
     title: "Tournament Standings | Crown Series Qualification | Crown & Pitch",
     description:
       "Track your team's Crown Series qualification points across all Proving Series tournaments in the Dallas-Fort Worth area.",
-    url: "https://www.league.barkatullah.dev/standings",
+    url: "https://platform.leaguecore.barkatullah.dev/standings",
     siteName: "Crown & Pitch",
     type: "website",
   },

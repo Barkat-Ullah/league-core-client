@@ -16,7 +16,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.league.barkatullah.dev"),
+  metadataBase: new URL("https://platform.leaguecore.barkatullah.dev"),
   title: {
     default: "Crown & Pitch",
     template: "%s | Crown & Pitch",
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     "adult competitions",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev",
+    canonical: "https://platform.leaguecore.barkatullah.dev",
   },
   openGraph: {
     title: "Crown & Pitch",
     description:
       "Crown & Pitch is a premier tournament platform featuring Proving Series, Crown Series, and Royal Cup competitions for youth and adult teams.",
-    url: "https://www.league.barkatullah.dev",
+    url: "https://platform.leaguecore.barkatullah.dev",
     siteName: "Crown & Pitch",
     type: "website",
     locale: "en_US",

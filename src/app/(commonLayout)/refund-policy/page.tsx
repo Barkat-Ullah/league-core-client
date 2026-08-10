@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "View Crown & Pitch refund policy including cancellation windows, weather scenarios, and refund request steps.",
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/refund-policy",
+    canonical: "https://platform.leaguecore.barkatullah.dev/refund-policy",
   },
 };
 

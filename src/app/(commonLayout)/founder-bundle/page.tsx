@@ -14,13 +14,13 @@
 //     "special package",
 //   ],
 //   alternates: {
-//     canonical: "https://www.league.barkatullah.dev/founder-bundle",
+//     canonical: "https://platform.leaguecore.barkatullah.dev/founder-bundle",
 //   },
 //   openGraph: {
 //     title: "Founder Bundle | Crown & Pitch",
 //     description:
 //       "Explore the Founder Bundle from Crown & Pitch, including exclusive offers, benefits, and opportunities for early supporters.",
-//     url: "https://www.league.barkatullah.dev/founder-bundle",
+//     url: "https://platform.leaguecore.barkatullah.dev/founder-bundle",
 //     siteName: "Crown & Pitch",
 //     type: "website",
 //   },
@@ -55,13 +55,13 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical:
-      "https://www.league.barkatullah.dev/founder-bundle-bank-of-america",
+      "https://platform.leaguecore.barkatullah.dev/founder-bundle-bank-of-america",
   },
   openGraph: {
     title: "Founder Bundle (Bank of America) | Crown & Pitch",
     description:
       "Purchase Founder Bundle using Bank of America card payment flow.",
-    url: "https://www.league.barkatullah.dev/founder-bundle-bank-of-america",
+    url: "https://platform.leaguecore.barkatullah.dev/founder-bundle-bank-of-america",
     siteName: "Crown & Pitch",
     type: "website",
   },

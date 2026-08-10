@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     "sports standings",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/crown-series",
+    canonical: "https://platform.leaguecore.barkatullah.dev/crown-series",
   },
   openGraph: {
     title: "Crown Series | Crown & Pitch",
     description:
       "Explore Crown Series tournaments at Crown & Pitch. Learn qualification rules, entry fees, and standings.",
-    url: "https://www.league.barkatullah.dev/crown-series",
+    url: "https://platform.leaguecore.barkatullah.dev/crown-series",
     siteName: "Crown & Pitch",
     type: "website",
   },

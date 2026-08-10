@@ -6,8 +6,8 @@ const homeStructuredData = {
   "@context": "https://schema.org",
   "@type": "SportsOrganization",
   name: "Crown & Pitch",
-  url: "https://www.league.barkatullah.dev",
-  logo: "https://www.league.barkatullah.dev/logo.png",
+  url: "https://platform.leaguecore.barkatullah.dev",
+  logo: "https://platform.leaguecore.barkatullah.dev/logo.png",
   description:
     "Merit-based small-sided soccer tournaments across the Dallas-Fort Worth Metroplex",
   telephone: "019999999999",
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     "adult competitions",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev",
+    canonical: "https://platform.leaguecore.barkatullah.dev",
   },
   openGraph: {
     title: "Crown & Pitch | Small-Sided Soccer Tournaments in DFW",
     description:
       "Merit-based 7v7 soccer tournaments across the Dallas-Fort Worth area. Open registration. Proving Series, Crown Series, and Royal Cup. Where Players Rise.",
-    url: "https://www.league.barkatullah.dev",
+    url: "https://platform.leaguecore.barkatullah.dev",
     siteName: "Crown & Pitch",
     type: "website",
   },

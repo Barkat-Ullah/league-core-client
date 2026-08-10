@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "soccer tournaments",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/tournaments",
+    canonical: "https://platform.leaguecore.barkatullah.dev/tournaments",
   },
   openGraph: {
     title: "Upcoming Soccer Tournaments | Crown & Pitch DFW",
     description:
       "Find and register for upcoming small-sided soccer tournaments across DFW. Youth and adult divisions available. 3-game minimum guarantee at every event.",
-    url: "https://www.league.barkatullah.dev/tournaments",
+    url: "https://platform.leaguecore.barkatullah.dev/tournaments",
     siteName: "Crown & Pitch",
     type: "website",
   },

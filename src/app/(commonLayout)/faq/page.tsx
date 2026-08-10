@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "sports events",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/faq",
+    canonical: "https://platform.leaguecore.barkatullah.dev/faq",
   },
   openGraph: {
     title: "FAQ | Crown & Pitch Soccer Tournaments",
     description:
       "Everything you need to know about Crown & Pitch tournaments — registration, refunds, divisions, game rules, and Crown Series qualification.",
-    url: "https://www.league.barkatullah.dev/faq",
+    url: "https://platform.leaguecore.barkatullah.dev/faq",
     siteName: "Crown & Pitch",
     type: "website",
   },

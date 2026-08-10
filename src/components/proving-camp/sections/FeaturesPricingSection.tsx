@@ -3,7 +3,7 @@ import { campFeatures } from "@/components/proving-camp/data";
 export default function FeaturesPricingSection() {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-      <h2 className="text-center font-['Oswald'] text-[clamp(2rem,7vw,3.5rem)] leading-tight text-white">
+      <h2 className="text-center font-['Oswald'] text-[clamp(1.5rem,7vw,3.5rem)] leading-tight text-white">
         Everything your Player Needs. <br /> Nothing they don&lsquo;t.
         Everything they Deserve.
       </h2>

@@ -1,5 +1,5 @@
 // /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://www.league.barkatullah.dev",
+  siteUrl: "https://platform.leaguecore.barkatullah.dev",
   generateRobotsTxt: true,
 };

@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "sports event",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/royal-cup",
+    canonical: "https://platform.leaguecore.barkatullah.dev/royal-cup",
   },
   openGraph: {
     title: "Royal Cup | Crown & Pitch",
     description:
       "Explore the Royal Cup at Crown & Pitch, including tournament format, team participation, entry details, and championship experience.",
-    url: "https://www.league.barkatullah.dev/royal-cup",
+    url: "https://platform.leaguecore.barkatullah.dev/royal-cup",
     siteName: "Crown & Pitch",
     type: "website",
   },

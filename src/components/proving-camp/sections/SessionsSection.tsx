@@ -108,7 +108,7 @@ export default function SessionsSection({
     <section id="sessions" className="py-12 sm:py-16 lg:py-20">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center md:mb-10">
-          <h2 className="font-['Oswald'] text-[clamp(2.1rem,5vw,4rem)] leading-[1.02] text-white">
+          <h2 className="font-['Oswald'] text-[clamp(1.5rem,5vw,4rem)] leading-[1.02] text-white">
             Single Session. Multiple Age Groups.
           </h2>
           <div className="mx-auto mt-3 h-0.75 w-28 rounded-full bg-[#ccff00]" />

@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "sports events",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/how-it-works",
+    canonical: "https://platform.leaguecore.barkatullah.dev/how-it-works",
   },
   openGraph: {
     title: "How Crown & Pitch Works | Proving Series to Royal Cup",
     description:
       "Learn how Crown & Pitch's three-tier tournament system works. Play Proving Series events, qualify for Crown Series, and compete for the Royal Cup.",
-    url: "https://www.league.barkatullah.dev/how-it-works",
+    url: "https://platform.leaguecore.barkatullah.dev/how-it-works",
     siteName: "Crown & Pitch",
     type: "website",
   },

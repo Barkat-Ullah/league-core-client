@@ -42,7 +42,7 @@ function formatDateRange(startDate: string, endDate: string): string {
   return `${startMonth} - ${endMonth}`;
 }
 
-const DEFAULT_LOCATION = "Allen Training Facility";
+const DEFAULT_LOCATION = "Dhaka Training Facility";
 
 export default function ScheduleSection({
   scheduleData,
@@ -89,7 +89,7 @@ export default function ScheduleSection({
     <section className="mx-auto w-full max-w-7xl px-3 py-14 sm:px-6 md:py-20 lg:px-8">
       <div className="overflow-hidden rounded-sm border border-white/10 bg-[#0b0f14] shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
         <div className="bg-[#ccff00] py-2">
-          <h3 className="text-center font-['Oswald'] text-[clamp(1.75rem,6vw,3rem)] leading-tight text-black sm:text-[clamp(2rem,5vw,3.5rem)]">
+          <h3 className="text-center font-['Oswald'] text-[clamp(1.75rem,6vw,3rem)] leading-tight text-black sm:text-[clamp(1.5rem,5vw,3.5rem)]">
             {title}
           </h3>
         </div>

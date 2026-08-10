@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Read Crown & Pitch legal policies including Refund Policy, Terms and Conditions, and Privacy Policy.",
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/legal",
+    canonical: "https://platform.leaguecore.barkatullah.dev/legal",
   },
 };
 
