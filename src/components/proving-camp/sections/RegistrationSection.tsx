@@ -388,7 +388,7 @@ export default function RegistrationSection({
                           key={week.id}
                           checked={isSelected}
                           onCheckedChange={() => toggleWeekSelection(week.id)}
-                          className="rounded-md px-3 py-2 text-sm text-gray-100 data-[state=checked]:bg-cyan-300/10 data-[state=checked]:text-[#ccff00]-100"
+                          className="rounded-md px-3 py-2 text-sm text-gray-100 data-[state=checked]:bg-[#CCFF00]/10 data-[state=checked]:text-[#CCFF00]-100"
                         >
                           <div className="flex w-full items-center justify-between gap-3 pr-4">
                             <div className="min-w-0">

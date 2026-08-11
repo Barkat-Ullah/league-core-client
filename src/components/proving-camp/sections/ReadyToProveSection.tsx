@@ -20,7 +20,7 @@ export default function ReadyToProveSection() {
           payment you will be asked to acknowledge our refund and cancellation
           policy — please read it carefully.
         </p>
-        <p className="mx-auto mt-5 max-w-4xl rounded-lg border border-cyan-400/30 bg-cyan-400/10 px-4 py-5 text-left text-sm leading-7 sm:px-6 sm:text-base md:px-8">
+        <p className="mx-auto mt-5 max-w-4xl rounded-lg border border-[#CCFF00]/30 bg-[#CCFF00]/10 px-4 py-5 text-left text-sm leading-7 sm:px-6 sm:text-base md:px-8">
           <span className="font-semibold text-[#CCFF00]">Session Details:</span>{" "}
           Our single session runs from 9:00 AM to 12:00 PM (drop-off 8:45 AM)
           and welcomes players ages 8–14. Players aged 8–10 focus on building

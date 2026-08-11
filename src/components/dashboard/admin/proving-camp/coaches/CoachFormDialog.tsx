@@ -124,11 +124,11 @@ export default function CoachFormDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-4xl border border-[#1E2A45] bg-[#05080E] p-0 text-white"
+        className="flex max-h-[90vh] max-w-4xl flex-col overflow-hidden border border-[#1E2A45] bg-[#05080E] p-0 text-white"
         showCloseButton={false}
       >
-        <DialogHeader className="border-b border-[#15213A] px-6 py-5 text-left">
-          <DialogTitle className="text-4xl font-bold uppercase tracking-wide text-[#EAF0FA]">
+        <DialogHeader className="shrink-0 border-b border-[#15213A] px-6 py-4 text-left">
+          <DialogTitle className="text-2xl font-bold uppercase tracking-wide text-[#EAF0FA] sm:text-3xl lg:text-4xl">
             {title}
           </DialogTitle>
           <DialogDescription className="text-sm text-[#A4ADBE]">
@@ -136,7 +136,7 @@ export default function CoachFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-5 px-6 py-5">
+        <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
           <div>
             <label className={labelClassName}>Coach Name</label>
             <input
@@ -221,7 +221,7 @@ export default function CoachFormDialog({
           </div>
         </div>
 
-        <DialogFooter className="border-t border-[#15213A] px-6 py-5 sm:justify-between">
+        <DialogFooter className="shrink-0 flex-row justify-between border-t border-[#15213A] px-6 py-4">
           <button
             type="button"
             onClick={() => onOpenChange(false)}
@@ -234,7 +234,7 @@ export default function CoachFormDialog({
             type="button"
             onClick={handleSave}
             disabled={loading}
-            className="h-11 rounded-md bg-[#CCFF00] px-12 text-sm font-bold text-[#061014] hover:bg-[#2FAABA]"
+            className="h-11 rounded-md bg-[#CCFF00] px-12 text-sm font-bold text-[#061014] hover:bg-[#05cd0c]"
           >
             {loading ? "Saving..." : "Save"}
           </button>

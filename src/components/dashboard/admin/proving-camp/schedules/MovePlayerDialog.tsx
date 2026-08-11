@@ -370,7 +370,7 @@ export default function MovePlayerDialog({
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="mt-2 flex w-full h-10 items-center justify-between gap-3 rounded border border-white/15 bg-black px-3 py-1.5 text-left text-sm text-gray-100 outline-none transition-colors hover:border-cyan-300/50 focus:border-cyan-300"
+                  className="mt-2 flex w-full h-10 items-center justify-between gap-3 rounded border border-white/15 bg-black px-3 py-1.5 text-left text-sm text-gray-100 outline-none transition-colors hover:border-[#CCFF00]/50 focus:border-[#CCFF00]"
                 >
                   <span className="min-w-0 flex-1 truncate text-gray-100">
                     {selectedWeekIds.length > 0
@@ -421,7 +421,7 @@ export default function MovePlayerDialog({
                         key={week.id}
                         checked={isSelected}
                         onCheckedChange={() => toggleWeekSelection(week.id)}
-                        className="rounded-md px-3 py-2 text-sm text-gray-100 data-[state=checked]:bg-cyan-300/10 data-[state=checked]:text-[#ccff00]-100"
+                        className="rounded-md px-3 py-2 text-sm text-gray-100 data-[state=checked]:bg-[#CCFF00]/10 data-[state=checked]:text-[#CCFF00]-100"
                       >
                         <div className="flex w-full items-center justify-between gap-3 pr-4">
                           <div className="min-w-0">
