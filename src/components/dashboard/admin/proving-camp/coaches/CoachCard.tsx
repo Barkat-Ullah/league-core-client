@@ -14,8 +14,8 @@ export default function CoachCard({ coach, onEdit, onDelete }: CoachCardProps) {
   const hasLongBio = coach.bio.trim().length > 140;
 
   return (
-    <article className="group overflow-hidden rounded-2xl border border-[#2A3140] bg-[#0F131B] shadow-[0_16px_45px_-30px_rgba(0,0,0,0.95)] transition-all duration-300 hover:-translate-y-1 hover:border-[#CCFF00]/50">
-      <div className="relative h-56 w-full bg-[#10131A]">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#2A3140] bg-[#0F131B] shadow-[0_16px_45px_-30px_rgba(0,0,0,0.95)] transition-all duration-300 hover:-translate-y-1 hover:border-[#CCFF00]/50">
+      <div className="relative h-56 w-full shrink-0 bg-[#10131A]">
         {coach.photoUrl ? (
           <Image
             src={coach.photoUrl}
@@ -32,7 +32,7 @@ export default function CoachCard({ coach, onEdit, onDelete }: CoachCardProps) {
         <div className="absolute inset-0 bg-linear-to-t from-[#080B11] via-[#080B11]/45 to-transparent" />
 
         <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-3">
-          <span className="inline-flex rounded-full border border-[#CCFF00]/50 bg-[#0A2830]/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#7EDBE7] backdrop-blur">
+          <span className="inline-flex rounded-full border border-[#CCFF00]/50 bg-[#0A2830]/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#05cd0c] backdrop-blur">
             {coach.badge}
           </span>
           {coach.role && (
@@ -49,24 +49,28 @@ export default function CoachCard({ coach, onEdit, onDelete }: CoachCardProps) {
         </div>
       </div>
 
-      <div className="space-y-5 p-5">
-        <p
-          className={`${isBioExpanded ? "" : "line-clamp-3"} text-sm leading-7 text-[#AAB5C9]`}
-        >
-          {coach.bio}
-        </p>
-
-        {hasLongBio && (
-          <button
-            type="button"
-            onClick={() => setIsBioExpanded((prev) => !prev)}
-            className="text-xs font-semibold uppercase tracking-wider text-[#CCFF00] hover:text-[#6DD3E0]"
+      {/* Body grows to fill remaining card height so footers align across cards */}
+      <div className="flex flex-1 flex-col gap-5 p-5">
+        <div className="flex-1">
+          <p
+            className={`${isBioExpanded ? "" : "line-clamp-3"} text-sm leading-7 text-[#AAB5C9]`}
           >
-            {isBioExpanded ? "Read Less" : "Read More"}
-          </button>
-        )}
+            {coach.bio}
+          </p>
 
-        <div className="flex items-center gap-2 rounded-xl border border-[#1F2634] bg-[#0B0F15] p-2">
+          {hasLongBio && (
+            <button
+              type="button"
+              onClick={() => setIsBioExpanded((prev) => !prev)}
+              className="mt-2 text-xs font-semibold uppercase tracking-wider text-[#CCFF00] hover:text-[#05cd0c]"
+            >
+              {isBioExpanded ? "Read Less" : "Read More"}
+            </button>
+          )}
+        </div>
+
+        {/* Pinned to bottom of the card regardless of bio length */}
+        <div className="mt-auto flex items-center gap-2 rounded-xl border border-[#1F2634] bg-[#0B0F15] p-2">
           <button
             type="button"
             onClick={() => onEdit(coach)}

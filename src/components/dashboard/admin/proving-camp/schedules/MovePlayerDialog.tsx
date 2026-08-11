@@ -403,7 +403,7 @@ export default function MovePlayerDialog({
                       setSelectedWeekIds([]);
                       setSelectedSessionIds([]);
                     }}
-                    className="text-xs font-semibold text-cyan-300 hover:text-cyan-200"
+                    className="text-xs font-semibold text-[#ccff00]-300 hover:text-[#ccff00]-200"
                   >
                     Clear all
                   </button>
@@ -421,7 +421,7 @@ export default function MovePlayerDialog({
                         key={week.id}
                         checked={isSelected}
                         onCheckedChange={() => toggleWeekSelection(week.id)}
-                        className="rounded-md px-3 py-2 text-sm text-gray-100 data-[state=checked]:bg-cyan-300/10 data-[state=checked]:text-cyan-100"
+                        className="rounded-md px-3 py-2 text-sm text-gray-100 data-[state=checked]:bg-cyan-300/10 data-[state=checked]:text-[#ccff00]-100"
                       >
                         <div className="flex w-full items-center justify-between gap-3 pr-4">
                           <div className="min-w-0">

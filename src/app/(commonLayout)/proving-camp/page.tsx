@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     "summer sessions",
   ],
   alternates: {
-    canonical: "https://www.league.barkatullah.dev/proving-camp",
+    canonical: "https://platform.leaguecore.barkatullah.dev/proving-camp",
   },
   openGraph: {
     title: "Proving Camp | Crown & Pitch",
     description:
       "Explore session structure, weekly schedule, coaches, pricing, and registration for Crown and Pitch Proving Camp.",
-    url: "https://www.league.barkatullah.dev/proving-camp",
+    url: "https://platform.leaguecore.barkatullah.dev/proving-camp",
     siteName: "Crown & Pitch",
     type: "website",
   },

@@ -1,4 +1,4 @@
-import waterMarkTop from "@/assets/wartermark-hit-top.png";
+import waterMarkTop from "@/assets/backdrop.png";
 import { Gift, Star, Trophy, Users } from "lucide-react";
 import Image from "next/image";
 
@@ -38,8 +38,8 @@ const iconMap = [
 export default function IntroSection() {
   return (
     <section className="relative overflow-hidden">
-      {/* Watermark */}
-      <div className="pointer-events-none absolute -bottom-12 left-0 h-60 w-50 opacity-70 sm:h-80 sm:w-64 md:h-96 md:w-80">
+      {/* Watermark: hidden on small devices, visible from sm and up */}
+      <div className="pointer-events-none absolute -bottom-12 left-0 hidden h-60 w-50 opacity-70 sm:block sm:h-80 sm:w-64 md:h-96 md:w-80">
         <Image
           src={waterMarkTop}
           alt="Watermark"
@@ -62,7 +62,7 @@ export default function IntroSection() {
               program. Every session is run by former professional, current
               semi-professional, and college-level players and coaches who bring
               real game experience to every drill, every rep, and every
-              conversation on the pitch.  We keep groups small, the pace high,
+              conversation on the pitch. We keep groups small, the pace high,
               and the energy higher. Whether your player is picking up the game
               for the first time or looking to sharpen what they already have,
               Proving Camp is where the work gets done — and where the fun

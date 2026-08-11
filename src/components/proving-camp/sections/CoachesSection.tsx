@@ -64,7 +64,7 @@ and NTX Lions head coach."
         ) : coaches.length === 0 ? (
           <p className="text-center text-sm text-gray-400">No coaches found.</p>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3">
             {coaches.map((coach) => {
               const bio = coach.coachBio ?? "";
               const hasLongBio = bio.length > 200;
@@ -73,16 +73,16 @@ and NTX Lions head coach."
               return (
                 <article
                   key={coach.id}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#121212] shadow-[0_8px_24px_rgba(0,0,0,0.2)] transition-transform duration-300 hover:-translate-y-1 hover:border-cyan-300/40"
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-[#2A3140] bg-[#0F131B] shadow-[0_16px_45px_-30px_rgba(0,0,0,0.95)] transition-all duration-300 hover:-translate-y-1 hover:border-[#CCFF00]/50"
                 >
-                  <div className="relative aspect-4/3 w-full overflow-hidden">
+                  <div className="relative h-56 w-full bg-[#10131A]">
                     {coach.image ? (
                       <Image
                         src={coach.image}
                         alt={coach.name}
                         fill
-                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                        sizes={coachImageSizes}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                         quality={80}
                       />
                     ) : (
@@ -98,13 +98,13 @@ and NTX Lions head coach."
                         {coach.name}
                       </h3>
                       {coach.role ? (
-                        <p className="w-full rounded-sm bg-[#CCFF001A] px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-cyan-300">
+                        <p className="w-full rounded-sm bg-[#CCFF001A] px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-[#ccff00]">
                           {coach.role}
                         </p>
                       ) : null}
 
                       {coach.badge ? (
-                        <p className="w-full rounded-sm bg-[#CCFF001A] px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-cyan-300">
+                        <p className="w-full rounded-sm bg-[#CCFF001A] px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-[#ccff00]">
                           {coach.badge}
                         </p>
                       ) : null}
@@ -143,7 +143,7 @@ and NTX Lions head coach."
                     {hasLongBio ? (
                       <button
                         type="button"
-                        className="mt-auto inline-flex w-fit items-center gap-1 text-sm font-medium text-cyan-300 transition-colors duration-300 hover:text-cyan-200"
+                        className="mt-auto inline-flex w-fit items-center gap-1 text-sm font-medium text-[#ccff00] transition-colors duration-300 hover: text-[#ccff00]"
                         onClick={() =>
                           setExpandedCoach((prev) =>
                             prev === coach.id ? null : coach.id,
