@@ -58,9 +58,12 @@ const HeroSection = () => {
               Prove Yourself
             </button>
           </Link>
-          <button className="w-full rounded-sm border border-[#CCFF00] bg-black px-6 py-3 text-sm font-bold text-[#CCFF00] shadow-lg transition hover:bg-[#B8E600] hover:text-black sm:w-auto sm:text-base">
-            View Schedule
-          </button>
+          <Link href="/proving-camp">
+            {" "}
+            <button className="w-full rounded-sm border border-[#CCFF00] bg-black px-6 py-3 text-sm font-bold text-[#CCFF00] shadow-lg transition hover:bg-[#B8E600] hover:text-black sm:w-auto sm:text-base">
+              View Schedule
+            </button>
+          </Link>
         </div>
       </div>
     </section>

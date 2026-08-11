@@ -2,6 +2,7 @@
 import { Trophy, Users } from "lucide-react";
 import Image from "next/image";
 import waterMarkTop from "@/assets/blur-removebg-preview.png";
+import Link from "next/link";
 
 const divisions = [
   {
@@ -133,9 +134,12 @@ const ForEveryPlayer = () => {
 
         {/* Button */}
         <div className="text-center mt-10 md:mt-12">
-          <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-bold py-3 px-8 rounded transition">
-            Find Your Division
-          </button>
+          <Link href="/standings">
+            {" "}
+            <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-bold py-3 px-8 rounded transition">
+              Find Your Division
+            </button>
+          </Link>
         </div>
       </div>
     </section>
