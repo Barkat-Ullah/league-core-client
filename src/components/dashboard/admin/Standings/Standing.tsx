@@ -159,19 +159,22 @@ export default function AdminStandingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <Trophy size={32} className="text-[#CCFF00]" />
-              <h1 className="text-4xl font-bold">
+              <Trophy
+                size={28}
+                className="text-[#CCFF00] shrink-0 md:w-8 md:h-8"
+              />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold break-words">
                 {activeView === "standings"
                   ? "Crown Series Standings"
                   : "Crown Series Discount Configuration"}
               </h1>
             </div>
-            <p className="text-gray-400">
+            <p className="text-gray-400 text-sm md:text-base">
               {activeView === "standings"
                 ? "Manage the points system and view leaderboard"
                 : "Manage the ticket system and view leaderboard"}
@@ -183,7 +186,7 @@ export default function AdminStandingsPage() {
                 activeView === "standings" ? "discount" : "standings",
               )
             }
-            className="bg-[#CCFF00] text-black font-bold px-6 py-3 rounded-lg hover:bg-[#B8E600]"
+            className="w-full md:w-auto shrink-0 bg-[#CCFF00] text-black font-bold px-6 py-3 rounded-lg hover:bg-[#B8E600] whitespace-nowrap"
           >
             {activeView === "standings"
               ? "Discount Configuration"
@@ -211,7 +214,7 @@ export default function AdminStandingsPage() {
 
         {/* Leaderboard */}
         <div className="bg-gray-900/30 border border-gray-800 rounded-xl overflow-hidden">
-          <div className="p-6 border-b border-gray-800">
+          <div className="p-4 md:p-6 border-b border-gray-800">
             <h2 className="text-lg font-bold flex items-center gap-2">
               <span>📊</span>
               Leaderboard
@@ -219,7 +222,7 @@ export default function AdminStandingsPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[820px]">
               <thead className="bg-gray-900/50 border-b border-gray-800">
                 <tr className="text-gray-400 text-sm font-semibold uppercase tracking-wide">
                   <th className="text-left py-4 px-6">Rank</th>
@@ -247,14 +250,16 @@ export default function AdminStandingsPage() {
                     </td>
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
-                        <Trophy size={16} className="text-[#CCFF00]" />
-                        <span className="font-semibold">{team.name}</span>
+                        <Trophy size={16} className="text-[#CCFF00] shrink-0" />
+                        <span className="font-semibold whitespace-nowrap">
+                          {team.name}
+                        </span>
                       </div>
                     </td>
-                    <td className="py-4 px-6 text-gray-300">
+                    <td className="py-4 px-6 text-gray-300 whitespace-nowrap">
                       {team.tournaments}
                     </td>
-                    <td className="py-4 px-6">
+                    <td className="py-4 px-6 whitespace-nowrap">
                       <span className="text-[#CCFF00] font-bold text-lg">
                         {team.points}
                       </span>
@@ -265,7 +270,7 @@ export default function AdminStandingsPage() {
                         style={{
                           backgroundColor: team.statusColor,
                         }}
-                        className="px-3 py-1 rounded text-xs font-semibold"
+                        className="inline-flex whitespace-nowrap px-3 py-1 rounded text-xs font-semibold"
                       >
                         {team.status}
                       </span>
@@ -281,7 +286,7 @@ export default function AdminStandingsPage() {
                             });
                             setInviteModalOpen(true);
                           }}
-                          className={`text-sm ${
+                          className={`text-sm whitespace-nowrap ${
                             team.inviteEnabled
                               ? "cursor-pointer bg-[#CCFF00] text-black px-3 py-1 rounded hover:bg-[#B8E600] font-bold"
                               : "text-gray-600 cursor-not-allowed"
@@ -292,7 +297,7 @@ export default function AdminStandingsPage() {
                       ) : (
                         <div>
                           {editingTeamId === team.teamId ? (
-                            <div className="flex gap-2 items-center">
+                            <div className="flex flex-wrap gap-2 items-center">
                               <input
                                 type="number"
                                 min="0"
@@ -309,14 +314,14 @@ export default function AdminStandingsPage() {
                               <button
                                 onClick={() => handleSaveDiscount(team.teamId)}
                                 disabled={isUpdating}
-                                className="bg-[#CCFF00] text-black text-xs px-2 py-1 rounded hover:bg-[#B8E600] disabled:opacity-50"
+                                className="bg-[#CCFF00] text-black text-xs px-2 py-1 rounded hover:bg-[#B8E600] disabled:opacity-50 whitespace-nowrap"
                               >
                                 {isUpdating ? "Saving..." : "Save"}
                               </button>
                               <button
                                 onClick={handleCancelEdit}
                                 disabled={isUpdating}
-                                className="bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 disabled:opacity-50"
+                                className="bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 disabled:opacity-50 whitespace-nowrap"
                               >
                                 Cancel
                               </button>
@@ -326,7 +331,7 @@ export default function AdminStandingsPage() {
                               onClick={() =>
                                 handleEditDiscount(team.teamId, team.discount)
                               }
-                              className="font-bold text-white cursor-pointer hover:text-[#CCFF00] transition-colors"
+                              className="font-bold text-white cursor-pointer hover:text-[#CCFF00] transition-colors whitespace-nowrap"
                             >
                               {team.discount}
                             </span>

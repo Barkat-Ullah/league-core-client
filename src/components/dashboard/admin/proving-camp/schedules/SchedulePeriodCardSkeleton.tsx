@@ -1,6 +1,6 @@
 export default function SchedulePeriodCardSkeleton() {
   return (
-    <div className="animate-pulse rounded-xl border border-[#2E3340] bg-[#151821] p-4">
+    <div className="animate-pulse flex flex-col h-full rounded-xl border border-[#2E3340] bg-[#151821] p-4">
       {/* Header */}
       <div className="mb-3 flex items-start justify-between">
         <div className="space-y-2">
@@ -34,10 +34,12 @@ export default function SchedulePeriodCardSkeleton() {
       </div>
 
       {/* Progress bar */}
-      <div className="mt-3 h-1.5 rounded bg-[#2A3140]" />
+      <div className="mt-auto">
+        <div className="mt-3 h-1.5 rounded bg-[#2A3140]" />
 
-      {/* Button */}
-      <div className="mt-4 h-4 w-32 rounded bg-[#2A3140]" />
+        {/* Button */}
+        <div className="mt-4 h-4 w-32 rounded bg-[#2A3140]" />
+      </div>
     </div>
   );
 }

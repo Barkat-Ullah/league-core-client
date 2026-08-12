@@ -95,26 +95,34 @@ const AppHeader = () => {
   const segments = pathname.split("/").filter(Boolean);
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between gap-2 bg-[#0A0A0A] border-b border-gray-800 px-6">
+    <header className="flex min-h-16 shrink-0 flex-nowrap items-center justify-between gap-x-2 gap-y-1 bg-[#0A0A0A] border-b border-gray-800 px-3 sm:px-6">
       {/* Left Side */}
-      <div className="flex items-center gap-4">
-        <SidebarTrigger className="-ml-1" />
+      <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-4">
+        <SidebarTrigger className="-ml-1 shrink-0" />
 
-        <div className="flex items-center gap-2 text-sm text-gray-400">
-          <Link href="/" className="hover:text-gray-200">
+        <div className="flex min-w-0 flex-wrap items-center gap-1 text-sm text-gray-400 sm:gap-2">
+          <Link href="/" className="shrink-0 hover:text-gray-200">
             Home
           </Link>
-          {segments.map((segment, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <ChevronRight className="w-4 h-4" />
-              <span className="capitalize">{segment}</span>
-            </div>
-          ))}
+          {segments.map((segment, index) => {
+            const isLast = index === segments.length - 1;
+            return (
+              <div
+                key={index}
+                className={`flex min-w-0 items-center gap-1 sm:gap-2 ${
+                  isLast ? "" : "hidden sm:inline-flex"
+                }`}
+              >
+                <ChevronRight className="h-4 w-4 shrink-0" />
+                <span className="capitalize">{segment}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* Right Side */}
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-2 sm:gap-4">
         {isCoachOrManager ? (
           <div className="relative">
             <button

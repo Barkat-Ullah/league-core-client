@@ -18,14 +18,14 @@ export default function MetricCard({ metric }: MetricCardProps) {
   return (
     <article className="rounded-xl border border-[#232734] bg-[#12141A] px-6 py-5">
       <div className="mb-2 flex items-center gap-3 text-[#8D93A6]">
-        <Icon className="h-4 w-4 text-[#CCFF00]" />
-        <p className="text-xl font-medium leading-none">{metric.title}</p>
+        <Icon className="h-4 w-4 shrink-0 text-[#CCFF00]" />
+        <p className="text-lg font-medium leading-none sm:text-xl">{metric.title}</p>
       </div>
 
-      <p className="text-5xl font-bold tracking-tight text-[#E9EDF5]">
+      <p className="break-words text-3xl font-bold tracking-tight text-[#E9EDF5] sm:text-4xl lg:text-5xl">
         {metric.value}
       </p>
-      <p className={cn("mt-2 text-2xl text-[#8D93A6]", metric.accent)}>
+      <p className={cn("mt-2 text-base text-[#8D93A6] sm:text-lg lg:text-2xl", metric.accent)}>
         {metric.description}
       </p>
     </article>

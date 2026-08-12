@@ -124,10 +124,10 @@ export default function CoachFormDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="flex max-h-[90vh] max-w-4xl flex-col overflow-hidden border border-[#1E2A45] bg-[#05080E] p-0 text-white"
+        className="flex max-h-[90vh] w-[calc(100vw-2rem)] max-w-4xl flex-col overflow-hidden border border-[#1E2A45] bg-[#05080E] p-0 text-white"
         showCloseButton={false}
       >
-        <DialogHeader className="shrink-0 border-b border-[#15213A] px-6 py-4 text-left">
+        <DialogHeader className="shrink-0 border-b border-[#15213A] px-4 py-4 text-left sm:px-6">
           <DialogTitle className="text-2xl font-bold uppercase tracking-wide text-[#EAF0FA] sm:text-3xl lg:text-4xl">
             {title}
           </DialogTitle>
@@ -136,7 +136,7 @@ export default function CoachFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
+        <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-6">
           <div>
             <label className={labelClassName}>Coach Name</label>
             <input
@@ -221,7 +221,7 @@ export default function CoachFormDialog({
           </div>
         </div>
 
-        <DialogFooter className="shrink-0 flex-row justify-between border-t border-[#15213A] px-6 py-4">
+        <DialogFooter className="shrink-0 flex-row justify-between border-t border-[#15213A] px-4 py-4 sm:px-6">
           <button
             type="button"
             onClick={() => onOpenChange(false)}

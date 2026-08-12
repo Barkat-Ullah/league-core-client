@@ -46,6 +46,7 @@ export default function AdminSettingsPage() {
       imageUrl: profileImage,
     };
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProfile(nextProfile);
     if (!profileEditMode) {
       setTempProfile(nextProfile);
@@ -142,20 +143,20 @@ export default function AdminSettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
-      <div className="max-w-4xl mx-auto space-y-6">
-        <h1 className="text-4xl font-bold mb-2">SETTINGS</h1>
-        <p className="text-gray-400 mb-8">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-2 sm:p-6">
+      <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+        <h1 className="text-xl md:text-4xl lg:text-4xl font-bold mb-2">SETTINGS</h1>
+        <p className="text-gray-400 mb-4 sm:mb-8">
           Manage your account and preferences
         </p>
 
         {/* Profile Information Section */}
-        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8">
-          <h2 className="text-2xl font-bold mb-6 uppercase tracking-wider">
+        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-4 sm:p-6 md:p-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-6 uppercase tracking-wider">
             PROFILE INFORMATION
           </h2>
 
-          <div className="flex flex-col md:flex-row gap-8">
+          <div className="flex flex-col items-center md:flex-row md:items-start gap-6 md:gap-8">
             {/* Avatar */}
             <div className="shrink-0">
               <div className="relative w-32 h-32 bg-gray-800 rounded-full flex items-center justify-center border-4 border-gray-700 overflow-hidden">
@@ -265,7 +266,7 @@ export default function AdminSettingsPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-3 mt-6">
+              <div className="flex flex-col sm:flex-row gap-3 mt-6">
                 {profileEditMode ? (
                   <>
                     <button
@@ -285,7 +286,7 @@ export default function AdminSettingsPage() {
                 ) : (
                   <button
                     onClick={handleProfileEdit}
-                    className="flex-1 bg-gray-800 text-white font-bold py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                    className="text-center flex-1 bg-gray-800 text-white font-bold py-2 rounded-lg hover:bg-gray-700 transition-colors"
                   >
                     Edit Profile
                   </button>
@@ -296,8 +297,8 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* Password & Security */}
-        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8">
-          <h2 className="text-2xl font-bold mb-6 uppercase tracking-wider">
+        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-4 sm:p-6 md:p-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-6 uppercase tracking-wider">
             PASSWORD & SECURITY
           </h2>
 
@@ -345,21 +346,21 @@ export default function AdminSettingsPage() {
           <button
             onClick={handleResetPassword}
             disabled={isResetting}
-            className="bg-[#CCFF00] text-black font-bold px-6 py-2 rounded-lg hover:bg-[#B8E600] transition-colors disabled:opacity-60"
+            className="w-full bg-[#CCFF00] text-black font-bold px-6 py-2 rounded-lg hover:bg-[#B8E600] transition-colors disabled:opacity-60"
           >
             {isResetting ? "Updating..." : "Update Password"}
           </button>
         </div>
         {/* Notification Preferences */}
-        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8">
-          <h2 className="text-2xl font-bold mb-6 uppercase tracking-wider">
+        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-4 sm:p-6 md:p-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-6 uppercase tracking-wider">
             NOTIFICATIONS
           </h2>
 
           <div className="space-y-4">
             {/* Waiver Alerts */}
-            <div className="flex items-center justify-between py-4 border-b border-gray-800">
-              <div>
+            <div className="flex flex-wrap items-center justify-between gap-3 py-4 border-b border-gray-800">
+              <div className="flex-1 min-w-0">
                 <p className="text-white font-semibold">Waiver Alerts</p>
                 <p className="text-gray-500 text-sm">
                   Alert for pending waivers and documents
@@ -367,7 +368,7 @@ export default function AdminSettingsPage() {
               </div>
               <button
                 onClick={() => handleNotificationChange("waiverAlerts")}
-                className={`relative inline-flex w-12 h-7 rounded-full transition-colors ${
+                className={`relative inline-flex shrink-0 w-12 h-7 rounded-full transition-colors ${
                   notifications.waiverAlerts ? "bg-[#CCFF00]" : "bg-gray-700"
                 }`}
               >
@@ -382,8 +383,8 @@ export default function AdminSettingsPage() {
             </div>
 
             {/* Team Updates */}
-            <div className="flex items-center justify-between py-4 border-b border-gray-800">
-              <div>
+            <div className="flex flex-wrap items-center justify-between gap-3 py-4 border-b border-gray-800">
+              <div className="flex-1 min-w-0">
                 <p className="text-white font-semibold">Team Updates</p>
                 <p className="text-gray-500 text-sm">
                   News and announcements about tournaments
@@ -391,7 +392,7 @@ export default function AdminSettingsPage() {
               </div>
               <button
                 onClick={() => handleNotificationChange("teamUpdates")}
-                className={`relative inline-flex w-12 h-7 rounded-full transition-colors ${
+                className={`relative inline-flex shrink-0 w-12 h-7 rounded-full transition-colors ${
                   notifications.teamUpdates ? "bg-[#CCFF00]" : "bg-gray-700"
                 }`}
               >
@@ -406,8 +407,8 @@ export default function AdminSettingsPage() {
             </div>
 
             {/* Match Reminders */}
-            <div className="flex items-center justify-between py-4">
-              <div>
+            <div className="flex flex-wrap items-center justify-between gap-3 py-4">
+              <div className="flex-1 min-w-0">
                 <p className="text-white font-semibold">Match Reminders</p>
                 <p className="text-gray-500 text-sm">
                   Reminders before match start times and field assignments
@@ -415,7 +416,7 @@ export default function AdminSettingsPage() {
               </div>
               <button
                 onClick={() => handleNotificationChange("matchReminders")}
-                className={`relative inline-flex w-12 h-7 rounded-full transition-colors ${
+                className={`relative inline-flex shrink-0 w-12 h-7 rounded-full transition-colors ${
                   notifications.matchReminders ? "bg-[#CCFF00]" : "bg-gray-700"
                 }`}
               >

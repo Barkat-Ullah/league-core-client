@@ -8,7 +8,7 @@ export default function VerificationCenterPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Verification Center</h1>
+          <h1 className="text-xl lg:text-4xl font-bold mb-2">Verification Center</h1>
           <p className="text-gray-400 text-sm">
             Review and manage player age verification and waiver requests.
           </p>

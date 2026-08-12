@@ -19,9 +19,11 @@ export function NavUser({
           <Avatar className="h-8 w-8 rounded-full">
             <AvatarImage src={user.avatar} alt={`${user.name} avatar`} />
           </Avatar>
-          <div className="grid flex-1 text-left text-sm leading-tight text-white">
+          <div className="grid min-w-0 flex-1 text-left text-sm leading-tight text-white">
             <span className="truncate font-medium">{user.name}</span>
-            <span className="truncate text-xs text-gray-400">{user.email}</span>
+            <span className="hidden truncate text-xs text-gray-400 sm:block">
+              {user.email}
+            </span>
           </div>
         </div>
       </SidebarMenuItem>

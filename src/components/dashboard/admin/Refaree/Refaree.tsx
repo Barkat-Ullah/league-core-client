@@ -92,29 +92,32 @@ export default function RefereePage() {
     }
   };
 
-    const handleSeeMore = () => {
-      setPage((p) => p + 1);
-    };
+  const handleSeeMore = () => {
+    setPage((p) => p + 1);
+  };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
           <div>
-            <h1 className="text-4xl font-bold">Referee</h1>
-            <p className="text-gray-400 mt-1">Add and Manage Referee</p>
+            <h1 className="text-2xl sm:text-4xl font-bold">Referee</h1>
+            <p className="text-gray-400 mt-1 text-sm sm:text-base">
+              Add and Manage Referee
+            </p>
           </div>
           <button
             onClick={openCreateModal}
-            className="bg-[#CCFF00] text-black font-bold px-6 py-3 rounded-lg hover:bg-[#B8E600] transition-colors flex items-center gap-2"
+            className="bg-[#CCFF00] text-black font-bold px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-[#B8E600] transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
           >
             <Plus size={20} />
             Add Referee
           </button>
         </div>
 
-        {/* Referee List */}
-        <div className="bg-gray-900/30 border border-gray-800 rounded-xl overflow-hidden">
+        {/* Referee List - Table (desktop/tablet) */}
+        <div className="hidden md:block bg-gray-900/30 border border-gray-800 rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-900/50 border-b border-gray-800">
@@ -185,6 +188,58 @@ export default function RefereePage() {
             </table>
           </div>
         </div>
+
+        {/* Referee List - Cards (mobile) */}
+        <div className="md:hidden space-y-3">
+          {isLoading ? (
+            <div className="flex items-center justify-center gap-2 text-gray-400 py-8 bg-gray-900/30 border border-gray-800 rounded-xl">
+              <Loader className="w-5 h-5 animate-spin" /> Loading referees...
+            </div>
+          ) : error ? (
+            <div className="text-red-400 py-8 text-center bg-gray-900/30 border border-gray-800 rounded-xl">
+              Failed to load referees.
+            </div>
+          ) : referees.length === 0 ? (
+            <div className="text-gray-400 py-8 text-center bg-gray-900/30 border border-gray-800 rounded-xl">
+              No referees found.
+            </div>
+          ) : (
+            referees.map((referee) => (
+              <div
+                key={referee.id}
+                className="bg-gray-900/30 border border-gray-800 rounded-xl p-4"
+              >
+                <div className="flex justify-between items-start gap-3">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-base truncate">
+                      {referee.name}
+                    </p>
+                    <p className="text-gray-300 text-sm mt-1 break-all">
+                      {referee.email}
+                    </p>
+                    <p className="text-gray-300 text-sm mt-1">
+                      {referee.phoneNumber}
+                    </p>
+                  </div>
+                  <div className="flex gap-3 shrink-0">
+                    <button
+                      onClick={() => openEditModal(referee.id)}
+                      className="text-gray-400 hover:text-[#CCFF00] transition-colors"
+                    >
+                      <Edit2 size={18} />
+                    </button>
+                    <button
+                      onClick={() => onDelete(referee.id)}
+                      className="text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
 
       {hasMore && (
@@ -207,9 +262,11 @@ export default function RefereePage() {
 
       {/* Add Referee Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-6 z-50">
-          <div className="bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-6">
-            <h2 className="text-2xl font-bold mb-6">Add Referee</h2>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 sm:p-6 z-50">
+          <div className="bg-gray-900 border border-gray-700 rounded-xl max-w-md w-full p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
+            <h2 className="text-xl sm:text-2xl font-bold mb-6">
+              {mode === "create" ? "Add Referee" : "Edit Referee"}
+            </h2>
 
             <div className="space-y-4">
               <div>
@@ -235,7 +292,7 @@ export default function RefereePage() {
                   value={formData.email}
                   onChange={onChange}
                   disabled={mode === "edit"}
-                  className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                  className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] disabled:opacity-50"
                 />
               </div>
 
@@ -253,17 +310,17 @@ export default function RefereePage() {
               </div>
             </div>
 
-            <div className="flex gap-3 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <button
                 onClick={() => setShowModal(false)}
-                className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 rounded transition-colors"
+                className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-bold py-2.5 rounded transition-colors order-2 sm:order-1"
               >
                 Cancel
               </button>
               <button
                 onClick={onSubmit}
                 disabled={isCreating || isUpdating}
-                className="flex-1 bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold py-2 rounded transition-colors"
+                className="flex-1 bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold py-2.5 rounded transition-colors order-1 sm:order-2 disabled:opacity-60"
               >
                 {isCreating || isUpdating
                   ? "Saving..."

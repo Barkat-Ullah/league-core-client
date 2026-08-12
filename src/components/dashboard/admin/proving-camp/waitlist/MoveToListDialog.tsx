@@ -146,9 +146,9 @@ export default function MoveToListDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl border border-[#1D2A45] bg-[#06090F] p-0 text-white">
-        <DialogHeader className="border-b border-[#14203A] px-6 py-5 text-left">
-          <DialogTitle className="text-3xl font-bold uppercase tracking-wide text-[#EAF0FA] md:text-4xl">
+      <DialogContent className="w-[calc(100vw-2rem)] max-w-5xl border border-[#1D2A45] bg-[#06090F] p-0 text-white">
+        <DialogHeader className="border-b border-[#14203A] px-4 py-5 text-left sm:px-6">
+          <DialogTitle className="break-words text-2xl font-bold uppercase tracking-wide text-[#EAF0FA] sm:text-3xl md:text-4xl">
             Move To Participant List
           </DialogTitle>
           <DialogDescription className="text-sm text-[#A5AFC0]">
@@ -156,7 +156,7 @@ export default function MoveToListDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-5 px-6 py-5">
+        <div className="space-y-5 px-4 py-5 sm:px-6">
           {/* Multi-select week dropdown */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-[#B5BDD1]">
@@ -276,7 +276,7 @@ export default function MoveToListDialog({
           </div>
         </div>
 
-        <DialogFooter className="border-t border-[#14203A] px-6 py-5 sm:justify-between">
+        <DialogFooter className="border-t border-[#14203A] px-4 py-5 sm:justify-between sm:px-6">
           <button
             type="button"
             onClick={() => onOpenChange(false)}

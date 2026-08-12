@@ -163,6 +163,207 @@ function PlayerDetailCell({
   return <ChipList items={values} compact />;
 }
 
+function ParticipantCard({
+  row,
+  isFetching,
+  refundingId,
+  onRefund,
+  onMove,
+}: {
+  row: ApiParticipant;
+  isFetching: boolean;
+  refundingId: string | null;
+  onRefund: (participant: ApiParticipant) => void;
+  onMove: (participant: ApiParticipant) => void;
+}) {
+  const isRefunded = (row.paymentStatus ?? "").toUpperCase() === "REFUNDED";
+  const isCurrentRefunding = refundingId === row.id;
+  const isAnyRefunding = Boolean(refundingId);
+  const isPendingPayment =
+    (row.paymentStatus ?? "").toUpperCase() === "PENDING";
+  const isSiblingGroup = (row.numberOfKids ?? row.players?.length ?? 0) > 1;
+  const sessionCount = row.scheduleSessionIds?.length ?? 0;
+
+  const initials = (row.parentName || "?")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("");
+
+  const statusStyles = isRefunded
+    ? "bg-red-500/10 text-red-300 border-red-500/30"
+    : isPendingPayment
+      ? "bg-amber-500/10 text-amber-300 border-amber-500/30"
+      : "bg-emerald-500/10 text-emerald-300 border-emerald-500/30";
+
+  const statusLabel = isRefunded
+    ? "Refunded"
+    : isPendingPayment
+      ? "Pending"
+      : row.paymentStatus || "—";
+
+  return (
+    <article
+      className={`flex flex-col rounded-xl border border-[#2B303C] bg-[#151821] p-4 transition-opacity ${
+        isFetching ? "opacity-60" : ""
+      }`}
+    >
+      {/* Header */}
+      <div className="flex items-start gap-3">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1F2937] text-sm font-bold text-[#CCFF00]">
+          {initials}
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="truncate text-sm font-semibold text-[#E8ECF7]">
+              {row.parentName}
+            </p>
+            <span
+              className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase ${statusStyles}`}
+            >
+              {statusLabel}
+            </span>
+          </div>
+
+          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#7E889E]">
+            <span className="min-w-0 truncate">{row.parentEmail}</span>
+            <span className="hidden truncate sm:inline">{row.parentPhone}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Players */}
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {(row.players ?? []).map((player) => (
+          <span
+            key={player.playerName}
+            className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs font-medium text-[#DCE2F1]"
+          >
+            {player.playerName}
+          </span>
+        ))}
+        {isSiblingGroup && (
+          <span className="rounded-full bg-[#103B2B] px-2.5 py-0.5 text-[11px] font-semibold text-[#46D98A]">
+            Sibling group
+          </span>
+        )}
+      </div>
+
+      {/* Meta */}
+      <div className="mt-4 grid grid-cols-2 gap-3 border-t border-[#242A35] pt-3 text-xs">
+        <div>
+          <p className="uppercase tracking-wide text-[#7E889E]">Kids</p>
+          <p className="mt-0.5 font-semibold text-[#DCE2F1]">
+            {row.numberOfKids ?? row.players?.length ?? 0}
+          </p>
+        </div>
+
+        <div>
+          <p className="uppercase tracking-wide text-[#7E889E]">Weeks</p>
+          <p className="mt-0.5 font-semibold text-[#DCE2F1]">
+            {row.numberOfWeeks}
+          </p>
+        </div>
+
+        <div>
+          <p className="uppercase tracking-wide text-[#7E889E]">Sessions</p>
+          <p className="mt-0.5 font-semibold text-[#DCE2F1]">
+            <SessionBadge
+              session={row.scheduleSession?.sessionType as "AM" | "PM"}
+            />
+            {sessionCount > 1 && (
+              <span className="ml-1.5 text-[#7E889E]">×{sessionCount}</span>
+            )}
+          </p>
+        </div>
+
+        <div>
+          <p className="uppercase tracking-wide text-[#7E889E]">Payment</p>
+          <p className="mt-0.5 font-semibold text-[#DCE2F1]">
+            ${row.totalAmount ?? row.amount ?? 0}
+          </p>
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="mt-4 flex flex-wrap gap-2 border-t border-[#242A35] pt-3">
+        <button
+          type="button"
+          disabled={
+            isRefunded || isAnyRefunding || isFetching || isPendingPayment
+          }
+          onClick={() => onRefund(row)}
+          className="h-8 flex-1 rounded bg-red-600 px-3 text-xs font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isCurrentRefunding
+            ? "Processing..."
+            : isRefunded
+              ? "Refunded"
+              : isSiblingGroup
+                ? "Refund Group"
+                : "Refund & Cancel"}
+        </button>
+
+        <button
+          type="button"
+          disabled={isAnyRefunding || isFetching}
+          onClick={() => onMove(row)}
+          className="h-8 flex-1 rounded bg-[#2A303B] px-3 py-4 text-xs font-semibold text-[#D3D9E9] hover:bg-[#394151] disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Move Session
+        </button>
+      </div>
+    </article>
+  );
+}
+
+function ParticipantsSummaryCard({
+  total,
+  currentPage,
+  totalPages,
+  activeCount,
+  refundedCount,
+  pendingCount,
+}: {
+  total: number;
+  currentPage: number;
+  totalPages: number;
+  activeCount: number;
+  refundedCount: number;
+  pendingCount: number;
+}) {
+  const stats = [
+    { label: "Total", value: total, accent: "text-[#E8ECF7]" },
+    { label: "Active", value: activeCount, accent: "text-[#46D98A]" },
+    { label: "Refunded", value: refundedCount, accent: "text-red-300" },
+    { label: "Pending", value: pendingCount, accent: "text-amber-300" },
+  ];
+
+  return (
+    <aside className="hidden rounded-xl border border-[#2B303C] bg-[#151821] p-5 2xl:block">
+      <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-[#9EA8BC]">
+        Summary
+      </h4>
+      <dl className="space-y-3">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="flex items-center justify-between gap-2"
+          >
+            <dt className="text-xs text-[#7E889E]">{stat.label}</dt>
+            <dd className={`text-lg font-bold ${stat.accent}`}>{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-4 border-t border-[#242A35] pt-3 text-xs text-[#7E889E]">
+        Page {currentPage} of {totalPages}
+      </p>
+    </aside>
+  );
+}
+
 export default function ParticipantsTable({
   scheduleId,
 }: ParticipantsTableProps) {
@@ -240,6 +441,14 @@ export default function ParticipantsTable({
   const total = perticipantListData?.meta?.total ?? 0;
   const currentPage = perticipantListData?.meta?.page ?? page;
   const totalPages = Math.max(Math.ceil(total / limit), 1);
+
+  const refundedCount = rows.filter(
+    (row) => (row.paymentStatus ?? "").toUpperCase() === "REFUNDED",
+  ).length;
+  const pendingCount = rows.filter(
+    (row) => (row.paymentStatus ?? "").toUpperCase() === "PENDING",
+  ).length;
+  const activeCount = Math.max(rows.length - refundedCount - pendingCount, 0);
 
   const handleMove = (participant: ApiParticipant) => {
     setSelectedParticipant(participant);
@@ -358,8 +567,9 @@ export default function ParticipantsTable({
         </button>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-[#2B303C] bg-[#151821]">
-        <table className="w-full min-w-375 text-left text-sm">
+      <div className="hidden xl:grid xl:grid-cols-1 2xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start xl:gap-6">
+        <div className="overflow-x-auto rounded-lg border border-[#2B303C] bg-[#151821]">
+          <table className="w-full min-w-280 text-left text-sm">
           <thead className="border-b border-[#272C37] bg-[#1A1E27] text-xs uppercase tracking-wide text-[#9EA8BC]">
             <tr>
               <th className="px-4 py-3">Registration</th>
@@ -367,7 +577,7 @@ export default function ParticipantsTable({
               <th className="px-3 py-3">Type</th>
               <th className="px-3 py-3">Sessions</th>
               <th className="px-3 py-3">Weeks</th>
-              <th className="px-3 py-3">T-Shirt</th>
+              <th className="px-3 py-3">Shirt</th>
               <th className="px-3 py-3">Payment</th>
               <th className="px-3 py-3">Parent</th>
               <th className="px-3 py-3">Refund</th>
@@ -566,6 +776,35 @@ export default function ParticipantsTable({
             )}
           </tbody>
         </table>
+        </div>
+
+        <ParticipantsSummaryCard
+          total={total}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          activeCount={activeCount}
+          refundedCount={refundedCount}
+          pendingCount={pendingCount}
+        />
+      </div>
+
+      <div className="xl:hidden grid gap-4 sm:grid-cols-2">
+        {rows.length > 0 ? (
+          rows.map((row) => (
+            <ParticipantCard
+              key={row.id}
+              row={row}
+              isFetching={isFetching}
+              refundingId={refundingId}
+              onRefund={handleRefund}
+              onMove={handleMove}
+            />
+          ))
+        ) : (
+          <div className="col-span-full rounded-lg border border-[#2B303C] bg-[#151821] p-4 py-8  text-center text-sm text-[#8F99AF]">
+            No participants found.
+          </div>
+        )}
       </div>
 
       <div className="mt-4 flex flex-col items-center justify-between gap-3 sm:flex-row">

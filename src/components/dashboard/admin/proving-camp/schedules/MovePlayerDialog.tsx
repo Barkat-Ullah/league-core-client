@@ -254,8 +254,8 @@ export default function MovePlayerDialog({
       {/* ✅ FIX: Added flex flex-col so header/body/footer stack correctly inside the bounded height */}
       <DialogContent className="flex flex-col w-[min(1200px,95vw)] max-h-[90vh] border border-[#1D2A45] bg-[#06090F] p-0 text-white">
         {/* ✅ FIX: Added shrink-0 so the header never gets squished */}
-        <DialogHeader className="shrink-0 border-b border-[#14203A] px-6 py-4 text-left">
-          <DialogTitle className="text-5xl font-bold uppercase tracking-wide text-[#EAF0FA]">
+        <DialogHeader className="shrink-0 border-b border-[#14203A] px-4 py-4 text-left sm:px-6">
+          <DialogTitle className="break-words text-2xl font-bold uppercase tracking-wide text-[#EAF0FA] sm:text-3xl md:text-4xl lg:text-5xl">
             Move Player Session
           </DialogTitle>
 
@@ -265,7 +265,7 @@ export default function MovePlayerDialog({
         </DialogHeader>
 
         {/* ✅ FIX: Removed fixed max-h here — flex-1 + overflow-y-auto handles scrolling within the flex container */}
-        <div className="flex-1 overflow-y-auto space-y-4 px-4 py-4">
+        <div className="flex-1 overflow-y-auto space-y-4 px-3 py-4 sm:px-4">
           <div className="rounded-lg border border-[#2A313F] bg-[#171B24] p-3">
             <p className="text-xs text-[#9FA9BE]">Registration</p>
 
@@ -533,7 +533,7 @@ export default function MovePlayerDialog({
         </div>
 
         {/* ✅ FIX: Added shrink-0 so the footer is always visible and never pushed out of view */}
-        <DialogFooter className="shrink-0 border-t border-[#14203A] px-6 py-5 sm:justify-between">
+        <DialogFooter className="shrink-0 border-t border-[#14203A] px-4 py-5 sm:justify-between sm:px-6">
           <button
             type="button"
             disabled={isMoving}

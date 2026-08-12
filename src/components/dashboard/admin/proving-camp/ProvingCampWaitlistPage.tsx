@@ -100,7 +100,7 @@ export default function ProvingCampWaitlistPage() {
         </p>
       </header>
 
-      <div className="mb-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         <WaitlistStatCard title="Total Waiting" value={totalWaiting} />
         <WaitlistStatCard
           title="AM Waitlist"
@@ -114,7 +114,7 @@ export default function ProvingCampWaitlistPage() {
         />
       </div>
 
-      <div className="mb-6 grid gap-3 md:grid-cols-[1fr_150px]">
+      <div className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-[1fr_150px]">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#7F899F]" />
           <input

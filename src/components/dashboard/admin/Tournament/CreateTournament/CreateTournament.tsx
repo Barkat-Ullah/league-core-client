@@ -221,25 +221,27 @@ export default function CreateTournamentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
+        <div className="flex items-start sm:items-center justify-between gap-3 mb-6 sm:mb-8">
+          <div className="flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
             <Link
               href="/dashboard/admin/tournament"
-              className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-800 rounded-lg transition-colors shrink-0 mt-1 sm:mt-0"
             >
               <ChevronLeft size={24} />
             </Link>
-            <div>
-              <h1 className="text-4xl font-bold">CREATE TOURNAMENT</h1>
-              <p className="text-gray-400 text-sm mt-1">
+            <div className="min-w-0">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                CREATE TOURNAMENT
+              </h1>
+              <p className="text-gray-400 text-xs lg:text-sm mt-1">
                 Enter the details to create a new tournament
               </p>
             </div>
           </div>
-          <Link href="/dashboard/admin/tournament">
+          <Link href="/dashboard/admin/tournament" className="shrink-0">
             <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors">
               <X size={24} />
             </button>
@@ -248,39 +250,43 @@ export default function CreateTournamentPage() {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="mb-6 p-4 bg-green-900/30 border border-green-700 rounded-lg">
-            <p className="text-green-400 font-semibold">{successMessage}</p>
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-900/30 border border-green-700 rounded-lg">
+            <p className="text-green-400 font-semibold text-sm sm:text-base">
+              {successMessage}
+            </p>
           </div>
         )}
 
         {/* Error Message */}
         {errorMessage && (
-          <div className="mb-6 p-4 bg-red-900/30 border border-red-700 rounded-lg">
-            <p className="text-red-400 font-semibold">{errorMessage}</p>
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-900/30 border border-red-700 rounded-lg">
+            <p className="text-red-400 font-semibold text-sm sm:text-base">
+              {errorMessage}
+            </p>
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
           {/* BASIC INFO & LOGISTICS */}
-          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 mb-8">
-            <h2 className="text-2xl font-bold mb-6 uppercase tracking-wider">
+          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-6 uppercase tracking-wider">
               Basic Info & Logistics
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-5 sm:space-y-6">
               {/* Tournament Stage */}
               <div>
                 <label className="text-white text-sm font-semibold mb-2 block">
                   Tournament Stage <span className="text-[#CCFF00]">*</span>
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                   {/* PROVING */}
                   <button
                     type="button"
                     onClick={() =>
                       setFormData({ ...formData, tournamentStage: "PROVING" })
                     }
-                    className={`relative p-6 rounded-lg border-2 transition-all ${
+                    className={`relative p-4 sm:p-5 md:p-6 rounded-lg border-2 transition-all text-left ${
                       formData.tournamentStage === "PROVING"
                         ? "border-[#CCFF00] bg-[#CCFF00]/10"
                         : "border-gray-700 bg-gray-800 hover:border-gray-600"
@@ -288,19 +294,19 @@ export default function CreateTournamentPage() {
                   >
                     {formData.tournamentStage === "PROVING" && (
                       <div className="absolute top-2 right-2 bg-[#CCFF00] rounded-full p-1">
-                        <Check size={16} className="text-black" />
+                        <Check size={14} className="text-black sm:w-4 sm:h-4" />
                       </div>
                     )}
-                    <div className="text-left flex items-start gap-3">
+                    <div className="flex items-start gap-3">
                       <ShieldCheck
-                        size={20}
-                        className={`mt-1 ${
+                        size={18}
+                        className={`mt-0.5 shrink-0 ${
                           formData.tournamentStage === "PROVING"
                             ? "text-[#CCFF00]"
                             : "text-gray-500"
                         }`}
                       />
-                      <div>
+                      <div className="min-w-0">
                         <p
                           className={`text-sm font-bold uppercase ${
                             formData.tournamentStage === "PROVING"
@@ -323,7 +329,7 @@ export default function CreateTournamentPage() {
                     onClick={() =>
                       setFormData({ ...formData, tournamentStage: "CROWN" })
                     }
-                    className={`relative p-6 rounded-lg border-2 transition-all ${
+                    className={`relative p-4 sm:p-5 md:p-6 rounded-lg border-2 transition-all text-left ${
                       formData.tournamentStage === "CROWN"
                         ? "border-[#CCFF00] bg-[#CCFF00]/10"
                         : "border-gray-700 bg-gray-800 hover:border-gray-600"
@@ -331,19 +337,19 @@ export default function CreateTournamentPage() {
                   >
                     {formData.tournamentStage === "CROWN" && (
                       <div className="absolute top-2 right-2 bg-[#CCFF00] rounded-full p-1">
-                        <Check size={16} className="text-black" />
+                        <Check size={14} className="text-black sm:w-4 sm:h-4" />
                       </div>
                     )}
-                    <div className="text-left flex items-start gap-3">
+                    <div className="flex items-start gap-3">
                       <Crown
-                        size={20}
-                        className={`mt-1 ${
+                        size={18}
+                        className={`mt-0.5 shrink-0 ${
                           formData.tournamentStage === "CROWN"
                             ? "text-[#CCFF00]"
                             : "text-gray-500"
                         }`}
                       />
-                      <div>
+                      <div className="min-w-0">
                         <p
                           className={`text-sm font-bold uppercase ${
                             formData.tournamentStage === "CROWN"
@@ -366,7 +372,7 @@ export default function CreateTournamentPage() {
                     onClick={() =>
                       setFormData({ ...formData, tournamentStage: "ROYAL CUP" })
                     }
-                    className={`relative p-6 rounded-lg border-2 transition-all ${
+                    className={`relative p-4 sm:p-5 md:p-6 rounded-lg border-2 transition-all text-left ${
                       formData.tournamentStage === "ROYAL CUP"
                         ? "border-[#CCFF00] bg-[#CCFF00]/10"
                         : "border-gray-700 bg-gray-800 hover:border-gray-600"
@@ -374,19 +380,19 @@ export default function CreateTournamentPage() {
                   >
                     {formData.tournamentStage === "ROYAL CUP" && (
                       <div className="absolute top-2 right-2 bg-[#CCFF00] rounded-full p-1">
-                        <Check size={16} className="text-black" />
+                        <Check size={14} className="text-black sm:w-4 sm:h-4" />
                       </div>
                     )}
-                    <div className="text-left flex items-start gap-3">
+                    <div className="flex items-start gap-3">
                       <Trophy
-                        size={20}
-                        className={`mt-1 ${
+                        size={18}
+                        className={`mt-0.5 shrink-0 ${
                           formData.tournamentStage === "ROYAL CUP"
                             ? "text-[#CCFF00]"
                             : "text-gray-500"
                         }`}
                       />
-                      <div>
+                      <div className="min-w-0">
                         <p
                           className={`text-sm font-bold uppercase ${
                             formData.tournamentStage === "ROYAL CUP"
@@ -410,7 +416,7 @@ export default function CreateTournamentPage() {
                 <label className="text-white text-sm font-semibold mb-2 block">
                   Tournament Logo
                 </label>
-                <div className="bg-gray-800 border-2 border-dashed border-gray-700 rounded-lg p-12 text-center hover:border-[#CCFF00] transition-colors cursor-pointer">
+                <div className="bg-gray-800 border-2 border-dashed border-gray-700 rounded-lg p-6 sm:p-10 md:p-12 text-center hover:border-[#CCFF00] transition-colors cursor-pointer">
                   <input
                     type="file"
                     accept="image/*"
@@ -428,13 +434,16 @@ export default function CreateTournamentPage() {
                         alt="Logo preview"
                         width={80}
                         height={80}
-                        className="w-20 h-20 object-cover rounded"
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded"
                       />
                     ) : (
                       <>
-                        <Camera size={32} className="text-gray-500" />
+                        <Camera
+                          size={28}
+                          className="text-gray-500 sm:w-8 sm:h-8"
+                        />
                         <div>
-                          <p className="text-white font-semibold">
+                          <p className="text-white font-semibold text-sm sm:text-base">
                             Upload Logo
                           </p>
                           <p className="text-gray-500 text-xs">Max 10 MB</p>
@@ -456,12 +465,12 @@ export default function CreateTournamentPage() {
                   value={formData.tournamentName}
                   onChange={handleInputChange}
                   placeholder="Summer Football Championship 2026"
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                 />
               </div>
 
               {/* Dates Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="text-white text-sm font-semibold mb-2 block">
                     Start Date <span className="text-[#CCFF00]">*</span>
@@ -471,7 +480,7 @@ export default function CreateTournamentPage() {
                     name="startDate"
                     value={formData.startDate}
                     onChange={handleInputChange}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -483,13 +492,13 @@ export default function CreateTournamentPage() {
                     name="endDate"
                     value={formData.endDate}
                     onChange={handleInputChange}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
               </div>
 
               {/* Location & Map Link Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="text-white text-sm font-semibold mb-2 block">
                     Location <span className="text-[#CCFF00]">*</span>
@@ -500,7 +509,7 @@ export default function CreateTournamentPage() {
                     value={formData.location}
                     onChange={handleInputChange}
                     placeholder="Central Sports Complex"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -513,13 +522,13 @@ export default function CreateTournamentPage() {
                     value={formData.mapLink}
                     onChange={handleInputChange}
                     placeholder="https://maps.google.com/?q=Central+Sports+Complex"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
               </div>
 
               {/* Registration Deadline & Number of Fields Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="text-white text-sm font-semibold mb-2 block">
                     Registration Deadline{" "}
@@ -530,7 +539,7 @@ export default function CreateTournamentPage() {
                     name="registrationDeadline"
                     value={formData.registrationDeadline}
                     onChange={handleInputChange}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                   <p className="text-yellow-500 text-xs mt-2">
                     ⚠️ Note: Must be at least 7 days before event start date
@@ -547,7 +556,7 @@ export default function CreateTournamentPage() {
                     value={formData.numberOfFields}
                     onChange={handleInputChange}
                     placeholder="4"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
               </div>
@@ -555,27 +564,27 @@ export default function CreateTournamentPage() {
           </div>
 
           {/* DIVISIONS, PRICING & CAPACITY */}
-          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 mb-8">
-            <h2 className="text-2xl font-bold mb-6 uppercase tracking-wider">
+          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-6 uppercase tracking-wider">
               Divisions, Pricing & Capacity
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-5 sm:space-y-6">
               {/* Youth Fee & Adult Fee Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label className="text-white text-sm font-semibold mb-2 block">
                     Youth Fee (D1/U14) <span className="text-[#CCFF00]">*</span>
                   </label>
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-500">$</span>
+                    <span className="text-gray-500 shrink-0">$</span>
                     <input
                       type="number"
                       name="youthFee"
                       value={formData.youthFee}
                       onChange={handleInputChange}
                       placeholder="500"
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -585,14 +594,14 @@ export default function CreateTournamentPage() {
                     <span className="text-[#CCFF00]">*</span>
                   </label>
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-500">$</span>
+                    <span className="text-gray-500 shrink-0">$</span>
                     <input
                       type="number"
                       name="adultFee"
                       value={formData.adultFee}
                       onChange={handleInputChange}
                       placeholder="800"
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -609,7 +618,7 @@ export default function CreateTournamentPage() {
                   onChange={handleInputChange}
                   placeholder="E.g. Men's: $1500; Women's: $500; Youth: $0..."
                   rows={3}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                 />
               </div>
 
@@ -624,12 +633,12 @@ export default function CreateTournamentPage() {
                   onChange={handleInputChange}
                   placeholder="All teams must arrive 1 hour before kickoff."
                   rows={3}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                 />
               </div>
 
               {/* Bathrooms, Foods, Parking */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 <div>
                   <label className="text-white text-sm font-semibold mb-2 block">
                     Bathrooms
@@ -640,7 +649,7 @@ export default function CreateTournamentPage() {
                     value={formData.bathrooms}
                     onChange={handleInputChange}
                     placeholder="E.g. On-site"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -653,7 +662,7 @@ export default function CreateTournamentPage() {
                     value={formData.foods}
                     onChange={handleInputChange}
                     placeholder="E.g. Concessions available"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
                 <div>
@@ -666,14 +675,14 @@ export default function CreateTournamentPage() {
                     value={formData.parking}
                     onChange={handleInputChange}
                     placeholder="E.g. Free parking"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00]"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] text-sm sm:text-base"
                   />
                 </div>
               </div>
 
               {/* Division Setup */}
               <div>
-                <label className="text-gray-400 text-sm font-semibold mb-4 block">
+                <label className="text-gray-400 text-sm font-semibold mb-3 sm:mb-4 block">
                   Division Setup
                 </label>
 
@@ -686,17 +695,17 @@ export default function CreateTournamentPage() {
                     to create one.
                   </div>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
+                  <div className="overflow-x-auto -mx-1 sm:mx-0">
+                    <table className="w-full min-w-[320px]">
                       <thead>
                         <tr className="border-b border-gray-700">
-                          <th className="text-left py-3 px-4 text-gray-400 text-sm font-semibold">
+                          <th className="text-left py-2.5 sm:py-3 px-3 sm:px-4 text-gray-400 text-xs sm:text-sm font-semibold">
                             Division Name
                           </th>
-                          <th className="text-left py-3 px-4 text-gray-400 text-sm font-semibold">
+                          <th className="text-left py-2.5 sm:py-3 px-3 sm:px-4 text-gray-400 text-xs sm:text-sm font-semibold">
                             #
                           </th>
-                          <th className="text-left py-3 px-4 text-gray-400 text-sm font-semibold">
+                          <th className="text-left py-2.5 sm:py-3 px-3 sm:px-4 text-gray-400 text-xs sm:text-sm font-semibold">
                             Action
                           </th>
                         </tr>
@@ -707,7 +716,7 @@ export default function CreateTournamentPage() {
                             key={division.id}
                             className="border-b border-gray-800 hover:bg-gray-800/50"
                           >
-                            <td className="py-3 px-4">
+                            <td className="py-2.5 sm:py-3 px-3 sm:px-4">
                               <select
                                 value={division.name}
                                 onChange={(e) =>
@@ -717,7 +726,7 @@ export default function CreateTournamentPage() {
                                     e.target.value,
                                   )
                                 }
-                                className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white text-sm focus:outline-none focus:border-[#CCFF00]"
+                                className="w-full min-w-35 bg-gray-700 border border-gray-600 rounded px-2.5 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:outline-none focus:border-[#CCFF00]"
                               >
                                 <option value="U9_BOYS">U9 Boys</option>
                                 <option value="U10_BOYS">U10 Boys</option>
@@ -758,7 +767,7 @@ export default function CreateTournamentPage() {
                                 <option value="COED">Coed</option>
                               </select>
                             </td>
-                            <td className="py-3 px-4">
+                            <td className="py-2.5 sm:py-3 px-3 sm:px-4">
                               <input
                                 type="number"
                                 value={division.quantity}
@@ -770,16 +779,19 @@ export default function CreateTournamentPage() {
                                   )
                                 }
                                 placeholder="0"
-                                className="w-20 bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white text-sm focus:outline-none focus:border-[#CCFF00]"
+                                className="w-16 sm:w-20 bg-gray-700 border border-gray-600 rounded px-2.5 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:outline-none focus:border-[#CCFF00]"
                               />
                             </td>
-                            <td className="py-3 px-4">
+                            <td className="py-2.5 sm:py-3 px-3 sm:px-4">
                               <button
                                 type="button"
                                 onClick={() => removeDivision(division.id)}
-                                className="text-red-500 hover:text-red-400 transition-colors p-2"
+                                className="text-red-500 hover:text-red-400 transition-colors p-1.5 sm:p-2"
                               >
-                                <Trash2 size={18} />
+                                <Trash2
+                                  size={16}
+                                  className="sm:w-4.5 sm:h-4.5"
+                                />
                               </button>
                             </td>
                           </tr>
@@ -792,9 +804,9 @@ export default function CreateTournamentPage() {
                 <button
                   type="button"
                   onClick={addDivision}
-                  className="mt-4 text-[#CCFF00] hover:text-[#B8E600] font-semibold flex items-center gap-2 transition-colors"
+                  className="mt-3 sm:mt-4 text-[#CCFF00] hover:text-[#B8E600] font-semibold flex items-center gap-2 transition-colors text-sm sm:text-base"
                 >
-                  <Plus size={20} />
+                  <Plus size={18} className="sm:w-5 sm:h-5" />
                   Add Division
                 </button>
               </div>
@@ -802,11 +814,11 @@ export default function CreateTournamentPage() {
           </div>
 
           {/* Form Actions */}
-          <div className="flex gap-4 justify-end">
-            <Link href="/dashboard/admin">
+          <div className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-4 justify-end">
+            <Link href="/dashboard/admin" className="w-full sm:w-auto">
               <button
                 type="button"
-                className="px-8 py-3 border border-gray-700 hover:border-gray-600 text-white font-semibold rounded-lg transition-colors"
+                className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 border border-gray-700 hover:border-gray-600 text-white font-semibold rounded-lg transition-colors text-sm sm:text-base"
               >
                 Cancel
               </button>
@@ -815,13 +827,13 @@ export default function CreateTournamentPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`px-8 py-3 bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold rounded-lg transition-colors flex items-center gap-2 ${
+              className={`w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base ${
                 isSubmitting ? "opacity-70 cursor-not-allowed" : ""
               }`}
             >
               {isSubmitting ? (
                 <>
-                  <Loader size={20} className="animate-spin" />
+                  <Loader size={18} className="animate-spin sm:w-5 sm:h-5" />
                   Creating...
                 </>
               ) : (

@@ -147,9 +147,9 @@ export default function SchedulePeriodDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[92vh] max-w-5xl overflow-y-auto border border-[#1D2A45] bg-[#06090F] p-0 text-white">
-        <DialogHeader className="border-b border-[#14203A] px-6 py-5 text-left">
-          <DialogTitle className="text-4xl font-bold uppercase tracking-wide text-[#EAF0FA]">
+      <DialogContent className="max-h-[92vh] w-[calc(100vw-2rem)] max-w-5xl overflow-y-auto border border-[#1D2A45] bg-[#06090F] p-0 text-white">
+        <DialogHeader className="border-b border-[#14203A] px-4 py-5 text-left sm:px-6">
+          <DialogTitle className="break-words text-2xl font-bold uppercase tracking-wide text-[#EAF0FA] sm:text-3xl md:text-4xl">
             {title}
           </DialogTitle>
           <DialogDescription className="text-sm text-[#A5AFC0]">
@@ -158,7 +158,7 @@ export default function SchedulePeriodDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 px-6 py-5">
+        <div className="space-y-4 px-4 py-5 sm:px-6">
           <div>
             <label className="mb-2 block text-sm text-[#B5BDD1]">
               Schedule Name
@@ -257,7 +257,7 @@ export default function SchedulePeriodDialog({
           )}
         </div>
 
-        <DialogFooter className="border-t border-[#14203A] px-6 py-5 sm:justify-between">
+        <DialogFooter className="border-t border-[#14203A] px-4 py-5 sm:justify-between sm:px-6">
           <button
             type="button"
             onClick={() => onOpenChange(false)}

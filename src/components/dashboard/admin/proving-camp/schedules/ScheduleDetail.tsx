@@ -80,7 +80,7 @@ function normalizeSingleSchedule(response: any) {
 function ScheduleDetailSkeleton() {
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between gap-3">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="h-8 w-56 animate-pulse rounded bg-[#1F2937]" />
         <div className="h-4 w-28 animate-pulse rounded bg-[#1F2937]" />
       </div>
@@ -165,12 +165,12 @@ export default function ScheduleDetail() {
 
   return (
     <div className="min-h-screen bg-[#090B10] p-5 lg:p-8">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="text-2xl font-bold text-[#F2F4F8]">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="min-w-0 wrap-break-word text-2xl font-bold text-[#F2F4F8] md:text-3xl">
           {showParticipants ? "Participants" : schedule.name}
         </h2>
 
-        <div className="flex flex-col items-end gap-3">
+        <div className="flex flex-col items-start gap-3 sm:items-end">
           <span className="text-xs text-[#8C97AE]">
             {schedule.weeks.length} weeks
             {schedule.season ? ` - ${schedule.season}` : ""}

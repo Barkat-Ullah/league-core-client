@@ -303,11 +303,11 @@ export default function ProvingCampSchedulesPage({
   return (
     <section className="min-h-screen bg-[#090B10] p-5 lg:p-8">
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h1 className="text-5xl font-extrabold uppercase tracking-wide text-[#F2F4F8]">
+        <div className="min-w-0">
+          <h1 className="text-3xl font-extrabold uppercase tracking-wide text-[#F2F4F8] md:text-4xl lg:text-5xl">
             Schedules
           </h1>
-          <p className="mt-1 text-xl text-[#8D93A6]">
+          <p className="mt-1 text-sm text-[#8D93A6] md:text-base lg:text-xl">
             Manage all schedule from dashboard
           </p>
         </div>
@@ -315,7 +315,7 @@ export default function ProvingCampSchedulesPage({
         <button
           type="button"
           onClick={handleOpenCreateSchedule}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#CCFF00] px-5 font-bold text-[#061014] hover:bg-[#2FAABA]"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-[#CCFF00] px-5 font-bold text-[#061014] hover:bg-[#B3E600] focus:outline-none focus:ring-2 focus:ring-[#CCFF00] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus className="h-4 w-4" />
           Create Schedule
@@ -329,7 +329,7 @@ export default function ProvingCampSchedulesPage({
       )}
 
       {isLoading && (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {Array.from({ length: 6 }).map((_, index) => (
             <SchedulePeriodCardSkeleton key={index} />
           ))}
@@ -372,7 +372,7 @@ export default function ProvingCampSchedulesPage({
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {schedules.length > 0 ? (
               schedules.map((schedule) => (
                 <SchedulePeriodCard
@@ -474,11 +474,11 @@ export default function ProvingCampSchedulesPage({
 
       {!isLoading && !isError && view === "detail" && selectedSchedule && (
         <div>
-          <div className="mb-4 flex items-center justify-between gap-3">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <button
               type="button"
               onClick={() => setView("list")}
-              className="rounded-lg bg-[#2B394F] px-4 py-2 text-sm font-semibold text-[#D7DEEE]"
+              className="max-w-full truncate rounded-lg bg-[#2B394F] px-4 py-2 text-sm font-semibold text-[#D7DEEE]"
             >
               {selectedSchedule.name}
             </button>

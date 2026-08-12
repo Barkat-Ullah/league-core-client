@@ -110,15 +110,15 @@ export default function ScheduleWeekCard({
         className={`grid gap-3 ${hasPmSession ? "sm:grid-cols-2" : "grid-cols-1"}`}
       >
         <div className="rounded-xl border border-[#283142] bg-[#1A202B] p-4 ring-1 ring-white/5">
-          <div className="mb-3 flex items-center justify-between gap-2">
-            <div>
-              <p className="text-sm font-semibold text-[#EEF3FF]">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <div className="min-w-0">
+              <p className="break-words text-sm font-semibold text-[#EEF3FF]">
                 AM Session (
                 {buildAgeLabel(amSession?.minAge, amSession?.maxAge)})
               </p>
               <p className="text-xs text-[#8E97AD]">Morning training block</p>
             </div>
-            <span className="rounded-full bg-[#0E2530] px-2 py-1 text-[11px] font-semibold text-[#]">
+            <span className="rounded-full bg-[#0E2530] px-2 py-1 text-[11px] font-semibold text-[#3ADF78]">
               Active
             </span>
           </div>
@@ -132,9 +132,9 @@ export default function ScheduleWeekCard({
 
         {hasPmSession && (
           <div className="rounded-xl border border-[#283142] bg-[#1A202B] p-4 ring-1 ring-white/5">
-            <div className="mb-3 flex items-center justify-between gap-2">
-              <div>
-                <p className="text-sm font-semibold text-[#EEF3FF]">
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+              <div className="min-w-0">
+                <p className="break-words text-sm font-semibold text-[#EEF3FF]">
                   PM Session (
                   {buildAgeLabel(pmSession?.minAge, pmSession?.maxAge)})
                 </p>

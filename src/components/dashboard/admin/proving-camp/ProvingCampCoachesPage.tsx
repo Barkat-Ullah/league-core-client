@@ -141,14 +141,16 @@ export default function ProvingCampCoachesPage() {
     <section className="min-h-screen bg-[#090B10] p-5 lg:p-8">
       {/* Header */}
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:justify-between">
-        <div>
-          <h1 className="text-5xl font-extrabold text-[#F2F4F8]">Coaches</h1>
-          <p className="text-[#8D93A6]">Manage coaches</p>
+        <div className="min-w-0">
+          <h1 className="break-words text-3xl font-extrabold text-[#F2F4F8] md:text-4xl lg:text-5xl">
+            Coaches
+          </h1>
+          <p className="text-sm text-[#8D93A6] md:text-base">Manage coaches</p>
         </div>
 
         <button
           onClick={handleAddClick}
-          className="inline-flex h-11 items-center gap-2 rounded-lg bg-[#CCFF00] px-5 font-bold text-[#061014]"
+          className="inline-flex h-11 shrink-0 items-center gap-2 rounded-lg bg-[#CCFF00] px-5 font-bold text-[#061014]"
         >
           <Plus className="h-4 w-4" />
           Create Coach
@@ -157,7 +159,7 @@ export default function ProvingCampCoachesPage() {
 
       {/* ❗ Skeleton Loader */}
       {isLoading && (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <CoachCardSkeleton key={i} />
           ))}
@@ -171,7 +173,7 @@ export default function ProvingCampCoachesPage() {
 
       {/* Data */}
       {!isLoading && !isError && coaches.length > 0 && (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {coaches.map((coach) => (
             <CoachCard
               key={coach.id}

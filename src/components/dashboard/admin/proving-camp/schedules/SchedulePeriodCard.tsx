@@ -27,16 +27,16 @@ export default function SchedulePeriodCard({
 
   return (
     <article
-      className={`rounded-xl border bg-[#151821] p-4 ${
+      className={`flex flex-col h-full rounded-xl border bg-[#151821] p-4 ${
         isSelected ? "border-[#00A94A]" : "border-[#2E3340]"
       }`}
     >
-      <div className="mb-2 flex items-start justify-between gap-3">
-        <div>
+      <div className="mb-2 flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
           <p className="text-xs font-semibold uppercase tracking-wide text-[#CCFF00]">
             {season}
           </p>
-          <h3 className="mt-1 text-3xl font-bold text-[#EEF3FF]">
+          <h3 className="mt-1 text-2xl font-bold text-[#EEF3FF] sm:text-3xl">
             {scheduleName}
           </h3>
           <p className="text-sm text-[#9099AD]">
@@ -44,7 +44,7 @@ export default function SchedulePeriodCard({
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex shrink-0 items-center gap-1.5">
           <button
             type="button"
             onClick={() => onEdit(schedule)}
@@ -86,21 +86,23 @@ export default function SchedulePeriodCard({
         </div>
       </div>
 
-      <div className="mt-3 h-1.5 overflow-hidden rounded bg-[#273041]">
-        <div
-          className="h-full bg-[#CCFF00]"
-          style={{ width: `${Math.min(stats.fillRate, 100)}%` }}
-        />
-      </div>
+      <div className="mt-auto">
+        <div className="mt-3 h-1.5 overflow-hidden rounded bg-[#273041]">
+          <div
+            className="h-full bg-[#CCFF00]"
+            style={{ width: `${Math.min(stats.fillRate, 100)}%` }}
+          />
+        </div>
 
-      <button
-        type="button"
-        onClick={() => onView(schedule)}
-        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#CCFF00] hover:text-[#B8E600]"
-      >
-        View Schedule
-        <ChevronRight className="h-4 w-4" />
-      </button>
+        <button
+          type="button"
+          onClick={() => onView(schedule)}
+          className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#CCFF00] hover:text-[#B8E600]"
+        >
+          View Schedule
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
     </article>
   );
 }

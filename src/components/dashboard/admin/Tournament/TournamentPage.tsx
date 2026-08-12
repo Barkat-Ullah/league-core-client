@@ -158,26 +158,40 @@ export default function TournamentsListPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header with Title and Buttons */}
-        <div className="mb-8 flex justify-between items-start gap-6">
-          <div>
-            <h1 className="text-5xl font-bold mb-2">TOURNAMENTS</h1>
-            <p className="text-gray-400">
+        <div className="mb-8 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-6">
+          <div className="text-center lg:text-left">
+            <h1 className="text-xl md:text-2xl lg:text-5xl font-bold mb-2">
+              TOURNAMENTS
+            </h1>
+            <p className="text-gray-400 text-sm md:text-base">
               Manage tournament events and registrations
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 items-center shrink-0">
-            <Link href="/dashboard/admin/tournament/update-pricing">
-              <button className="border-2 border-blue-500 hover:bg-blue-500/10 text-white font-bold px-6 py-3 rounded-2xl transition-colors flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row lg:flex-row gap-3 sm:gap-4 items-stretch sm:items-center shrink-0 w-full lg:w-auto">
+            <Link
+              href="/dashboard/admin/tournament/update-pricing"
+              className="w-full sm:w-auto"
+            >
+              <button
+                className="w-full sm:w-auto border-2 border-blue-500 hover:bg-blue-500/10 text-white font-bold
+               px-4 md:px-6 py-3 rounded-2xl transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
+              >
                 ✏️ Update Pricing
               </button>
             </Link>
-            <Link href="/dashboard/admin/tournament/create">
-              <button className="bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold px-6 py-3 rounded-2xl transition-colors flex items-center gap-2">
+            <Link
+              href="/dashboard/admin/tournament/create"
+              className="w-full sm:w-auto"
+            >
+              <button
+                className="w-full sm:w-auto bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold
+               px-4 md:px-6 py-3 rounded-2xl transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
+              >
                 + Create New Tournament
               </button>
             </Link>
@@ -185,9 +199,9 @@ export default function TournamentsListPage() {
         </div>
 
         {/* Filter Tabs and Search Row */}
-        <div className="flex gap-4 mb-6 items-center justify-between">
+        <div className="flex flex-col lg:flex-row gap-4 mb-6 lg:items-center lg:justify-between">
           {/* Filter Tabs */}
-          <div className="flex gap-3 overflow-x-auto pb-2">
+          <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 lg:mx-0 lg:px-0">
             {[
               "All Tournaments",
               "Proving Series",
@@ -199,7 +213,7 @@ export default function TournamentsListPage() {
                 onClick={() =>
                   setFilterSeries(tab === "All Tournaments" ? "All" : tab)
                 }
-                className={`px-4 py-2 rounded-lg font-bold whitespace-nowrap transition-colors ${
+                className={`px-4 py-2 rounded-lg font-bold whitespace-nowrap shrink-0 transition-colors ${
                   (tab === "All Tournaments" && filterSeries === "All") ||
                   (tab !== "All Tournaments" && filterSeries === tab)
                     ? tab === "All Tournaments"
@@ -218,8 +232,8 @@ export default function TournamentsListPage() {
           </div>
 
           {/* Search and Status Dropdown */}
-          <div className="flex gap-4 items-center shrink-0">
-            <div className="flex-1 relative w-64">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center shrink-0">
+            <div className="flex-1 relative w-full sm:w-64">
               <Search
                 size={20}
                 className="absolute left-3 top-3.5 text-gray-500"
@@ -235,7 +249,7 @@ export default function TournamentsListPage() {
             <div className="relative">
               <button
                 onClick={() => setShowStatusDropdown(!showStatusDropdown)}
-                className="border border-gray-700 bg-gray-800 hover:bg-gray-700 text-white font-semibold px-4 py-3 rounded-lg flex items-center gap-2 whitespace-nowrap"
+                className="w-full sm:w-auto justify-between sm:justify-start border border-gray-700 bg-gray-800 hover:bg-gray-700 text-white font-semibold px-4 py-3 rounded-lg flex items-center gap-2 whitespace-nowrap"
               >
                 {filterStatus}
                 <ChevronDown size={18} />
@@ -295,43 +309,45 @@ export default function TournamentsListPage() {
           </div>
         )}
 
-        {/* Tournaments Table */}
-        <div className="border border-gray-700 rounded-xl overflow-hidden">
-          {/* Table Header */}
-          <div className="bg-gray-900/50 border-b border-gray-700 grid grid-cols-5 gap-4 px-6 py-4 font-semibold text-gray-400">
-            <div>Tournament Name</div>
-            <div>Date & Location</div>
-            <div>Total Registered</div>
-            <div>Status</div>
-            <div>Actions</div>
+        {/* Loading */}
+        {isLoading && (
+          <div className="border border-gray-700 rounded-xl px-6 py-10 text-center text-gray-400">
+            Loading tournaments...
           </div>
-          {/* Loading */}
-          {isLoading && (
-            <div className="px-6 py-10 text-center text-gray-400">
-              Loading tournaments...
-            </div>
-          )}
+        )}
 
-          {/* Error */}
-          {error && !isLoading && (
-            <div className="px-6 py-6 text-red-400">
-              Failed to load tournaments.
-            </div>
-          )}
+        {/* Error */}
+        {error && !isLoading && (
+          <div className="border border-gray-700 rounded-xl px-6 py-6 text-red-400">
+            Failed to load tournaments.
+          </div>
+        )}
 
-          {/* Table Body */}
-          {!isLoading &&
-            !error &&
-            list.map((t) => (
+        {/* Tournaments Table — md and up: grid table */}
+        {!isLoading && !error && (
+          <div className="hidden md:block border border-gray-700 rounded-xl overflow-hidden">
+            {/* Table Header */}
+            <div className="bg-gray-900/50 border-b border-gray-700 grid grid-cols-5 gap-4 px-6 py-4 font-semibold text-gray-400">
+              <div>Tournament Name</div>
+              <div>Date & Location</div>
+              <div>Total Registered</div>
+              <div>Status</div>
+              <div>Actions</div>
+            </div>
+
+            {/* Table Body */}
+            {list.map((t) => (
               <div
                 key={t.id}
-                className="grid grid-cols-5 gap-4 px-6 py-4 border-b border-gray-800 hover:bg-gray-900/30 transition-colors items-center"
+                className="grid grid-cols-5 gap-4 px-6 py-4 border-b border-gray-800 hover:bg-gray-900/30 transition-colors items-center last:border-b-0"
               >
                 {/* Tournament Name */}
                 <div>
-                  <h3 className="font-bold text-white mb-2">{t.name}</h3>
+                  <h3 className="font-bold text-white mb-2 break-words">
+                    {t.name}
+                  </h3>
                   <span
-                    className={`px-3 py-1 rounded text-xs font-bold ${getSeriesBadgeColor(
+                    className={`inline-flex px-3 py-1 rounded text-xs font-bold ${getSeriesBadgeColor(
                       formatSeriesLabel(t.tournamentStage),
                     )}`}
                   >
@@ -357,7 +373,7 @@ export default function TournamentsListPage() {
                 {/* Status */}
                 <div>
                   <span
-                    className={`px-4 py-2 rounded-lg text-white font-semibold text-sm ${getStatusBadgeColor(
+                    className={`inline-flex px-4 py-2 rounded-lg text-white font-semibold text-sm ${getStatusBadgeColor(
                       t.status === "OPEN"
                         ? "Open"
                         : t.status === "LIVE"
@@ -386,27 +402,128 @@ export default function TournamentsListPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 flex-wrap">
                   <Link href={`/dashboard/admin/tournament/manage/${t.id}`}>
-                    <button className="border border-gray-600 hover:border-gray-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+                    <button className="border border-gray-600 hover:border-gray-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
                       Manage
                     </button>
                   </Link>
                   <Link href={`/dashboard/admin/tournament/${t.id}/edit`}>
-                    <button className="px-4 py-2 hover:bg-gray-800 rounded-lg transition-colors text-gray-400 hover:text-white flex items-center justify-center">
+                    <button className="px-3 py-2 hover:bg-gray-800 rounded-lg transition-colors text-gray-400 hover:text-white flex items-center justify-center">
                       <ExternalLink size={18} />
                     </button>
                   </Link>
                   <button
                     onClick={() => confirmAndDeleteTournament(t.id, t.name)}
-                    className="px-4 py-2 hover:bg-gray-800 rounded-lg transition-colors text-gray-400 hover:text-red-500 flex items-center justify-center"
+                    className="px-3 py-2 hover:bg-gray-800 rounded-lg transition-colors text-gray-400 hover:text-red-500 flex items-center justify-center"
                   >
                     <Trash2 size={18} />
                   </button>
                 </div>
               </div>
             ))}
-        </div>
+          </div>
+        )}
+
+        {/* Tournaments Cards — mobile only (below md) */}
+        {!isLoading && !error && (
+          <div className="md:hidden space-y-3">
+            {list.map((t) => (
+              <div
+                key={t.id}
+                className="border border-gray-700 rounded-xl p-4 bg-gray-900/30"
+              >
+                <div className="flex items-start justify-between gap-2 flex-wrap mb-3">
+                  <h3 className="font-bold text-white break-words">{t.name}</h3>
+                  <span
+                    className={`inline-flex shrink-0 px-3 py-1 rounded text-xs font-bold ${getSeriesBadgeColor(
+                      formatSeriesLabel(t.tournamentStage),
+                    )}`}
+                  >
+                    {formatSeriesLabel(t.tournamentStage)}
+                  </span>
+                </div>
+
+                <dl className="space-y-2 text-sm mb-4">
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <dt className="sr-only">Date</dt>
+                    <dd>📅 {formatDate(t.startDate)}</dd>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <dt className="sr-only">Location</dt>
+                    <dd>📍 {t.location}</dd>
+                  </div>
+                  <div className="flex items-center justify-between pt-1">
+                    <dt className="text-gray-500">Total Registered</dt>
+                    <dd className="font-bold text-white">
+                      {t.totalRegisteredTeams ?? 0} Teams
+                    </dd>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <dt className="text-gray-500">Status</dt>
+                    <dd>
+                      <span
+                        className={`inline-flex px-3 py-1 rounded-lg text-white font-semibold text-xs ${getStatusBadgeColor(
+                          t.status === "OPEN"
+                            ? "Open"
+                            : t.status === "LIVE"
+                              ? "Live"
+                              : t.status === "COMPLETED"
+                                ? "Completed"
+                                : t.status === "CANCELLED"
+                                  ? "Cancelled"
+                                  : t.status === "FILED"
+                                    ? "Filed"
+                                    : String(t.status),
+                        )}`}
+                      >
+                        {t.status === "OPEN"
+                          ? "Open"
+                          : t.status === "LIVE"
+                            ? "Live"
+                            : t.status === "COMPLETED"
+                              ? "Completed"
+                              : t.status === "CANCELLED"
+                                ? "Cancelled"
+                                : t.status === "FILED"
+                                  ? "Filed"
+                                  : String(t.status)}
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+
+                <div className="flex flex-col xs:flex-row gap-2">
+                  <Link
+                    href={`/dashboard/admin/tournament/manage/${t.id}`}
+                    className="flex-1"
+                  >
+                    <button className="w-full border border-gray-600 hover:border-gray-500 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+                      Manage
+                    </button>
+                  </Link>
+                  <div className="flex gap-2">
+                    <Link
+                      href={`/dashboard/admin/tournament/${t.id}/edit`}
+                      className="flex-1"
+                    >
+                      <button className="w-full px-3 py-2 border border-gray-700 hover:bg-gray-800 rounded-lg transition-colors text-gray-400 hover:text-white flex items-center justify-center">
+                        <ExternalLink size={18} />
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => confirmAndDeleteTournament(t.id, t.name)}
+                      className="flex-1 px-3 py-2 border border-gray-700 hover:bg-gray-800 rounded-lg transition-colors text-gray-400 hover:text-red-500 flex items-center justify-center"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Empty State */}
         {!isLoading && !error && list.length === 0 && (
           <div className="text-center py-12">
@@ -417,7 +534,7 @@ export default function TournamentsListPage() {
 
         {/* Pagination */}
         {!isLoading && meta.total > 0 && (
-          <div className="mt-6 flex items-center justify-between">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-gray-400 text-sm">
               Page {meta.page} of{" "}
               {Math.max(1, Math.ceil(meta.total / meta.limit))}
