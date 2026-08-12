@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -83,11 +84,14 @@ function normalizeDob(value: string) {
 export default function RegistrationSection({
   scheduleData,
 }: RegistrationSectionProps) {
+  console.log("schedule data",scheduleData)
   const router = useRouter();
   const { data: currentCamp } = useGetAllSchedulesQuery({
     limit: 100000,
     page: 1,
   });
+
+  
 
   const {
     register,

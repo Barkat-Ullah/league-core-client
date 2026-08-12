@@ -271,7 +271,7 @@ export default function SchedulePeriodDialog({
             type="button"
             onClick={handleSave}
             disabled={isSubmitting}
-            className="h-11 rounded-md bg-[#CCFF00] px-10 text-sm font-bold text-[#041116] hover:bg-[#2EA8B7] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-11 rounded-md bg-[#CCFF00] px-10 text-sm font-bold text-[#041116] hover:bg-[#B8E600] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSubmitting
               ? mode === "create"

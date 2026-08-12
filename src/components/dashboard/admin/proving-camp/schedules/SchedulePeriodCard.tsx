@@ -96,7 +96,7 @@ export default function SchedulePeriodCard({
       <button
         type="button"
         onClick={() => onView(schedule)}
-        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#CCFF00] hover:text-[#5FD6E4]"
+        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#CCFF00] hover:text-[#B8E600]"
       >
         View Schedule
         <ChevronRight className="h-4 w-4" />

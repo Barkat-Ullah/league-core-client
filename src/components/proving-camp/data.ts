@@ -166,7 +166,7 @@ export const campFaqItems: CampFaqItem[] = [
   },
   {
     q: "What happens if a session is full?",
-    a: "You can join the waitlist. If spots open, families are notified in order and have a limited window to confirm registration.",
+    a: "You can join the wait list. If spots open, families are notified in order and have a limited window to confirm registration.",
   },
   {
     q: "Can I transfer my registration to another player?",

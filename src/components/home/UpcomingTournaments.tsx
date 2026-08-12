@@ -120,12 +120,12 @@ const UpcomingTournaments = () => {
         </div>
 
         {/* Tournament Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {tournaments.map((tournament: any) => {
             return (
               <div
                 key={tournament.id}
-                className="rounded-lg overflow-hidden border border-gray-500 hover:shadow-xl transition-all duration-300 relative"
+                className="rounded-lg overflow-hidden border border-gray-500 hover:shadow-xl transition-all duration-300 relative h-full flex flex-col"
                 style={{
                   boxShadow: "0 4px 16px rgba(0, 0, 0, 0.18)",
                   backgroundImage: "url(/card.png)",
@@ -153,7 +153,7 @@ const UpcomingTournaments = () => {
                 </div>
 
                 {/* Tournament Details */}
-                <div className="p-5">
+                <div className="p-5 flex flex-col flex-1">
                   <h3 className="text-white font-bold text-base mb-4">
                     {tournament?.name ?? "Tournament"}
                   </h3>
@@ -204,7 +204,7 @@ const UpcomingTournaments = () => {
                           height={24}
                         />
                       </div>
-                      <span className="text-gray-300 leading-snug">
+                      <span className="text-gray-300 leading-snug line-clamp-2">
                         {tournament?.tournamentDivisions?.length > 0
                           ? tournament.tournamentDivisions
                               .map((d: any) =>
@@ -219,44 +219,47 @@ const UpcomingTournaments = () => {
                     </div>
                   </div>
 
-                  <div className="h-px w-full bg-gray-500 mb-3" />
+                  {/* Bottom block pinned to the card's bottom regardless of content above */}
+                  <div className="mt-auto">
+                    <div className="h-px w-full bg-gray-500 mb-3" />
 
-                  {/* Entry Fee */}
-                  <div className="mb-4 relative">
-                    {tournament?.tournamentStage && (
-                      <div className="absolute -top-1 right-0">
-                        <span className="border border-[#92B212] bg-[#40472A] text-[#92B212] text-[10px] font-bold px-2 py-1 rounded">
-                          {tournament.tournamentStage}
-                        </span>
-                      </div>
-                    )}
+                    {/* Entry Fee */}
+                    <div className="mb-4 relative">
+                      {tournament?.tournamentStage && (
+                        <div className="absolute -top-1 right-0">
+                          <span className="border border-[#92B212] bg-[#40472A] text-[#92B212] text-[10px] font-bold px-2 py-1 rounded">
+                            {tournament.tournamentStage}
+                          </span>
+                        </div>
+                      )}
 
-                    <p className="text-gray-400 text-xs mb-1">Entry Fee:</p>
-                    <p className="text-white text-sm font-semibold">
-                      Youth ${tournament?.youthFee ?? "0"} | Adult $
-                      {tournament?.adultFee ?? "0"}
-                    </p>
-                  </div>
+                      <p className="text-gray-400 text-xs mb-1">Entry Fee:</p>
+                      <p className="text-white text-sm font-semibold">
+                        Youth ${tournament?.youthFee ?? "0"} | Adult $
+                        {tournament?.adultFee ?? "0"}
+                      </p>
+                    </div>
 
-                  {/* Buttons */}
-                  <div className="flex gap-2 mt-4">
-                    <Link
-                      href={`/tournament-registration?id=${tournament.id}`}
-                      className="flex-2"
-                    >
-                      <button className="w-full bg-[#CCFF00] hover:bg-[#B8E600] text-black text-sm font-bold py-2.5 px-3 rounded transition cursor-pointer">
-                        Register Now
-                      </button>
-                    </Link>
+                    {/* Buttons */}
+                    <div className="flex gap-2">
+                      <Link
+                        href={`/tournament-registration?id=${tournament.id}`}
+                        className="flex-2"
+                      >
+                        <button className="w-full bg-[#CCFF00] hover:bg-[#B8E600] text-black text-sm font-bold py-2.5 px-3 rounded transition cursor-pointer">
+                          Register Now
+                        </button>
+                      </Link>
 
-                    <Link
-                      href={`/tournaments/${tournament.id}`}
-                      className="flex-1"
-                    >
-                      <button className="w-full bg-transparent border border-gray-500 text-gray-300 hover:bg-gray-700 text-sm font-semibold py-2.5 px-3 rounded transition cursor-pointer">
-                        Details
-                      </button>
-                    </Link>
+                      <Link
+                        href={`/tournaments/${tournament.id}`}
+                        className="flex-1"
+                      >
+                        <button className="w-full bg-transparent border border-gray-500 text-gray-300 hover:bg-gray-700 text-sm font-semibold py-2.5 px-3 rounded transition cursor-pointer">
+                          Details
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
