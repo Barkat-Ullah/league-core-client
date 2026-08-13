@@ -89,23 +89,23 @@ export default function PlayerSchedulePage() {
   const pastMatches: Match[] = scheduleData?.data?.pastMatches ?? [];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
+      <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           {teamImage ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={teamImage}
               alt={teamName}
-              className="h-12 w-12 rounded-full border border-gray-800 object-cover"
+              className="h-10 w-10 sm:h-12 sm:w-12 rounded-full border border-gray-800 object-cover"
             />
           ) : (
-            <div className="h-12 w-12 rounded-full border border-gray-800 bg-gray-900" />
+            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full border border-gray-800 bg-gray-900" />
           )}
 
           <div>
-            <h1 className="text-2xl font-bold">{teamName}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold">{teamName}</h1>
             <p className="text-gray-400 text-sm">Schedule & results</p>
           </div>
         </div>
@@ -128,8 +128,8 @@ export default function PlayerSchedulePage() {
           <>
             {/* Tournament Schedule */}
             <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl overflow-hidden">
-              <div className="p-6 border-b border-gray-800 flex items-center justify-between gap-4">
-                <h2 className="font-bold text-2xl uppercase tracking-wider">
+              <div className="p-4 sm:p-6 border-b border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <h2 className="font-bold text-xl sm:text-2xl uppercase tracking-wider">
                   Tournament Schedule
                 </h2>
 
@@ -249,8 +249,8 @@ export default function PlayerSchedulePage() {
 
             {/* Past Results */}
             <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl overflow-hidden">
-              <div className="p-6 border-b border-gray-800">
-                <h2 className="text-white font-bold text-2xl uppercase tracking-wider">
+              <div className="p-4 sm:p-6 border-b border-gray-800">
+                <h2 className="text-white font-bold text-xl sm:text-2xl uppercase tracking-wider">
                   Past Results
                 </h2>
               </div>
@@ -276,21 +276,21 @@ export default function PlayerSchedulePage() {
                     return (
                       <div
                         key={m.id}
-                        className="px-6 py-4 flex items-center justify-between hover:bg-gray-900/30 transition-colors group"
+                        className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 hover:bg-gray-900/30 transition-colors group"
                       >
-                        <div className="flex-1">
-                          <div className="flex items-center gap-4">
-                            <span className="text-gray-500 text-sm font-semibold min-w-40">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 sm:gap-4">
+                            <span className="text-gray-500 text-sm font-semibold min-w-28 sm:min-w-40">
                               {formatDate(m.scheduledAt, timeZone)}
                             </span>
-                            <Trophy size={16} className="text-gray-600" />
-                            <span className="text-gray-300">
+                            <Trophy size={16} className="text-gray-600 shrink-0" />
+                            <span className="text-gray-300 truncate">
                               {m.opponent?.teamName ?? "Opponent"}
                             </span>
                           </div>
 
                           {(m.tournamentName || m.location) && (
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-gray-500 mt-1 truncate">
                               {[m.tournamentName, m.location]
                                 .filter(Boolean)
                                 .join(" • ")}
@@ -298,13 +298,13 @@ export default function PlayerSchedulePage() {
                           )}
                         </div>
 
-                        <div className="text-right">
-                          <p style={{ color }} className="font-bold text-lg">
+                        <div className="text-right shrink-0 min-w-0">
+                          <p style={{ color }} className="font-bold text-base sm:text-lg">
                             {scoreText}
                           </p>
                           <p
                             style={{ color }}
-                            className="text-sm font-semibold"
+                            className="text-sm font-semibold truncate"
                           >
                             {resultText}
                           </p>

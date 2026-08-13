@@ -195,20 +195,24 @@ export default function CoachSettingsPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">SETTINGS</h1>
-          <p className="text-gray-400">Manage your account and preferences</p>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">
+            SETTINGS
+          </h1>
+          <p className="text-gray-400 text-sm sm:text-base">
+            Manage your account and preferences
+          </p>
         </div>
 
         {/* Profile Information */}
-        <div className="bg-black border border-gray-800 rounded-lg p-8 mb-8">
-          <h2 className="text-xl font-bold text-white mb-8 uppercase tracking-wide">
+        <div className="bg-black border border-gray-800 rounded-lg p-5 sm:p-8 mb-8">
+          <h2 className="text-xl font-bold text-white mb-6 sm:mb-8 uppercase tracking-wide">
             PROFILE INFORMATION
           </h2>
 
-          <div className="flex items-start gap-8">
+          <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
             {/* Avatar */}
-            <div className="shrink-0">
-              <div className="relative w-32 h-32 bg-gray-800 rounded-full flex items-center justify-center border-4 border-gray-700 overflow-hidden">
+            <div className="shrink-0 mx-auto md:mx-0">
+              <div className="relative w-28 h-28 sm:w-32 sm:h-32 bg-gray-800 rounded-full flex items-center justify-center border-4 border-gray-700 overflow-hidden">
                 {avatarSrc ? (
                   <Image
                     src={avatarSrc}
@@ -368,7 +372,7 @@ export default function CoachSettingsPage() {
         </div>
 
         {/* Password & Security */}
-        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 mb-8">
+        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-5 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold mb-6 uppercase tracking-wider text-white">
             PASSWORD & SECURITY
           </h2>
@@ -432,7 +436,7 @@ export default function CoachSettingsPage() {
             <button
               type="submit"
               disabled={isResetting}
-              className="bg-[#CCFF00] text-black font-bold px-6 py-2 rounded-lg hover:bg-[#B8E600] transition-colors disabled:opacity-60"
+              className="w-full bg-[#CCFF00] text-black font-bold px-6 py-2 rounded-lg hover:bg-[#B8E600] transition-colors disabled:opacity-60"
             >
               {isResetting ? "Updating..." : "Update Password"}
             </button>
@@ -440,7 +444,7 @@ export default function CoachSettingsPage() {
         </div>
 
         {/* Notifications */}
-        <div className="border border-[#CCFF00]/30 rounded-lg p-8 mb-8 bg-black/20 backdrop-blur">
+        <div className="border border-[#CCFF00]/30 rounded-lg p-5 sm:p-8 mb-8 bg-black/20 backdrop-blur">
           <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
             <Bell size={20} className="text-[#CCFF00]" />
             NOTIFICATIONS
@@ -491,19 +495,19 @@ function ToggleRow({
 }) {
   return (
     <div
-      className={`flex items-center justify-between ${
+      className={`flex items-start justify-between gap-3 ${
         bordered ? "pb-4 border-b border-[#CCFF00]/30" : ""
       }`}
     >
-      <div>
+      <div className="flex-1 min-w-0">
         <div className="text-white font-bold">{title}</div>
-        <div className="text-gray-500 text-sm">{desc}</div>
+        <div className="text-gray-500 text-sm mt-0.5">{desc}</div>
       </div>
 
       <button
         type="button"
         onClick={onClick}
-        className={`relative w-14 h-8 rounded-full transition-colors ${
+        className={`relative shrink-0 w-14 h-8 rounded-full transition-colors ${
           checked ? "bg-[#CCFF00]" : "bg-gray-700"
         }`}
       >

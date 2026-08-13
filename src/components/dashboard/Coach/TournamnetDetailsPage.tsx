@@ -103,10 +103,10 @@ export default function CoachTournamentDetailPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-4xl font-bold text-white mb-1">
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-1">
             {tournament.name}
           </h1>
-          <p className="text-gray-400">
+          <p className="text-gray-400 text-sm sm:text-base">
             View your tournament schedule and manage roster
           </p>
         </div>
@@ -145,7 +145,7 @@ export default function CoachTournamentDetailPage() {
 
         {activeTab === "schedule" && (
           <div className="bg-[#111] border border-gray-800 rounded-lg p-6">
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div>
                 <div className="text-xs text-gray-400 font-semibold mb-2">
                   DATE

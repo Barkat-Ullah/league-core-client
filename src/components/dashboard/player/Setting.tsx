@@ -283,10 +283,10 @@ export default function PlayerSettingsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl p-8">
-          <h2 className="font-bold text-2xl mb-6 uppercase tracking-wider">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
+      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
+        <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl p-5 sm:p-8">
+          <h2 className="font-bold text-xl sm:text-2xl mb-6 uppercase tracking-wider">
             My Profile & Settings
           </h2>
 
@@ -305,10 +305,10 @@ export default function PlayerSettingsPage() {
               Profile Information
             </h3>
 
-            <div className="flex flex-col md:flex-row gap-8">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-8">
               {/* Avatar */}
-              <div className="shrink-0">
-                <div className="relative w-32 h-32 bg-gray-800 rounded-full flex items-center justify-center border-4 border-gray-700 overflow-hidden">
+              <div className="shrink-0 mx-auto md:mx-0">
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 bg-gray-800 rounded-full flex items-center justify-center border-4 border-gray-700 overflow-hidden">
                   {avatarSrc ? (
                     <Image
                       src={avatarSrc}
@@ -455,7 +455,7 @@ export default function PlayerSettingsPage() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 mt-6">
+                <div className="flex flex-col sm:flex-row gap-3 mt-6">
                   {profileEditMode ? (
                     <>
                       <button
@@ -551,7 +551,7 @@ export default function PlayerSettingsPage() {
                   !pw.newPassword ||
                   !pw.confirmPassword
                 }
-                className="mt-2 bg-[#CCFF00] text-black font-bold px-6 py-2 rounded-lg hover:bg-[#B8E600] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="mt-2 w-full sm:w-auto bg-[#CCFF00] text-black font-bold px-6 py-2 rounded-lg hover:bg-[#B8E600] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isChanging ? "Updating..." : "Update Password"}
               </button>
@@ -565,8 +565,8 @@ export default function PlayerSettingsPage() {
             </h3>
 
             <div className="space-y-4">
-              <div className="flex items-center justify-between py-3 border-b border-gray-800">
-                <div>
+              <div className="flex items-center justify-between gap-3 py-3 border-b border-gray-800">
+                <div className="flex-1 min-w-0">
                   <p className="text-white font-semibold">
                     Email Notifications
                   </p>
@@ -577,7 +577,7 @@ export default function PlayerSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleNotificationChange("emailNotifications")}
-                  className={`relative inline-flex w-12 h-7 rounded-full transition-colors ${
+                  className={`relative inline-flex shrink-0 w-12 h-7 rounded-full transition-colors ${
                     notifications.emailNotifications
                       ? "bg-[#CCFF00]"
                       : "bg-gray-700"
@@ -593,8 +593,8 @@ export default function PlayerSettingsPage() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between py-3 border-b border-gray-800">
-                <div>
+              <div className="flex items-center justify-between gap-3 py-3 border-b border-gray-800">
+                <div className="flex-1 min-w-0">
                   <p className="text-white font-semibold">Match Reminders</p>
                   <p className="text-gray-500 text-sm">
                     Get notified before upcoming matches
@@ -603,7 +603,7 @@ export default function PlayerSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleNotificationChange("matchReminders")}
-                  className={`relative inline-flex w-12 h-7 rounded-full transition-colors ${
+                  className={`relative inline-flex shrink-0 w-12 h-7 rounded-full transition-colors ${
                     notifications.matchReminders
                       ? "bg-[#CCFF00]"
                       : "bg-gray-700"
@@ -619,8 +619,8 @@ export default function PlayerSettingsPage() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between py-3 border-b border-gray-800">
-                <div>
+              <div className="flex items-center justify-between gap-3 py-3 border-b border-gray-800">
+                <div className="flex-1 min-w-0">
                   <p className="text-white font-semibold">Waiver Alerts</p>
                   <p className="text-gray-500 text-sm">
                     Alert for pending waivers and documents
@@ -629,7 +629,7 @@ export default function PlayerSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleNotificationChange("waiverAlerts")}
-                  className={`relative inline-flex w-12 h-7 rounded-full transition-colors ${
+                  className={`relative inline-flex shrink-0 w-12 h-7 rounded-full transition-colors ${
                     notifications.waiverAlerts ? "bg-[#CCFF00]" : "bg-gray-700"
                   }`}
                 >
@@ -643,8 +643,8 @@ export default function PlayerSettingsPage() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between py-3">
-                <div>
+              <div className="flex items-center justify-between gap-3 py-3">
+                <div className="flex-1 min-w-0">
                   <p className="text-white font-semibold">Team Updates</p>
                   <p className="text-gray-500 text-sm">
                     News and announcements from your team
@@ -653,7 +653,7 @@ export default function PlayerSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleNotificationChange("teamUpdates")}
-                  className={`relative inline-flex w-12 h-7 rounded-full transition-colors ${
+                  className={`relative inline-flex shrink-0 w-12 h-7 rounded-full transition-colors ${
                     notifications.teamUpdates ? "bg-[#CCFF00]" : "bg-gray-700"
                   }`}
                 >

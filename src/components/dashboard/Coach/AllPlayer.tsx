@@ -26,8 +26,12 @@ const CoachTeamPage = () => {
     <div className="w-full mt-10">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white mb-2">ALL PLAYER</h1>
-        <p className="text-gray-400">Manage team details & all player roster</p>
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2">
+          ALL PLAYER
+        </h1>
+        <p className="text-gray-400 text-sm sm:text-base">
+          Manage team details & all player roster
+        </p>
       </div>
 
       {/* Team Details */}

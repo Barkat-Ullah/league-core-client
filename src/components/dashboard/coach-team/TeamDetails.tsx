@@ -106,9 +106,9 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold text-white uppercase tracking-wide">
+      <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-4 sm:p-6 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+          <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-wide">
             TEAM DETAILS
           </h3>
 
@@ -148,17 +148,17 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({
           )}
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex flex-col sm:flex-row gap-6">
           {/* Logo Upload Area */}
           <div
-            className={`relative ${
+            className={`relative mx-auto sm:mx-0 ${
               isEditing ? "cursor-pointer" : "cursor-default"
             }`}
             onClick={() => {
               if (isEditing) fileInputRef.current?.click();
             }}
           >
-            <div className="border-2 border-dashed border-[#CCFF00] rounded-lg p-8 w-40 h-40 flex items-center justify-center bg-[#CCFF00]/10 hover:bg-[#CCFF00]/20 transition">
+            <div className="border-2 border-dashed border-[#CCFF00] rounded-lg p-4 sm:p-8 w-32 sm:w-40 h-32 sm:h-40 flex items-center justify-center bg-[#CCFF00]/10 hover:bg-[#CCFF00]/20 transition">
               {displayLogo ? (
                 <Image
                   src={displayLogo}
@@ -200,7 +200,9 @@ const TeamDetails: React.FC<TeamDetailsProps> = ({
                   autoFocus
                 />
               ) : (
-                <p className="mt-1 text-2xl font-bold text-white">{teamName}</p>
+                <p className="mt-1 text-xl md:text-2xl font-bold text-white">
+                  {teamName}
+                </p>
               )}
 
               {errors.teamName && (

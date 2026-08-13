@@ -154,15 +154,15 @@ export default function WaiverCenterPage() {
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+      <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold tracking-wider mb-8">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-wider mb-8">
             Waiver & Documents
           </h1>
 
           <div className="space-y-4">
             <div
-              className={`border rounded-xl p-6 transition-colors ${
+              className={`border rounded-xl p-5 sm:p-6 transition-colors ${
                 isSigned
                   ? "border-green-900/50 bg-green-900/10"
                   : "border-gray-800 bg-gray-900/30"
@@ -197,13 +197,13 @@ export default function WaiverCenterPage() {
                   </button>
                 </>
               ) : (
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center items-start justify-between gap-4">
+                  <div className="flex items-start gap-4 min-w-0">
                     <CheckCircle
                       className="text-green-500 shrink-0"
                       size={24}
                     />
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="text-xl font-bold text-white mb-1">
                         {waiverName}
                       </h3>
@@ -226,7 +226,7 @@ export default function WaiverCenterPage() {
             </div>
           </div>
 
-          <div className="mt-8 bg-gray-900/30 border border-gray-800 rounded-xl p-6">
+          <div className="mt-8 bg-gray-900/30 border border-gray-800 rounded-xl p-5 sm:p-6">
             <h3 className="text-lg font-bold mb-3">About Waivers</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
               All players must sign the tournament waiver before participating
@@ -238,10 +238,10 @@ export default function WaiverCenterPage() {
 
           {/* Waiver Modal */}
           {waiverModal && (
-            <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-6 z-50">
+            <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 sm:p-6 z-50">
               <div className="bg-gray-900 border-2 border-[#CCFF00] rounded-xl max-w-2xl max-h-[85vh] overflow-y-auto scrollbar-hide w-full">
                 {/* Modal Header */}
-                <div className="sticky top-0 bg-gray-900 border-b-2 border-[#CCFF00] p-6 flex items-center justify-between">
+                <div className="sticky top-0 bg-gray-900 border-b-2 border-[#CCFF00] p-4 sm:p-6 flex items-center justify-between gap-3">
                   <h2 className="text-[#CCFF00] font-bold text-xl">
                     Liability Release Form
                   </h2>
@@ -257,7 +257,7 @@ export default function WaiverCenterPage() {
                 {/* Modal Form */}
                 <form
                   onSubmit={handleSubmit(onSubmitWaiver)}
-                  className="p-6 space-y-6"
+                  className="p-4 sm:p-6 space-y-6"
                 >
                   {/* Liability Text */}
                   <div className="bg-gray-800 rounded-lg p-4">

@@ -81,20 +81,20 @@ const CoachDashboard = () => {
   return (
     <div className="w-full mt-10">
       {/* Header Section */}
-      <div className="flex justify-between items-start mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-3 md:gap-0 mb-8">
         <div>
-          <h1 className="text-lg lg:text-4xl font-bold text-white mb-2">
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-white mb-2">
             WELCOME BACK, {coachName.toUpperCase()}
           </h1>
-          <p className="text-gray-400">
+          <p className="text-gray-400 text-sm sm:text-base">
             Here&apos;s what&apos;s happening with your team{" "}
             <span className="text-[#CCFF00] font-semibold">{d.teamName}</span>
           </p>
         </div>
 
-        <div className="text-right">
-          <div className="bg-green-900/30 border border-green-500 rounded px-4 py-2 inline-block">
-            <span className="text-green-400 font-semibold">
+        <div className="text-left md:text-right">
+          <div className="bg-green-900/30 border border-green-500 rounded px-3 sm:px-4 py-2 inline-block">
+            <span className="text-green-400 font-semibold text-sm sm:text-base">
               ✓ {bundleCredit} Bundle Credit
             </span>
           </div>

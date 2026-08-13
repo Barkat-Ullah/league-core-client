@@ -169,18 +169,18 @@ export default function PlayerDashboard() {
   const photoSrc = playerInfo.profileImage || defaultPlayerImg;
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
+      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
         {/* Digital Player Pass */}
-        <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl p-8">
+        <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl p-5 sm:p-8">
           <h2 className="text-[#CCFF00] font-bold text-xl mb-6 uppercase tracking-wider">
             Digital Player Pass
           </h2>
 
-          <div className="flex flex-col md:flex-row gap-8">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
             {/* Player Photo */}
-            <div className="shrink-0">
-              <div className="relative w-48 h-48 rounded-lg overflow-hidden border-2 border-[#CCFF00] bg-black/30">
+            <div className="shrink-0 mx-auto md:mx-0">
+              <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-lg overflow-hidden border-2 border-[#CCFF00] bg-black/30">
                 <Image
                   src={photoSrc}
                   alt={playerInfo.fullName}
@@ -194,9 +194,9 @@ export default function PlayerDashboard() {
 
             {/* Player Info */}
             <div className="flex-1 space-y-4">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
                 <div>
-                  <h3 className="text-3xl font-bold text-white">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">
                     {playerInfo.fullName}
                   </h3>
                   <p className="text-gray-400 mt-1">
@@ -250,9 +250,9 @@ export default function PlayerDashboard() {
         </div>
 
         {/* Next Match and Waiver Section */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {/* Next Match Card */}
-          <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl p-6">
+          <div className="bg-linear-to-br from-gray-900 to-[#1a1a1a] border border-gray-800 rounded-xl p-5 sm:p-6">
             <h3 className="text-[#CCFF00] font-bold text-lg mb-6 uppercase tracking-wider">
               Next Match
             </h3>
@@ -309,7 +309,7 @@ export default function PlayerDashboard() {
 
           {/* Waiver Alert Card */}
           {waiverPending && (
-            <div className="bg-linear-to-br from-red-900/20 to-red-900/10 border-2 border-red-900/50 rounded-xl p-6 flex flex-col justify-between">
+            <div className="bg-linear-to-br from-red-900/20 to-red-900/10 border-2 border-red-900/50 rounded-xl p-5 sm:p-6 flex flex-col justify-between">
               <div className="flex items-start gap-3 mb-6">
                 <AlertCircle
                   className="text-orange-400 shrink-0 mt-1"
@@ -340,7 +340,7 @@ export default function PlayerDashboard() {
 
           {/* If waiver is signed */}
           {!waiverPending && waiver && (
-            <div className="bg-linear-to-br from-green-900/10 to-green-900/5 border border-green-900/40 rounded-xl p-6 flex items-start gap-3">
+            <div className="bg-linear-to-br from-green-900/10 to-green-900/5 border border-green-900/40 rounded-xl p-5 sm:p-6 flex items-start gap-3">
               <CheckCircle className="text-green-400 mt-1" size={24} />
               <div>
                 <h3 className="text-green-400 font-bold text-lg uppercase">

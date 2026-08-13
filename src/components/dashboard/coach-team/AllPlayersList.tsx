@@ -197,10 +197,10 @@ const AllPlayersList = () => {
 
   return (
     <>
-      <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h3 className="text-lg font-bold text-white uppercase tracking-wide">
+            <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-wide">
               ALL PLAYER LIST
             </h3>
             <p className="text-gray-400 text-sm mt-1">
@@ -208,10 +208,10 @@ const AllPlayersList = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch gap-2">
             <button
               onClick={() => refetch()}
-              className="px-4 py-2 bg-[#222] text-white font-bold text-sm rounded hover:bg-[#2a2a2a] transition uppercase tracking-wide"
+              className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-[#222] text-white font-bold text-sm rounded hover:bg-[#2a2a2a] transition uppercase tracking-wide"
               type="button"
               disabled={isFetching}
             >
@@ -220,7 +220,7 @@ const AllPlayersList = () => {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-4 py-2 bg-[#CCFF00] text-black font-bold text-sm rounded hover:bg-[#B8D800] transition uppercase tracking-wide"
+              className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-[#CCFF00] text-black font-bold text-sm rounded hover:bg-[#B8D800] transition uppercase tracking-wide"
               type="button"
             >
               + ADD PLAYER
@@ -246,7 +246,7 @@ const AllPlayersList = () => {
           <div className="text-gray-400 text-sm">No players found.</div>
         ) : (
           <>
-            <div className="overflow-x-auto">
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-700">
@@ -368,8 +368,114 @@ const AllPlayersList = () => {
               </table>
             </div>
 
+            {/* Mobile card layout */}
+            <div className="md:hidden space-y-3">
+              {players.map((p) => {
+                const initials = getInitials(p.fullName || "Player");
+                const waiver = formatWaiver(p.waiverStatus);
+                const age = formatAge(p.ageVerified);
+
+                return (
+                  <div
+                    key={p.id}
+                    className="bg-[#222] border border-gray-800 rounded-lg p-4"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div
+                          className={`w-10 h-10 rounded-full ${getInitialsBg(
+                            initials,
+                          )} flex items-center justify-center text-white font-bold text-sm shrink-0`}
+                        >
+                          {initials}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-white font-semibold truncate">
+                            {p.fullName}
+                          </p>
+                          <p className="text-gray-500 text-xs truncate">
+                            {p.email}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 shrink-0">
+                        <button
+                          onClick={() => handleEdit(p)}
+                          className="p-2 text-gray-400 hover:text-yellow-400 transition"
+                          type="button"
+                          title="Edit player"
+                        >
+                          <Pencil className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleRemove(p.id)}
+                          className="p-2 text-gray-400 hover:text-red-500 transition"
+                          type="button"
+                          title="Remove player"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-gray-700">
+                      <div>
+                        <p className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                          JERSEY
+                        </p>
+                        <p className="text-white font-semibold">
+                          {p.jerseyNum ?? "-"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                          TOURNAMENT
+                        </p>
+                        <p className="text-yellow-400 text-sm font-semibold truncate">
+                          {p.tournament?.name ?? "Not Assigned"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                          WAIVER
+                        </p>
+                        <span
+                          className={`inline-block px-3 py-1 rounded text-xs font-semibold ${
+                            waiver.variant === "signed"
+                              ? "bg-green-900/40 text-green-400 border border-green-500/60"
+                              : "bg-yellow-900/40 text-yellow-400 border border-yellow-500/60"
+                          }`}
+                        >
+                          {waiver.label}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="text-gray-500 text-xs uppercase tracking-wide mb-1">
+                          AGE
+                        </p>
+                        <span
+                          className={`inline-block px-3 py-1 rounded text-xs font-semibold ${
+                            age.variant === "verified"
+                              ? "bg-green-900/40 text-green-400 border border-green-500/60"
+                              : age.variant === "checkin"
+                                ? "bg-gray-800 text-gray-400 border border-gray-700"
+                                : age.variant === "rejected"
+                                  ? "bg-red-900/40 text-red-400 border border-red-500/60"
+                                  : "bg-yellow-900/40 text-yellow-400 border border-yellow-500/60"
+                          }`}
+                        >
+                          {age.label}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
             {/* ✅ Pagination controls */}
-            <div className="flex items-center justify-between mt-5">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-5">
               <p className="text-gray-500 text-xs">
                 Total: {total} • Page: {page} / {totalPages} • Limit: {limit}
               </p>

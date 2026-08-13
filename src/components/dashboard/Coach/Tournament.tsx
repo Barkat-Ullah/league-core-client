@@ -94,8 +94,10 @@ export default function CoachTournamentsPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">TOURNAMENTS</h1>
-          <p className="text-gray-400">
+          <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2">
+            TOURNAMENTS
+          </h1>
+          <p className="text-gray-400 text-sm sm:text-base">
             {activeTab === "upcoming"
               ? "View your tournament schedule and results"
               : "View schedules and track performance points"}
@@ -103,10 +105,10 @@ export default function CoachTournamentsPage() {
         </div>
 
         {/* Tabs */}
-        <div className="grid grid-cols-2 gap-4 mb-8 lg:w-2/3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-8 lg:w-2/3">
           <button
             onClick={() => setActiveTab("upcoming")}
-            className={`py-3 px-4 font-bold transition-colors ${
+            className={`py-3 px-2 sm:px-4 text-xs sm:text-sm font-bold transition-colors ${
               activeTab === "upcoming"
                 ? "bg-[#CCFF00] text-black"
                 : "bg-gray-900 text-gray-400 hover:bg-gray-800"
@@ -116,7 +118,7 @@ export default function CoachTournamentsPage() {
           </button>
           <button
             onClick={() => setActiveTab("history")}
-            className={`py-3 px-4 font-bold transition-colors ${
+            className={`py-3 px-2 sm:px-4 text-xs sm:text-sm font-bold transition-colors ${
               activeTab === "history"
                 ? "bg-[#CCFF00] text-black"
                 : "bg-gray-900 text-gray-400 hover:bg-gray-800"
