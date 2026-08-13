@@ -202,7 +202,7 @@ export default function StepTwo(props: StepTwoProps) {
             Team Manager / Coach Contact
           </h3>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
             <div>
               <label className="block text-gray-300 text-sm mb-3 font-semibold">
                 First Name <span className="text-red-500">*</span>
@@ -230,7 +230,7 @@ export default function StepTwo(props: StepTwoProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-gray-300 text-sm mb-3 font-semibold">
                 Email <span className="text-red-500">*</span>
@@ -266,7 +266,7 @@ export default function StepTwo(props: StepTwoProps) {
               Create Account Password
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <label className="block text-gray-300 text-sm mb-3 font-semibold">
                   Password <span className="text-red-500">*</span>

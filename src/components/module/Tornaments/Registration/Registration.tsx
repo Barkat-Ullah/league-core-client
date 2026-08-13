@@ -423,12 +423,12 @@ function RegistrationInner() {
     : isTournamentListLoading || isTournamentListFetching;
 
   return (
-    <div className="min-h-screen bg-black text-white py-12 px-4">
+    <div className="min-h-screen bg-black text-white py-8 sm:py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-2 font-['Oswald']">
+        <h1 className="text-3xl sm:text-5xl font-bold text-center mb-2 font-['Oswald']">
           Team Registration
         </h1>
-        <p className="text-center text-gray-400 mb-12">
+        <p className="text-center text-gray-400 mb-8 sm:mb-12">
           Select your tournament and division
         </p>
 
@@ -436,7 +436,7 @@ function RegistrationInner() {
           <ProgressSteps currentStep={currentStep} totalSteps={4} />
         </div>
 
-        <div className="bg-[#201B1A] rounded-3xl p-8 mb-8">
+        <div className="bg-[#201B1A] rounded-3xl p-4 sm:p-8 mb-8">
           {currentStep === 1 && isTournamentLoading ? (
             <div className="py-5">
               <Spinner size={36} className="min-h-0" />

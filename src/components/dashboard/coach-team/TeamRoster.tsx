@@ -145,10 +145,10 @@ const TeamRoster: React.FC<TeamRosterProps> = ({ players, registrationId }) => {
 
   return (
     <>
-      <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
           <div>
-            <h3 className="text-lg font-bold text-white uppercase tracking-wide">
+            <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-wide">
               Team Roster
             </h3>
             <p className="text-gray-400 text-sm mt-1">
@@ -157,7 +157,7 @@ const TeamRoster: React.FC<TeamRosterProps> = ({ players, registrationId }) => {
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-4 py-2 bg-[#CCFF00] text-black font-bold text-sm rounded hover:bg-[#B8D800] transition uppercase tracking-wide"
+            className="w-full sm:w-auto px-4 py-2 bg-[#CCFF00] text-black font-bold text-sm rounded hover:bg-[#B8D800] transition uppercase tracking-wide"
           >
             + ADD PLAYER
           </button>

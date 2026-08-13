@@ -102,9 +102,9 @@ const AppHeader = () => {
             <button
               onClick={() => setIsOpen((v) => !v)}
               disabled={teamLoading || !!teamError || teams.length === 0}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-200 hover:border-[#CCFF00]/50 hover:bg-gray-800 transition-colors text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 max-w-[52vw] sm:max-w-none bg-gray-900 border border-gray-700 rounded-lg text-gray-200 hover:border-[#CCFF00]/50 hover:bg-gray-800 transition-colors text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <span>
+              <span className="truncate overflow-hidden text-ellipsis">
                 {teamLoading
                   ? "Loading teams..."
                   : teamError
@@ -113,14 +113,14 @@ const AppHeader = () => {
               </span>
 
               <ChevronDown
-                className={`w-4 h-4 transition-transform ${
+                className={`shrink-0 w-4 h-4 transition-transform ${
                   isOpen ? "rotate-180" : ""
                 }`}
               />
             </button>
 
             {isOpen && !teamLoading && !teamError && teams.length > 0 && (
-              <div className="absolute right-0 mt-2 w-72 max-h-80 overflow-y-auto overscroll-contain bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 py-2 pr-1 [scrollbar-width:thin] [scrollbar-color:#CCFF00_#1f2937] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CCFF00]/70 hover:[&::-webkit-scrollbar-thumb]:bg-[#CCFF00]">
+              <div className="fixed sm:absolute right-3 sm:right-0 top-16 sm:top-full sm:mt-2 w-[calc(100vw-1.5rem)] sm:w-72 max-w-[95vw] sm:max-w-72 max-h-80 overflow-y-auto overscroll-contain bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 py-2 pr-1 [scrollbar-width:thin] [scrollbar-color:#CCFF00_#1f2937] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-800 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#CCFF00]/70 hover:[&::-webkit-scrollbar-thumb]:bg-[#CCFF00]">
                 {teams.map((team) => (
                   <button
                     key={team.id}
@@ -157,7 +157,7 @@ const AppHeader = () => {
             )}
 
             {!teamLoading && !teamError && teams.length === 0 && (
-              <div className="absolute right-0 mt-2 w-72 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 p-3 text-sm text-gray-300">
+              <div className="fixed sm:absolute right-3 sm:right-0 top-16 sm:top-full sm:mt-2 w-[calc(100vw-1.5rem)] sm:w-72 max-w-[95vw] sm:max-w-72 bg-gray-900 border border-gray-700 rounded-lg shadow-lg z-50 p-3 text-sm text-gray-300">
                 No teams found.
               </div>
             )}

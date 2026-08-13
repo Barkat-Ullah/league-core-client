@@ -18,6 +18,15 @@ type FormData = {
   password: string;
 };
 
+const DEMO_ACCOUNTS = [
+  { role: "ADMIN", email: "prohero5500@gmail.com" },
+  { role: "COACH", email: "coach99@yopmail.com" },
+  { role: "PLAYER", email: "player99@yopmail.com" },
+  { role: "MANAGER", email: "manager999@yopmail.com" },
+];
+
+const DEMO_PASSWORD = "12345678";
+
 export default function SignInPage() {
   const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
@@ -28,6 +37,7 @@ export default function SignInPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormData>();
 
@@ -118,18 +128,35 @@ export default function SignInPage() {
             Go to Home
           </Link>
 
-          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             Welcome Back
           </h1>
-          <p className="text-gray-400 text-sm sm:text-base mb-6 sm:mb-10">
+          <p className="text-gray-400 text-sm sm:text-base mb-2 sm:mb-10">
             Welcome back! Continue register tournament and manage everything
             properly.
           </p>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="space-y-5 sm:space-y-6"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Demo Accounts */}
+            <div>
+              <p className="text-gray-400 text-xs my-2">Quick demo login:</p>
+              <div className="flex flex-wrap gap-2">
+                {DEMO_ACCOUNTS.map((acc) => (
+                  <button
+                    key={acc.role}
+                    type="button"
+                    onClick={() => {
+                      setValue("email", acc.email);
+                      setValue("password", DEMO_PASSWORD);
+                    }}
+                    className="rounded-full border border-[#CCFF00]/40 bg-[#CCFF00]/10 px-3 py-1.5 text-xs font-semibold text-[#CCFF00] transition hover:bg-[#CCFF00]/20"
+                  >
+                    {acc.role}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Email */}
             <div>
               <label className="block text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3">

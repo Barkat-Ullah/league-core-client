@@ -88,7 +88,7 @@ export default function StepOne({
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-8 uppercase tracking-wide font-['Oswald']">
+      <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 uppercase tracking-wide font-['Oswald']">
         Select Tournament
       </h2>
 

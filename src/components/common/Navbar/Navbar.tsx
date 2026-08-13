@@ -138,7 +138,7 @@ export const Navbar = () => {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={handleLogout}
-          className="cursor-pointer text-red-400 focus:text-red-300"
+          className="cursor-pointer text-red-400"
         >
           <LogOut className="h-4 w-4" />
           Log Out

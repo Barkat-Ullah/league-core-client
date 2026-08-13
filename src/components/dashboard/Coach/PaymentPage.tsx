@@ -131,11 +131,11 @@ export default function CoachPaymentsPage() {
 
         {/* Transaction History Section */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-white mb-6">
+          <h2 className="text-base sm:text-xl font-bold text-white mb-4 sm:mb-6">
             TRANSACTION HISTORY
           </h2>
 
-          <div className="border border-[#CCFF00]/30 rounded-lg overflow-hidden bg-black/20 backdrop-blur">
+          <div className="hidden md:block border border-[#CCFF00]/30 rounded-lg overflow-hidden bg-black/20 backdrop-blur">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -226,6 +226,65 @@ export default function CoachPaymentsPage() {
                 </tbody>
               </table>
             </div>
+          </div>
+
+          {/* Mobile transaction cards */}
+          <div className="md:hidden space-y-4">
+            {isLoading ? (
+              <div className="border border-[#CCFF00]/30 rounded-lg p-4 text-gray-400">
+                Loading payments…
+              </div>
+            ) : isError ? (
+              <div className="border border-[#CCFF00]/30 rounded-lg p-4 text-red-400">
+                Failed to load payments.
+              </div>
+            ) : rows.length === 0 ? (
+              <div className="border border-[#CCFF00]/30 rounded-lg p-4 text-gray-400">
+                No transactions found.
+              </div>
+            ) : (
+              rows.map((p) => {
+                const isPaid = p.status === "PAID";
+                return (
+                  <div
+                    key={p.id}
+                    className="border border-[#CCFF00]/30 rounded-lg bg-black/20 backdrop-blur p-4"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-gray-300 font-semibold break-words">
+                          {p.description || "—"}
+                        </p>
+                        <p className="text-gray-500 text-xs mt-1">
+                          {formatDate(p.createdAt)}
+                        </p>
+                      </div>
+
+                      <div className="text-right shrink-0">
+                        <p className="text-white font-bold">
+                          {formatMoney(Number(p.amount) || 0)}
+                        </p>
+                        {isPaid ? (
+                          <div className="flex items-center justify-end gap-1 mt-1">
+                            <CheckCircle size={14} className="text-green-500" />
+                            <span className="text-green-400 font-bold text-xs">
+                              Paid
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-end gap-1 mt-1">
+                            <Clock size={14} className="text-yellow-500" />
+                            <span className="text-yellow-400 font-bold text-xs">
+                              Pending
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            )}
           </div>
 
           {/* Page numbers (optional) */}

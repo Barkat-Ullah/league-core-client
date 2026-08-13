@@ -10,7 +10,7 @@ export default function ProgressSteps({
   totalSteps,
 }: ProgressStepsProps) {
   return (
-    <div className="flex items-center justify-center mb-12">
+    <div className="flex items-center justify-center mb-8 sm:mb-12">
       {Array.from({ length: totalSteps }).map((_, index) => {
         const step = index + 1;
         return (

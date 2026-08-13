@@ -39,36 +39,38 @@ export default function StepFour({
       : "";
 
   return (
-    <div className="flex flex-col items-center justify-center py-12">
-      <div className="text-6xl mb-6">🎉</div>
+    <div className="flex flex-col items-center justify-center py-8 sm:py-12">
+      <div className="text-5xl sm:text-6xl mb-6">🎉</div>
 
-      <h2 className="text-4xl font-bold text-center mb-4 font-['Oswald']">
+      <h2 className="text-2xl sm:text-4xl font-bold text-center mb-4 font-['Oswald']">
         Congratulations
       </h2>
 
-      <p className="text-gray-300 text-center text-lg mb-8">
+      <p className="text-gray-300 text-center text-base sm:text-lg mb-8">
         Your team is successfully registered in
         <br />
         <strong>{selectedTournamentData?.name ?? "-"}</strong>
       </p>
 
-      <div className="bg-gray-900 rounded p-6 w-full max-w-sm mb-8 border border-gray-700">
+      <div className="bg-gray-900 rounded p-4 sm:p-6 w-full max-w-sm mb-8 border border-gray-700">
         <div className="space-y-2 text-sm">
-          <div className="flex w-full justify-between gap-3 text-gray-400">
+          <div className="flex items-start justify-between gap-3 text-gray-400">
             <span>Tournament:</span>{" "}
-            <span className="text-white">
+            <span className="text-white text-right min-w-0">
               {selectedTournamentData?.name ?? "-"}
             </span>
           </div>
 
-          <div className="flex justify-between text-gray-400">
+          <div className="flex items-start justify-between gap-3 text-gray-400">
             <span>Date:</span>
-            <span className="text-white">{tournamentDate || "-"}</span>
+            <span className="text-white text-right min-w-0">
+              {tournamentDate || "-"}
+            </span>
           </div>
 
-          <div className="flex justify-between text-gray-400">
+          <div className="flex items-start justify-between gap-3 text-gray-400">
             <span>Division:</span>
-            <span className="text-white">
+            <span className="text-white text-right min-w-0">
               {selectedDivisionData?.divisionName ?? "-"}
             </span>
           </div>
@@ -80,29 +82,29 @@ export default function StepFour({
             </span>
           </div> */}
 
-          <div className="flex justify-between text-gray-400">
+          <div className="flex items-start justify-between gap-3 text-gray-400">
             <span>Team:</span>
-            <span className="text-white">{teamName || "-"}</span>
+            <span className="text-white text-right min-w-0">{teamName || "-"}</span>
           </div>
 
           <div className="border-t border-gray-700 pt-3 mt-3">
-            <div className="flex justify-between text-gray-400">
+            <div className="flex items-start justify-between gap-3 text-gray-400">
               <span>Entry Fee:</span>
-              <span className="text-white font-semibold">
+              <span className="text-white font-semibold text-right min-w-0">
                 {entryFee || "-"}
               </span>
             </div>
 
-            <div className="flex justify-between text-gray-400 mt-1">
+            <div className="flex items-start justify-between gap-3 text-gray-400 mt-1">
               <span>Processing Fee:</span>
-              <span className="text-white font-semibold">
+              <span className="text-white font-semibold text-right min-w-0">
                 3% of {formatUsd(safeEntryFee)} ({formatUsd(processingFee)})
               </span>
             </div>
 
-            <div className="flex justify-between text-gray-400 mt-1">
+            <div className="flex items-start justify-between gap-3 text-gray-400 mt-1">
               <span>Total (Entry + Processing):</span>
-              <span className="text-[#CCFF00] font-bold text-right">
+              <span className="text-[#CCFF00] font-bold text-right min-w-0">
                 {/* {formatUsd(safeEntryFee)} + {formatUsd(processingFee)} ={" "} */}
                 {formatUsd(totalFee)}
               </span>

@@ -135,7 +135,7 @@ const CoachingStaff: React.FC<CoachingStaffProps> = ({ coachingStaff }) => {
 
   if (!coachingStaff) {
     return (
-      <div className="bg-[#111111] border border-gray-800 rounded-lg p-6">
+      <div className="bg-[#111111] border border-gray-800 rounded-lg p-4 sm:p-6">
         <p className="text-gray-400 text-sm">Loading coaching staff...</p>
       </div>
     );
@@ -143,8 +143,8 @@ const CoachingStaff: React.FC<CoachingStaffProps> = ({ coachingStaff }) => {
 
   return (
     <>
-      <div className="bg-[#111111] border border-gray-800 rounded-lg p-6 mb-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-[#111111] border border-gray-800 rounded-lg p-4 sm:p-6 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wide">
             COACHING STAFF
           </h3>
@@ -154,7 +154,7 @@ const CoachingStaff: React.FC<CoachingStaffProps> = ({ coachingStaff }) => {
           ) : (
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-[#CCFF00] text-black font-bold rounded hover:bg-[#B8E600] transition whitespace-nowrap"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-[#CCFF00] text-black font-bold rounded hover:bg-[#B8E600] transition whitespace-nowrap w-full sm:w-auto"
             >
               <Plus className="w-4 h-4" />
               Add Manager
@@ -169,10 +169,10 @@ const CoachingStaff: React.FC<CoachingStaffProps> = ({ coachingStaff }) => {
             staffList.map((member) => (
               <div
                 key={member.id}
-                className="flex justify-between items-start pb-4 border-b border-gray-800 last:border-b-0"
+                className="flex justify-between items-start gap-3 pb-4 border-b border-gray-800 last:border-b-0"
               >
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <p className="text-white font-semibold">{member.name}</p>
 
                     {member.isPrimary && (

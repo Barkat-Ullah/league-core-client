@@ -100,7 +100,7 @@ export default function CoachTournamentDetailPage() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] mt-10">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl sm:text-4xl font-bold text-white mb-1">
@@ -112,7 +112,7 @@ export default function CoachTournamentDetailPage() {
         </div>
 
         {/* Coaching Staff */}
-        <div className="bg-[#111] border border-gray-800 rounded-lg p-6 mb-6">
+        <div className="bg-[#111] border border-gray-800 rounded-lg p-4 sm:p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-bold text-gray-400 uppercase">
               COACHING STAFF
@@ -122,16 +122,16 @@ export default function CoachTournamentDetailPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-6 border-b border-gray-800 mb-6">
+        <div className="flex gap-4 sm:gap-6 border-b border-gray-800 mb-6 overflow-x-auto">
           <button
             onClick={() => setActiveTab("roster")}
-            className={`pb-3 font-bold text-sm ${activeTab === "roster" ? "text-[#CCFF00] border-b-2 border-[#CCFF00]" : "text-gray-400"}`}
+            className={`pb-3 font-bold text-sm whitespace-nowrap ${activeTab === "roster" ? "text-[#CCFF00] border-b-2 border-[#CCFF00]" : "text-gray-400"}`}
           >
             Player Roster
           </button>
           <button
             onClick={() => setActiveTab("schedule")}
-            className={`pb-3 font-bold text-sm ${activeTab === "schedule" ? "text-[#CCFF00] border-b-2 border-[#CCFF00]" : "text-gray-400"}`}
+            className={`pb-3 font-bold text-sm whitespace-nowrap ${activeTab === "schedule" ? "text-[#CCFF00] border-b-2 border-[#CCFF00]" : "text-gray-400"}`}
           >
             Matches & Schedule
           </button>
@@ -144,7 +144,7 @@ export default function CoachTournamentDetailPage() {
         )}
 
         {activeTab === "schedule" && (
-          <div className="bg-[#111] border border-gray-800 rounded-lg p-6">
+          <div className="bg-[#111] border border-gray-800 rounded-lg p-4 sm:p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div>
                 <div className="text-xs text-gray-400 font-semibold mb-2">
@@ -181,7 +181,7 @@ export default function CoachTournamentDetailPage() {
               {matches.map((m: any) => (
                 <div
                   key={m.id}
-                  className="flex items-start gap-4 pb-4 border-b border-[#CCFF00]/10 last:border-0"
+                  className="flex items-start gap-3 pb-4 border-b border-[#CCFF00]/10 last:border-0"
                 >
                   <div
                     className="font-bold px-3 py-2 rounded min-w-fit text-sm"

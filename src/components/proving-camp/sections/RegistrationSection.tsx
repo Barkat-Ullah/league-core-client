@@ -21,6 +21,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
+import { Check, Copy } from "lucide-react";
 
 type PlayerFormValues = {
   playerName: string;
@@ -54,6 +55,12 @@ const playerTypeOptions = [
 ];
 
 const shirtSizeOptions = ["YS", "YM", "YL", "YXL", "XS", "S", "M", "L", "XL"];
+
+const DEMO_CARD = {
+  number: "4242 4242 4242 4242",
+  expiry: "06/33",
+  cvc: "667",
+};
 
 function formatDateLabel(value: string) {
   return new Date(value).toLocaleDateString(undefined, { timeZone: "UTC" });
@@ -125,6 +132,19 @@ export default function RegistrationSection({
   const [waitlistRegistration] = useWaitlistRegistrationMutation();
   const [selectedSchedulePeriodId, setSelectedSchedulePeriodId] = useState("");
   const [selectedWeekIds, setSelectedWeekIds] = useState<string[]>([]);
+  const [showDemoCard, setShowDemoCard] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  const copyToClipboard = async (text: string, field: string) => {
+    try {
+      await navigator.clipboard.writeText(text.replace(/\s/g, ""));
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 1500);
+    } catch {
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 1500);
+    }
+  };
 
   const inputClassName =
     "mt-2 w-full rounded border border-white/15 bg-black px-3 py-2.5 text-sm text-gray-100 outline-none placeholder:text-gray-500 focus:border-[#ccff00] focus:ring-1 focus:ring-[#ccff00] disabled:cursor-not-allowed disabled:opacity-50";
@@ -539,7 +559,7 @@ export default function RegistrationSection({
 
                           target.showPicker?.();
                         }}
-                        className={`${inputClassName} cursor-pointer [color-scheme:dark]`}
+                        className={`${inputClassName} cursor-pointer scheme-dark`}
                       />
                       <span className="mt-1 block text-xs text-gray-400">
                         Use the date picker to select the child&apos;s date of
@@ -656,6 +676,62 @@ export default function RegistrationSection({
               </label>
             </div>
           </div>
+
+          {/* Stripe demo card helper */}
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => setShowDemoCard((v) => !v)}
+              className="text-[#ccff00] text-sm font-semibold hover:text-[#ccff00]/80 transition-colors"
+            >
+              {showDemoCard ? "Hide demo card" : "Use demo card"}
+            </button>
+          </div>
+
+          {showDemoCard && (
+            <div className="space-y-2 rounded border border-[#ccff00]/40 bg-black/40 p-3 text-sm">
+              <p className="font-bold text-[#ccff00]">Stripe Test Card</p>
+
+              {[
+                {
+                  label: "Card Number",
+                  value: DEMO_CARD.number,
+                  field: "number",
+                },
+                { label: "Expiry", value: DEMO_CARD.expiry, field: "expiry" },
+                { label: "CVC", value: DEMO_CARD.cvc, field: "cvc" },
+              ].map((item) => (
+                <div
+                  key={item.field}
+                  className="flex items-center justify-between gap-2 rounded bg-gray-800/80 px-3 py-2"
+                >
+                  <div className="min-w-0">
+                    <p className="text-[11px] text-gray-400">{item.label}</p>
+                    <p className="text-sm text-white font-mono tracking-wide">
+                      {item.value}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(item.value, item.field)}
+                    className="shrink-0 p-1.5 rounded hover:bg-gray-700 text-gray-300 hover:text-white transition"
+                    title="Copy"
+                  >
+                    {copiedField === item.field ? (
+                      <Check size={16} className="text-[#ccff00]" />
+                    ) : (
+                      <Copy size={16} />
+                    )}
+                  </button>
+                </div>
+              ))}
+
+              <p className="text-xs text-gray-500">
+                Stripe does not allow auto-fill for security. Copy &amp; paste
+                each value into your payment details.
+              </p>
+            </div>
+          )}
 
           <button
             type="submit"

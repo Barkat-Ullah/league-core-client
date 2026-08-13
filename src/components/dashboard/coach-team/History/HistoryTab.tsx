@@ -97,8 +97,8 @@ interface HistroyProps {
 
 function StatCard({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="border border-[#CCFF00]/30 rounded-lg p-6 bg-black/20 backdrop-blur text-center">
-      <div className="text-2xl font-bold text-[#CCFF00] mb-2">{value}</div>
+    <div className="border border-[#CCFF00]/30 rounded-lg p-4 sm:p-6 bg-black/20 backdrop-blur text-center">
+      <div className="text-xl sm:text-2xl font-bold text-[#CCFF00] mb-2">{value}</div>
       <div className="text-xs text-gray-400 uppercase">{label}</div>
     </div>
   );
@@ -201,7 +201,7 @@ function HistoryTab({ teamId }: HistroyProps) {
       )}
 
       {/* ===== SUMMARY ===== */}
-      <div className="border border-[#CCFF00]/30 rounded-lg p-8 mb-8 bg-black/20 backdrop-blur">
+      <div className="border border-[#CCFF00]/30 rounded-lg p-5 sm:p-8 mb-8 bg-black/20 backdrop-blur">
         <div className="mb-2 text-gray-400 text-sm">
           TOTAL POINTS EARNED (CROWN SERIES QUALIFICATION)
         </div>
@@ -223,8 +223,8 @@ function HistoryTab({ teamId }: HistroyProps) {
         )}
       </div>
 
-      {/* ===== TABLE ===== */}
-      <div className="border border-[#CCFF00]/30 rounded-lg overflow-hidden bg-black/20 backdrop-blur">
+      {/* ===== TABLE (desktop) ===== */}
+      <div className="hidden md:block border border-[#CCFF00]/30 rounded-lg overflow-hidden bg-black/20 backdrop-blur">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -332,6 +332,94 @@ function HistoryTab({ teamId }: HistroyProps) {
         </div>
       </div>
 
+      {/* ===== MOBILE CARDS ===== */}
+      <div className="md:hidden space-y-4">
+        {/* loading skeleton cards */}
+        {listBusy &&
+          Array.from({ length: 3 }).map((_, i) => (
+            <div
+              key={i}
+              className="border border-[#CCFF00]/30 rounded-lg p-4 bg-black/20 space-y-3"
+            >
+              <div className="h-4 w-40 bg-gray-800/60 rounded animate-pulse" />
+              <div className="h-3 w-24 bg-gray-800/40 rounded animate-pulse" />
+              <div className="h-3 w-32 bg-gray-800/40 rounded animate-pulse" />
+            </div>
+          ))}
+
+        {!listBusy && tournaments.length === 0 && (
+          <div className="border border-[#CCFF00]/30 rounded-lg p-6 text-gray-400">
+            No tournament history found.
+          </div>
+        )}
+
+        {!listBusy &&
+          tournaments.map((t) => (
+            <div
+              key={t.tournamentId}
+              className="border border-[#CCFF00]/30 rounded-lg p-4 bg-black/20"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-white font-semibold wrap-break-word">
+                    {t.tournamentName}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {t.location} • {t.gameStyle}
+                  </p>
+                </div>
+                <span className="text-[#CCFF00] font-bold text-xl shrink-0">
+                  {t.totalPoints}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-[#CCFF00]/20">
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                    Tourn Date
+                  </p>
+                  <p className="text-sm text-gray-300">
+                    {t.formattedDate || t.endDate}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                    Points
+                  </p>
+                  <p className="text-sm text-gray-300">
+                    Wins: {t.wins} • Base: {t.basePoints} • Win: {t.winPoints}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                    Stage / Status
+                  </p>
+                  <p className="text-sm text-gray-300 font-semibold">
+                    {t.tournamentStage}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {t.tournamentStatus} • Pay: {t.registrationPayStatus}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                    Action
+                  </p>
+                  <button
+                    onClick={() => handleViewDetails(t.tournamentId)}
+                    className="text-[#CCFF00] hover:text-[#CCFF00]/80 font-bold text-sm transition-colors"
+                  >
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+
       {/* ===== FOOTER STATS ===== */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         <StatCard
@@ -355,7 +443,7 @@ function HistoryTab({ teamId }: HistroyProps) {
       {/* ===== MODAL ===== */}
       {showResultsModal && selectedTournamentId && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-black border border-[#CCFF00]/30 rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative scrollbar-hide">
+          <div className="bg-black border border-[#CCFF00]/30 rounded-lg p-5 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative scrollbar-hide">
             <style>{`
               .scrollbar-hide::-webkit-scrollbar { display: none; }
               .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -364,7 +452,7 @@ function HistoryTab({ teamId }: HistroyProps) {
             {/* Close */}
             <button
               onClick={closeModal}
-              className="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-400 hover:text-white transition-colors"
             >
               <X size={24} />
             </button>
