@@ -16,6 +16,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "../ui/sidebar";
 
 type NavSubItem = {
@@ -36,6 +37,13 @@ type NavItem = {
 export function NavMain({ items }: { items: NavItem[]; role: any }) {
   const pathname = usePathname();
   const router = useRouter();
+
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  // On mobile, close the sidebar when a navigation item is clicked.
+  const closeOnMobile = () => {
+    if (isMobile) setOpenMobile(false);
+  };
 
   const defaultOpenMenus = useMemo(() => {
     return items.reduce<Record<string, boolean>>((acc, item) => {
@@ -98,6 +106,7 @@ export function NavMain({ items }: { items: NavItem[]; role: any }) {
                         [item.title]: true,
                       }));
                       router.push(item.url);
+                      closeOnMobile();
                     }}
                     className={cn(
                       "group relative w-full rounded-sm px-3 py-5",
@@ -140,7 +149,10 @@ export function NavMain({ items }: { items: NavItem[]; role: any }) {
                                   : "text-[#B3B3B3] hover:bg-[#CCFF00] hover:text-black",
                               )}
                             >
-                              <Link href={subItem.url}>
+                              <Link
+                                href={subItem.url}
+                                onClick={closeOnMobile}
+                              >
                                 <span className="leading-none">
                                   {subItem.title}
                                 </span>
@@ -156,7 +168,10 @@ export function NavMain({ items }: { items: NavItem[]; role: any }) {
                 <SidebarMenuButton
                   asChild
                   tooltip={item.title}
-                  onClick={item.onClick}
+                  onClick={() => {
+                    item.onClick?.();
+                    closeOnMobile();
+                  }}
                   className={cn(
                     "group relative w-full rounded-sm px-3 py-5",
                     "transition-all duration-300 ease-out",

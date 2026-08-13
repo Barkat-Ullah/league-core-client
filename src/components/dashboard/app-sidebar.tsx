@@ -21,6 +21,7 @@ import {
   Trophy,
   UserRoundCheck,
   UsersRound,
+  X,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,6 +30,7 @@ import type * as React from "react";
 import { NavMain } from "./nav-main";
 // import { TeamSwitcher } from "./team-switcher";
 // import Logo from "@/bglogo.png";
+import { useSidebar } from "@/components/ui/sidebar";
 import { useGetMeQuery } from "@/redux/apiHooks/auth/authApi";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useDispatch } from "react-redux";
@@ -158,6 +160,8 @@ export function AppSidebar({
 }: React.ComponentProps<typeof Sidebar> & { role: Role }) {
   const pathname = usePathname();
 
+  const { setOpenMobile } = useSidebar();
+
   const { data: getMe } = useGetMeQuery(undefined);
 
   const userData = getMe?.data;
@@ -196,7 +200,7 @@ export function AppSidebar({
     >
       <SidebarContent className={`px-4 bg-[#0A0A0A] py-3 flex flex-col flex-1`}>
         {/* Logo */}
-        <div className="mb-4 pb-4 border-b border-gray-800 flex justify-center">
+        <div className="mb-4 pb-4 border-b border-gray-800 flex justify-center relative">
           <Link href="/">
             <Image
               src={Logo}
@@ -206,6 +210,16 @@ export function AppSidebar({
               priority
             />
           </Link>
+
+          {/* Close sidebar button — mobile only */}
+          <button
+            type="button"
+            onClick={() => setOpenMobile(false)}
+            aria-label="Close sidebar"
+            className="absolute right-0 top-0 lg:hidden p-1.5 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+          >
+            <X className="h-5 w-5" />
+          </button>
         </div>
 
         {/* Navigation Items */}

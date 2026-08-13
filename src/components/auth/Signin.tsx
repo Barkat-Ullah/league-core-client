@@ -4,7 +4,7 @@
 import { useLoginMutation } from "@/redux/apiHooks/auth/authApi";
 import { setUser } from "@/redux/features/auth/authSlice";
 import Cookies from "js-cookie";
-import { Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -107,18 +107,34 @@ export default function SignInPage() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <div className="w-full max-w-md bg-[#201B1A] p-8 rounded-3xl">
-          <h1 className="text-5xl font-bold text-white mb-3">Welcome Back</h1>
-          <p className="text-gray-400 mb-10">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8">
+        <div className="w-full max-w-md bg-[#201B1A] p-5 sm:p-8 rounded-3xl">
+          {/* Go to Home - top */}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 mb-4 sm:mb-6 text-gray-300 border border-gray-700 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium hover:text-[#CCFF00] hover:border-[#CCFF00] transition-colors"
+          >
+            <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            Go to Home
+          </Link>
+
+          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-3">
+            Welcome Back
+          </h1>
+          <p className="text-gray-400 text-sm sm:text-base mb-6 sm:mb-10">
             Welcome back! Continue register tournament and manage everything
             properly.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-5 sm:space-y-6"
+          >
             {/* Email */}
             <div>
-              <label className="block text-gray-300 text-sm mb-3">Email</label>
+              <label className="block text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3">
+                Email
+              </label>
               <input
                 type="email"
                 placeholder="Enter Your Email"
@@ -129,10 +145,10 @@ export default function SignInPage() {
                     message: "Invalid email address",
                   },
                 })}
-                className="w-full bg-gray-900 text-white border border-gray-700 rounded px-4 py-4 focus:outline-none focus:border-[#CCFF00] transition placeholder-gray-600"
+                className="w-full bg-gray-900 text-white border border-gray-700 rounded px-3 sm:px-4 py-2.5 sm:py-4 focus:outline-none focus:border-[#CCFF00] transition placeholder-gray-600"
               />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-2">
+                <p className="text-red-500 text-xs sm:text-sm mt-1 sm:mt-2">
                   {errors.email.message}
                 </p>
               )}
@@ -140,7 +156,7 @@ export default function SignInPage() {
 
             {/* Password */}
             <div>
-              <label className="block text-gray-300 text-sm mb-3">
+              <label className="block text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3">
                 Password
               </label>
 
@@ -155,20 +171,20 @@ export default function SignInPage() {
                       message: "Password must be at least 6 characters",
                     },
                   })}
-                  className="w-full bg-gray-900 text-white border border-gray-700 rounded px-4 py-4 pr-12 focus:outline-none focus:border-[#CCFF00] transition placeholder-gray-600"
+                  className="w-full bg-gray-900 text-white border border-gray-700 rounded px-3 sm:px-4 py-2.5 sm:py-4 pr-11 focus:outline-none focus:border-[#CCFF00] transition placeholder-gray-600"
                 />
 
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#CCFF00] transition"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#CCFF00] transition"
                 >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
 
               {errors.password && (
-                <p className="text-red-500 text-sm mt-2">
+                <p className="text-red-500 text-xs sm:text-sm mt-1 sm:mt-2">
                   {errors.password.message}
                 </p>
               )}
@@ -188,7 +204,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#CCFF00] text-black font-bold py-3 rounded hover:bg-[#B8E600] transition text-lg disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full bg-[#CCFF00] text-black font-bold py-2.5 sm:py-3 rounded hover:bg-[#B8E600] transition text-base sm:text-lg disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isLoading ? "Logging in..." : "Log In"}
             </button>
@@ -205,14 +221,6 @@ export default function SignInPage() {
                 className="text-[#CCFF00] font-semibold hover:text-[#B8E600] transition"
               >
                 Register
-              </Link>
-            </div>
-            <div>
-              <Link
-                href="/"
-                className="text-gray-400 text-sm hover:text-[#CCFF00] transition"
-              >
-                Go to Home
               </Link>
             </div>
           </div>

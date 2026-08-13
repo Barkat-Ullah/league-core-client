@@ -2,9 +2,7 @@
 
 import { useGetMeQuery } from "@/redux/apiHooks/auth/authApi";
 import { useGetMyTeamQuery } from "@/redux/apiHooks/team/teamApi";
-import { Bell, ChevronDown, ChevronRight } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Bell, ChevronDown } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { SidebarTrigger } from "../ui/sidebar";
 import { NavUser } from "./nav-user";
@@ -41,8 +39,6 @@ const AppHeader = () => {
   const role = userData?.role;
 
   const isCoachOrManager = role === "COACH" || role === "MANAGER";
-
-  const pathname = usePathname();
 
   const {
     data: teamData,
@@ -92,33 +88,11 @@ const AppHeader = () => {
     return teams.find((t) => t.id === selectedTeamId) ?? teams[0];
   }, [teams, selectedTeamId]);
 
-  const segments = pathname.split("/").filter(Boolean);
-
   return (
     <header className="flex min-h-16 shrink-0 flex-nowrap items-center justify-between gap-x-2 gap-y-1 bg-[#0A0A0A] border-b border-gray-800 px-3 sm:px-6">
       {/* Left Side */}
       <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-4">
         <SidebarTrigger className="-ml-1 shrink-0" />
-
-        <div className="flex min-w-0 flex-wrap items-center gap-1 text-sm text-gray-400 sm:gap-2">
-          <Link href="/" className="shrink-0 hover:text-gray-200">
-            Home
-          </Link>
-          {segments.map((segment, index) => {
-            const isLast = index === segments.length - 1;
-            return (
-              <div
-                key={index}
-                className={`flex min-w-0 items-center gap-1 sm:gap-2 ${
-                  isLast ? "" : "hidden sm:inline-flex"
-                }`}
-              >
-                <ChevronRight className="h-4 w-4 shrink-0" />
-                <span className="capitalize">{segment}</span>
-              </div>
-            );
-          })}
-        </div>
       </div>
 
       {/* Right Side */}

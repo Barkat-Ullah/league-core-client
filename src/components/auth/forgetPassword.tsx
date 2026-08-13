@@ -5,6 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useForgotPasswordMutation } from "@/redux/apiHooks/auth/authApi";
 import { alertError, alertSuccess } from "@/lib/confirm";
@@ -66,22 +67,36 @@ export default function ForgotPasswordPage() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <div className="w-full max-w-md bg-[#201B1A] p-8 rounded-3xl">
-          <h1 className="text-5xl font-bold text-white mb-3">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8">
+        <div className="w-full max-w-md bg-[#201B1A] p-5 sm:p-8 rounded-3xl">
+          {/* Go to Home - top */}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 mb-4 sm:mb-6 text-gray-300 border border-gray-700 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium hover:text-[#CCFF00] hover:border-[#CCFF00] transition-colors"
+          >
+            <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            Go to Home
+          </Link>
+
+          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-3">
             Forgot Password
           </h1>
-          <p className="text-gray-400 mb-10">
+          <p className="text-gray-400 text-sm sm:text-base mb-6 sm:mb-10">
             Please enter your email to reset the password.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-5 sm:space-y-6"
+          >
             <div>
-              <label className="block text-gray-300 text-sm mb-3">Email</label>
+              <label className="block text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3">
+                Email
+              </label>
               <input
                 type="email"
                 placeholder="Enter Your Email"
-                className="w-full bg-gray-900 text-white border border-gray-700 rounded px-4 py-4 focus:outline-none focus:border-[#CCFF00] transition placeholder-gray-600 disabled:opacity-60"
+                className="w-full bg-gray-900 text-white border border-gray-700 rounded px-3 sm:px-4 py-2.5 sm:py-4 focus:outline-none focus:border-[#CCFF00] transition placeholder-gray-600 disabled:opacity-60"
                 disabled={isLoading}
                 {...register("email", {
                   required: "Email is required",
@@ -92,7 +107,7 @@ export default function ForgotPasswordPage() {
                 })}
               />
               {errors.email?.message && (
-                <p className="text-red-400 text-xs mt-2">
+                <p className="text-red-400 text-xs sm:text-sm mt-1 sm:mt-2">
                   {errors.email.message}
                 </p>
               )}
@@ -101,7 +116,7 @@ export default function ForgotPasswordPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-[#CCFF00] text-black font-bold py-3 rounded hover:bg-[#B8E600] transition text-lg disabled:opacity-60"
+              className="w-full bg-[#CCFF00] text-black font-bold py-2.5 sm:py-3 rounded hover:bg-[#B8E600] transition text-base sm:text-lg disabled:opacity-60"
             >
               {isLoading ? "Sending..." : "Continue"}
             </button>
@@ -114,15 +129,6 @@ export default function ForgotPasswordPage() {
                 className="text-[#CCFF00] font-semibold hover:text-[#B8E600] transition"
               >
                 Back to Login
-              </Link>
-            </div>
-
-            <div>
-              <Link
-                href="/"
-                className="text-gray-400 text-sm hover:text-[#CCFF00] transition"
-              >
-                Go to Home
               </Link>
             </div>
           </div>

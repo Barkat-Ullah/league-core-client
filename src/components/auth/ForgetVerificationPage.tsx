@@ -5,6 +5,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import {
@@ -129,7 +130,7 @@ export default function ForgetVerificationPage() {
   };
 
   const inputBase =
-    "w-16 h-16 bg-gray-900 text-white border-2 border-gray-700 rounded text-center text-2xl font-bold focus:outline-none focus:border-[#CCFF00] transition";
+    "w-14 sm:w-16 h-14 sm:h-16 bg-gray-900 text-white border-2 border-gray-700 rounded text-center text-xl sm:text-2xl font-bold focus:outline-none focus:border-[#CCFF00] transition";
 
   return (
     <div className="min-h-screen bg-black flex">
@@ -147,23 +148,32 @@ export default function ForgetVerificationPage() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <div className="w-full max-w-md bg-[#201B1A] p-8 rounded-3xl">
-          <h1 className="text-5xl font-bold text-white mb-3">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8">
+        <div className="w-full max-w-md bg-[#201B1A] p-5 sm:p-8 rounded-3xl">
+          {/* Go to Home - top */}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 mb-4 sm:mb-6 text-gray-300 border border-gray-700 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium hover:text-[#CCFF00] hover:border-[#CCFF00] transition-colors"
+          >
+            <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            Go to Home
+          </Link>
+
+          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-3">
             Verification Code
           </h1>
 
-          <p className="text-gray-400 mb-3">
+          <p className="text-gray-400 text-sm sm:text-base mb-3">
             Please check your mail. We have sent the code verification to your
             e-mail.
           </p>
 
-          <p className="text-gray-500 text-sm mb-10 break-all">
+          <p className="text-gray-500 text-xs sm:text-sm mb-6 sm:mb-10 break-all">
             Sent to: <span className="text-gray-300">{email || "N/A"}</span>
           </p>
 
           <form onSubmit={handleSubmit(onValidSubmit)}>
-            <div className="flex gap-4 mb-3 justify-center">
+            <div className="flex gap-2 sm:gap-4 mb-3 justify-center">
               {[0, 1, 2, 3].map((i) => {
                 const name = `code${i}` as keyof FormValues;
 
@@ -207,7 +217,7 @@ export default function ForgetVerificationPage() {
                 errors.code1 ||
                 errors.code2 ||
                 errors.code3) && (
-                <p className="text-red-400 text-sm">
+                <p className="text-red-400 text-xs sm:text-sm">
                   Please enter the 4-digit code.
                 </p>
               )}
@@ -216,7 +226,7 @@ export default function ForgetVerificationPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#CCFF00] text-black font-bold py-3 rounded hover:bg-[#B8E600] transition text-lg mb-4 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full bg-[#CCFF00] text-black font-bold py-2.5 sm:py-3 rounded hover:bg-[#B8E600] transition text-base sm:text-lg mb-4 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               Continue
             </button>
@@ -235,15 +245,6 @@ export default function ForgetVerificationPage() {
               >
                 {isLoading ? "Sending..." : "Click to resend"}
               </button>
-            </div>
-
-            <div>
-              <Link
-                href="/"
-                className="text-gray-400 text-sm hover:text-[#CCFF00] transition"
-              >
-                Go to Home
-              </Link>
             </div>
           </div>
         </div>
