@@ -127,6 +127,7 @@ export default function DivisionManagePage() {
       name: team.teamName,
       coach: team.coach.fullName,
       email: team.coach.email,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       contact: (team.coach as any).phoneNumber || "",
       waiverStatus: `${team.signedPlayersCount}/${team.totalRegisteredPlayers} Signed`,
       signedCount: team.signedPlayersCount,
@@ -211,7 +212,7 @@ export default function DivisionManagePage() {
 
   if (teamsLoading) {
     return (
-      <div className="min-h-screen bg-[#0A0A0A] text-white p-6 flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[#CCFF00] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-400">Loading division details...</p>
@@ -221,7 +222,7 @@ export default function DivisionManagePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -233,36 +234,38 @@ export default function DivisionManagePage() {
             Back to List
           </button>
 
-          <div className="flex items-start justify-between mb-6">
-            <div>
-              <h1 className="text-5xl font-bold mb-3">{divisionName}</h1>
-              <div className="flex gap-3 items-center">
-                <span className="bg-[#CCFF00] text-black px-4 py-1 rounded-full text-sm font-bold">
+          <div className="flex flex-col sm:flex-row items-start justify-between mb-6 gap-4 sm:gap-0">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 break-words">
+                {divisionName}
+              </h1>
+              <div className="flex flex-wrap gap-2 sm:gap-3 items-center">
+                <span className="bg-[#CCFF00] text-black px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold">
                   Proving Series
                 </span>
-                <span className="bg-green-500/20 text-green-400 border border-green-500 px-4 py-1 rounded-full text-sm font-bold">
+                <span className="bg-green-500/20 text-green-400 border border-green-500 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold">
                   ✓ Status: Ready
                 </span>
               </div>
             </div>
 
             {/* Stats on the right */}
-            <div className="flex gap-8">
+            <div className="flex gap-4 sm:gap-8 shrink-0">
               <div className="text-right">
-                <p className="text-gray-400 text-sm mb-1">TEAMS</p>
-                <p className="text-3xl font-bold text-white">{teams.length}</p>
+                <p className="text-gray-400 text-xs sm:text-sm mb-1">TEAMS</p>
+                <p className="text-xl sm:text-3xl font-bold text-white">{teams.length}</p>
               </div>
               <div className="text-right">
-                <p className="text-gray-400 text-sm mb-1">MATCHES</p>
-                <p className="text-3xl font-bold text-white">
+                <p className="text-gray-400 text-xs sm:text-sm mb-1">MATCHES</p>
+                <p className="text-xl sm:text-3xl font-bold text-white">
                   {teams.length > 0
                     ? (teams.length * (teams.length - 1)) / 2
                     : 0}
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-gray-400 text-sm mb-1">FIELDS</p>
-                <p className="text-3xl font-bold text-white">
+                <p className="text-gray-400 text-xs sm:text-sm mb-1">FIELDS</p>
+                <p className="text-xl sm:text-3xl font-bold text-white">
                   {numberOfFields}
                 </p>
               </div>
@@ -270,10 +273,10 @@ export default function DivisionManagePage() {
           </div>
 
           {/* Tabs */}
-          <div className="flex gap-8 border-b border-gray-800">
+          <div className="flex gap-4 sm:gap-8 border-b border-gray-800 overflow-x-auto">
             <button
               onClick={() => setActiveTab("teams")}
-              className={`pb-3 font-bold transition-colors ${
+              className={`pb-3 font-bold whitespace-nowrap transition-colors ${
                 activeTab === "teams"
                   ? "text-[#CCFF00] border-b-2 border-[#CCFF00]"
                   : "text-gray-400 hover:text-white"
@@ -283,7 +286,7 @@ export default function DivisionManagePage() {
             </button>
             <button
               onClick={() => setActiveTab("brackets")}
-              className={`pb-3 font-bold transition-colors ${
+              className={`pb-3 font-bold whitespace-nowrap transition-colors ${
                 activeTab === "brackets"
                   ? "text-[#CCFF00] border-b-2 border-[#CCFF00]"
                   : "text-gray-400 hover:text-white"
@@ -293,7 +296,7 @@ export default function DivisionManagePage() {
             </button>
             <button
               onClick={() => setActiveTab("standings")}
-              className={`pb-3 font-bold transition-colors ${
+              className={`pb-3 font-bold whitespace-nowrap transition-colors ${
                 activeTab === "standings"
                   ? "text-[#CCFF00] border-b-2 border-[#CCFF00]"
                   : "text-gray-400 hover:text-white"
@@ -307,11 +310,11 @@ export default function DivisionManagePage() {
         {/* Content */}
         {activeTab === "teams" && (
           <>
-            <TeamsRoster teams={teams} teamDivisionId={divisionId} />
+            <TeamsRoster teams={teams} teamDivisionId={divisionId} tournamentId={tournamentId} />
 
             {/* Pagination Controls */}
             {paginationMeta.totalPages > 1 && (
-              <div className="mt-8 flex items-center justify-between border-t border-gray-800 pt-6">
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-between border-t border-gray-800 pt-6 gap-4">
                 <div className="text-sm text-gray-400">
                   Showing{" "}
                   <span className="text-white font-bold">

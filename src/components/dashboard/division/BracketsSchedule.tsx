@@ -479,8 +479,8 @@ const {
       )}
 
       {/* Top Buttons */}
-      <div className="flex items-center justify-between">
-        <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
           <button
             onClick={() => setBracketType("group")}
             className={`px-6 py-2.5 rounded-lg font-semibold transition-colors ${
@@ -504,7 +504,7 @@ const {
         </div>
 
         {bracketType === "group" && (
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-2 sm:gap-4">
             <button
               onClick={handleRegenerateSchedule}
               disabled={isRegenerating || !divisionId}
@@ -566,32 +566,32 @@ const {
             </div>
           ) : (
             <>
-              <div className="border border-gray-800 rounded-xl overflow-hidden">
-                <table className="w-full">
+              <div className="border border-gray-800 rounded-xl overflow-x-auto"> 
+                <table className="w-full min-w-[800px]">
                   <thead>
                     <tr className="bg-gray-900 border-b border-gray-800">
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Date
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Time
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Field
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Home Team
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Away Team
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Score
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Referee
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                      <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                         Action
                       </th>
                     </tr>
@@ -608,17 +608,17 @@ const {
                           key={match.id}
                           className="hover:bg-gray-900/50 transition-colors"
                         >
-                          <td className="px-6 py-4 text-sm text-white">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                             {match.date}
                           </td>
-                          <td className="px-6 py-4 text-sm text-white">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                             {match.time}
                           </td>
-                          <td className="px-6 py-4 text-sm text-white">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                             {match.field}
                           </td>
 
-                          <td className="px-6 py-4">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4">
                             <div className="flex items-center gap-3">
                               <div
                                 className={`w-10 h-10 rounded-full ${match.homeTeamColor} flex items-center justify-center text-white font-bold text-sm`}
@@ -631,7 +631,7 @@ const {
                             </div>
                           </td>
 
-                          <td className="px-6 py-4">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4">
                             <div className="flex items-center gap-3">
                               <div
                                 className={`w-10 h-10 rounded-full ${match.awayTeamColor} flex items-center justify-center text-white font-bold text-sm`}
@@ -644,7 +644,7 @@ const {
                             </div>
                           </td>
 
-                          <td className="px-6 py-4">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4">
                             {match.homeScore !== undefined &&
                             match.awayScore !== undefined ? (
                               <div className="flex items-center gap-3">
@@ -666,7 +666,7 @@ const {
                             )}
                           </td>
 
-                          <td className="px-6 py-4 text-sm">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm">
                             {match.referee ? (
                               <span className="text-white">
                                 {match.referee}
@@ -681,7 +681,7 @@ const {
                             )}
                           </td>
 
-                          <td className="px-6 py-4">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4">
                             <button
                               onClick={() => handleEditClick(match)}
                               className="text-gray-400 hover:text-white transition-colors"
@@ -697,7 +697,7 @@ const {
 
               {/* Pagination */}
               {totalGroupPages > 1 && (
-                <div className="flex items-center justify-between px-6 py-4 bg-gray-900 border border-gray-800 rounded-lg">
+                <div className="flex flex-col sm:flex-row items-center justify-between px-3 sm:px-6 py-3 sm:py-4 bg-gray-900 border border-gray-800 rounded-lg gap-3">
                   <div className="text-sm text-gray-400">
                     Showing{" "}
                     {Math.min(
@@ -766,32 +766,32 @@ const {
                     {stage === "semi-finals" ? "SEMI-FINALS" : "FINAL"}
                   </h3>
 
-                  <div className="border border-gray-800 rounded-xl overflow-hidden">
-                    <table className="w-full">
+                  <div className="border border-gray-800 rounded-xl overflow-x-auto">
+                    <table className="w-full min-w-[800px]">
                       <thead>
                         <tr className="bg-gray-900 border-b border-gray-800">
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Date
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Time
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Field
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Home Team
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Away Team
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Score
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Referee
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                          <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                             Action
                           </th>
                         </tr>
@@ -803,17 +803,17 @@ const {
                             key={match.id}
                             className="hover:bg-gray-900/50 transition-colors"
                           >
-                            <td className="px-6 py-4 text-sm text-white">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                               {match.date}
                             </td>
-                            <td className="px-6 py-4 text-sm text-white">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                               {match.time}
                             </td>
-                            <td className="px-6 py-4 text-sm text-white">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                               {match.field}
                             </td>
 
-                            <td className="px-6 py-4">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4">
                               <div className="flex items-center gap-3">
                                 <div
                                   className={`w-10 h-10 rounded-full ${match.homeTeamColor} flex items-center justify-center text-white font-bold text-sm`}
@@ -826,7 +826,7 @@ const {
                               </div>
                             </td>
 
-                            <td className="px-6 py-4">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4">
                               <div className="flex items-center gap-3">
                                 <div
                                   className={`w-10 h-10 rounded-full ${match.awayTeamColor} flex items-center justify-center text-white font-bold text-sm`}
@@ -839,7 +839,7 @@ const {
                               </div>
                             </td>
 
-                            <td className="px-6 py-4">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4">
                               {match.homeScore !== undefined &&
                               match.awayScore !== undefined ? (
                                 <div className="flex items-center gap-3">
@@ -861,7 +861,7 @@ const {
                               )}
                             </td>
 
-                            <td className="px-6 py-4 text-sm">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm">
                               {match.referee ? (
                                 <span className="text-white">
                                   {match.referee}
@@ -878,7 +878,7 @@ const {
                               )}
                             </td>
 
-                            <td className="px-6 py-4">
+                            <td className="px-3 sm:px-6 py-3 sm:py-4">
                               <button
                                 onClick={() => handleEditClick(match)}
                                 className="text-gray-400 hover:text-white transition-colors"
@@ -902,7 +902,7 @@ const {
       {editingMatch && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-800 rounded-lg w-full max-w-md border border-gray-700">
-            <div className="flex items-center justify-between border-b border-gray-700 px-6 py-4">
+            <div className="flex items-center justify-between border-b border-gray-700 px-3 sm:px-6 py-3 sm:py-4">
               <h2 className="text-lg font-bold text-white">EDIT MATCH</h2>
               <button
                 onClick={handleCloseModal}
@@ -912,7 +912,7 @@ const {
               </button>
             </div>
 
-            <div className="border-b border-gray-700 px-6 py-4">
+            <div className="border-b border-gray-700 px-3 sm:px-6 py-3 sm:py-4">
               <p className="text-xs text-gray-400 mb-2">Current</p>
               <p className="text-sm text-white">
                 <span className="text-[#CCFF00]">{editingMatch.date}</span> •{" "}
@@ -1100,7 +1100,7 @@ const {
               </div>
             )}
 
-            <div className="border-t border-gray-700 px-6 py-4 flex gap-3">
+            <div className="border-t border-gray-700 px-3 sm:px-6 py-3 sm:py-4 flex gap-3">
               <button
                 onClick={handleCloseModal}
                 disabled={isLoadingEdit}
@@ -1131,7 +1131,7 @@ const {
       {scoringMatch && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-800 rounded-lg w-full max-w-md border border-gray-700">
-            <div className="border-b border-gray-700 px-6 py-4 flex items-center justify-between">
+            <div className="border-b border-gray-700 px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
               <h2 className="text-lg font-bold text-white">ENTER SCORE</h2>
               <button
                 onClick={handleCloseScoreModal}
@@ -1187,7 +1187,7 @@ const {
               </div>
             </div>
 
-            <div className="border-t border-gray-700 px-6 py-4 flex gap-3">
+            <div className="border-t border-gray-700 px-3 sm:px-6 py-3 sm:py-4 flex gap-3">
               <button
                 onClick={handleCloseScoreModal}
                 disabled={isLoadingScore}
@@ -1214,7 +1214,7 @@ const {
       {refereeMatch && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-[#1a1a1a] rounded-lg w-full max-w-md border border-gray-700">
-            <div className="border-b border-gray-700 px-6 py-4 flex items-center justify-between">
+            <div className="border-b border-gray-700 px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
               <h2 className="text-lg font-bold text-white">ASSIGN REFEREE</h2>
               <button
                 onClick={handleCloseRefereeModal}
@@ -1224,7 +1224,7 @@ const {
               </button>
             </div>
 
-            <div className="px-6 py-4 bg-gray-900 border-b border-gray-700 space-y-2">
+            <div className="px-3 sm:px-6 py-3 sm:py-4 bg-gray-900 border-b border-gray-700 space-y-2">
               <p className="text-sm text-gray-400">
                 Current: {refereeMatch.date} • {refereeMatch.time} • Field{" "}
                 {refereeMatch.field}
@@ -1266,7 +1266,7 @@ const {
               </div>
             </div>
 
-            <div className="border-t border-gray-700 px-6 py-4 flex gap-3">
+            <div className="border-t border-gray-700 px-3 sm:px-6 py-3 sm:py-4 flex gap-3">
               <button
                 onClick={handleCloseRefereeModal}
                 disabled={isLoadingReferee}

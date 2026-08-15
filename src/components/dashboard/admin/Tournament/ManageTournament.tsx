@@ -86,7 +86,7 @@ export default function TournamentManagePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0A0A0A] text-white p-6 flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[#CCFF00] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-400">Loading tournament details...</p>
@@ -97,7 +97,7 @@ export default function TournamentManagePage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+      <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
         <div className="max-w-7xl mx-auto">
           <Link href="/dashboard/admin/tournament">
             <button className="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors cursor-pointer">
@@ -105,7 +105,7 @@ export default function TournamentManagePage() {
               Back to All Tournaments
             </button>
           </Link>
-          <div className="bg-red-500/10 border border-red-500 rounded-lg p-6 text-red-400">
+          <div className="bg-red-500/10 border border-red-500 rounded-lg p-4 sm:p-6 text-red-400">
             <p>Error loading tournament details. Please try again.</p>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default function TournamentManagePage() {
 
   if (!tournament) {
     return (
-      <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+      <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
         <div className="max-w-7xl mx-auto">
           <Link href="/dashboard/admin/tournament">
             <button className="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors cursor-pointer">
@@ -123,7 +123,7 @@ export default function TournamentManagePage() {
               Back to All Tournaments
             </button>
           </Link>
-          <div className="bg-yellow-500/10 border border-yellow-500 rounded-lg p-6 text-yellow-400">
+          <div className="bg-yellow-500/10 border border-yellow-500 rounded-lg p-4 sm:p-6 text-yellow-400">
             <p>No tournament found.</p>
           </div>
         </div>
@@ -144,10 +144,10 @@ export default function TournamentManagePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-6">
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <Link href="/dashboard/admin/tournament">
             <button className="flex items-center gap-2 text-gray-400 hover:text-white mb-4 transition-colors cursor-pointer">
               <ChevronLeft size={20} />
@@ -156,35 +156,35 @@ export default function TournamentManagePage() {
           </Link>
 
           <div className="mb-6">
-            <h1 className="text-5xl font-bold mb-2">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-2 wrap-break-word">
               {tournament.name || "TOURNAMENT OVERVIEW"}
             </h1>
-            <p className="text-gray-400">Location: {tournament.location}</p>
+            <p className="text-gray-400 text-sm sm:text-base">Location: {tournament.location}</p>
           </div>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-4">
-              <p className="text-gray-400 text-sm mb-2">Total Divisions</p>
-              <h3 className="text-4xl font-bold text-white">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-3 sm:p-4">
+              <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Total Divisions</p>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 {stats.totalDivisions}
               </h3>
             </div>
-            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-4">
-              <p className="text-gray-400 text-sm mb-2">Active Divisions</p>
-              <h3 className="text-4xl font-bold text-green-400">
+            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-3 sm:p-4">
+              <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Active Divisions</p>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-400">
                 {stats.activeDivisions}
               </h3>
             </div>
-            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-4">
-              <p className="text-gray-400 text-sm mb-2">Total Teams</p>
-              <h3 className="text-4xl font-bold text-white">
+            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-3 sm:p-4">
+              <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Total Teams</p>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 {stats.totalTeams}
               </h3>
             </div>
-            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-4">
-              <p className="text-gray-400 text-sm mb-2">Total Revenue</p>
-              <h3 className="text-4xl font-bold text-[#CCFF00]">
+            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-3 sm:p-4">
+              <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Total Revenue</p>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#CCFF00]">
                 {formatCurrency(stats.totalRevenue)}
               </h3>
             </div>
@@ -220,15 +220,15 @@ export default function TournamentManagePage() {
         )} */}
 
         {/* Divisions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {divisions.map((division) => (
             <div
               key={division.id}
-              className="bg-[#1A1A1A] border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-colors"
+              className="bg-[#1A1A1A] border border-gray-800 rounded-xl p-4 sm:p-6 hover:border-gray-700 transition-colors"
             >
               {/* Division Name and Status */}
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-white mb-2">
+              <div className="mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-2 wrap-break-word">
                   {division.name}
                 </h3>
                 <span
@@ -241,37 +241,37 @@ export default function TournamentManagePage() {
               </div>
 
               {/* Division Info */}
-              <div className=" rounded-lg p-4 mb-6 space-y-3">
+              <div className="rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 space-y-2 sm:space-y-3">
                 {/* Teams */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Users size={16} className="text-gray-400" />
-                    <p className="text-gray-400 text-sm">Teams Registered</p>
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                    <Users size={14} className="shrink-0 text-gray-400" />
+                    <p className="text-gray-400 text-xs sm:text-sm truncate">Teams Registered</p>
                   </div>
-                  <p className="text-white font-bold text-sm">
+                  <p className="text-white font-bold text-xs sm:text-sm shrink-0 ml-2">
                     {division.teamsRegistered}/{division.teamsTotal}
                   </p>
                 </div>
 
                 {/* Revenue */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <DollarSign size={16} className="text-gray-400" />
-                    <p className="text-gray-400 text-sm">Revenue</p>
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                    <DollarSign size={14} className="shrink-0 text-gray-400" />
+                    <p className="text-gray-400 text-xs sm:text-sm truncate">Revenue</p>
                   </div>
-                  <p className="text-[#CCFF00] font-bold text-sm">
+                  <p className="text-[#CCFF00] font-bold text-xs sm:text-sm shrink-0 ml-2">
                     {division.revenue}
                   </p>
                 </div>
 
                 {/* Matches */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Trophy size={16} className="text-gray-400" />
-                    <p className="text-gray-400 text-sm">Matches Scheduled</p>
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                    <Trophy size={14} className="shrink-0 text-gray-400" />
+                    <p className="text-gray-400 text-xs sm:text-sm truncate">Matches Scheduled</p>
                   </div>
                   <span
-                    className={`text-xs font-bold px-2 py-1 rounded ${
+                    className={`shrink-0 ml-2 text-xs font-bold px-2 py-1 rounded ${
                       division.matchesScheduled === "Complete"
                         ? "bg-green-500/20 text-green-400"
                         : "bg-orange-500/20 text-orange-400"
@@ -283,8 +283,8 @@ export default function TournamentManagePage() {
               </div>
 
               {/* Progress Bar */}
-              <div className="mb-6">
-                <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+              <div className="mb-4 sm:mb-6">
+                <div className="w-full bg-gray-800 rounded-full h-1.5 sm:h-2 overflow-hidden">
                   <div
                     className={`h-full ${getProgressColor(
                       division.progressPercentage,
@@ -295,13 +295,15 @@ export default function TournamentManagePage() {
               </div>
 
               {/* Manage Button */}
-              <Link
-                href={`/dashboard/admin/tournament/manage/division/${division.id}`}
-              >
-                <button className="w-full bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold py-3 rounded-lg transition-colors cursor-pointer">
-                  Manage
-                </button>
-              </Link>
+              {division.id && (
+                <Link
+                  href={`/dashboard/admin/tournament/manage/${tournamentId}/division/${encodeURIComponent(division.id)}`}
+                >
+                  <button className="w-full bg-[#CCFF00] hover:bg-[#B8E600] text-black font-bold py-2.5 sm:py-3 text-sm sm:text-base rounded-lg transition-colors cursor-pointer">
+                    Manage
+                  </button>
+                </Link>
+              )}
             </div>
           ))}
         </div>

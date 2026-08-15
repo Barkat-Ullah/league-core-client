@@ -527,7 +527,7 @@ function RegistrationInner() {
         <div className="text-center mt-8">
           <Link
             href="/"
-            className="text-gray-400 text-sm hover:text-[#CCFF00] transition"
+            className="text-sm bg-transparent text-[#CCFF00] border border-[#CCFF00] hover:bg-[#CCFF00] hover:text-black focus:ring-[#CCFF00] rounded transition-all duration-150"
           >
             Back to Home
           </Link>

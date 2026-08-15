@@ -18,11 +18,13 @@ interface Team {
 interface TeamsRosterProps {
   teams: Team[];
   teamDivisionId?: string;
+  tournamentId?: string;
 }
 
 export default function TeamsRoster({
   teams,
   teamDivisionId,
+  tournamentId,
 }: TeamsRosterProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -67,26 +69,26 @@ export default function TeamsRoster({
         </div>
       </div> */}
       {/* Teams Table */}
-      <div className="border border-gray-800 rounded-xl overflow-hidden">
-        <table className="w-full">
+      <div className="border border-gray-800 rounded-xl overflow-x-auto">
+        <table className="w-full min-w-[640px]">
           <thead>
             <tr className="bg-gray-900 border-b border-gray-800">
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Team Name
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Coach
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Email
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Contact
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Waiver Status
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Action
               </th>
             </tr>
@@ -97,19 +99,19 @@ export default function TeamsRoster({
                 key={team.id}
                 className="hover:bg-gray-900/50 transition-colors"
               >
-                <td className="px-6 py-4 text-sm font-medium text-white">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm font-medium text-white">
                   {team.name}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-400">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-gray-400">
                   {team.coach}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-400">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-gray-400">
                   {team.email}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-400">
+                <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-gray-400">
                   {team.contact}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 sm:px-6 py-3 sm:py-4">
                   <span
                     className={`text-sm font-semibold ${getWaiverStatusColor(
                       team.signedCount,
@@ -119,9 +121,9 @@ export default function TeamsRoster({
                     {team.waiverStatus}
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 sm:px-6 py-3 sm:py-4">
                   <Link
-                    href={`/dashboard/admin/tournament/manage/division/roster?teamId=${team.id}&teamDivisionId=${teamDivisionId || team.teamDivisionId || ""}`}
+                    href={`/dashboard/admin/tournament/manage/${tournamentId}/division/roster?teamId=${team.id}&teamDivisionId=${teamDivisionId || team.teamDivisionId || ""}`}
                   >
                     <button className="px-4 py-2 bg-[#CCFF00] text-black rounded-lg font-semibold text-sm hover:bg-[#EAB634] transition-colors">
                       Check Roster

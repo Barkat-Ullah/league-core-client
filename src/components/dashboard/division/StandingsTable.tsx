@@ -30,8 +30,8 @@ export default function StandingsTable({ standings }: StandingsTableProps) {
       {/* Header Section */}
       <div>
         <div className="flex items-center gap-3 mb-4">
-          <Crown size={28} className="text-[#CCFF00]" />
-          <h2 className="text-3xl font-bold">Standings</h2>
+          <Crown size={24} className="shrink-0 text-[#CCFF00] sm:size-7" />
+          <h2 className="text-xl sm:text-3xl font-bold">Standings</h2>
         </div>
         <p className="text-gray-400">
           Manage the points system and view leaderboard
@@ -39,51 +39,51 @@ export default function StandingsTable({ standings }: StandingsTableProps) {
       </div>
 
       {/* Standings Table */}
-      <div className="border border-gray-800 rounded-xl overflow-hidden">
-        <div className="bg-gray-900 border-b border-gray-800 px-6 py-4 flex items-center gap-2">
+      <div className="border border-gray-800 rounded-xl overflow-x-auto max-w-full">
+        <div className="bg-gray-900 border-b border-gray-800 px-3 sm:px-6 py-3 sm:py-4 flex items-center gap-2">
           <Star size={18} className="text-[#CCFF00]" />
           <h3 className="text-sm font-bold uppercase">Standings</h3>
         </div>
 
-        <table className="w-full">
+        <table className="w-full min-w-[700px]">
           <thead>
             <tr className="bg-gray-900/50 border-b border-gray-800">
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Rank
               </th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Team Name
               </th>
               {hasDetailedStats ? (
                 <>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     P
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     W
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     D
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     L
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     GF
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     GA
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     GD
                   </th>
                 </>
               ) : (
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                   Games Played
                 </th>
               )}
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wide">
                 Points
               </th>
             </tr>
@@ -104,45 +104,45 @@ export default function StandingsTable({ standings }: StandingsTableProps) {
                   key={standing.rank}
                   className="hover:bg-gray-900/30 transition-colors"
                 >
-                  <td className="px-6 py-4">
+                  <td className="px-3 sm:px-6 py-3 sm:py-4">
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">
                       {standing.rank}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-white font-medium">
+                  <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white font-medium">
                     {standing.teamName}
                   </td>
                   {hasDetailedStats ? (
                     <>
-                      <td className="px-6 py-4 text-sm text-white">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                         {standing.played}
                       </td>
-                      <td className="px-6 py-4 text-sm text-white">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                         {standing.wins}
                       </td>
-                      <td className="px-6 py-4 text-sm text-white">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                         {standing.draws}
                       </td>
-                      <td className="px-6 py-4 text-sm text-white">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                         {standing.losses}
                       </td>
-                      <td className="px-6 py-4 text-sm text-white">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                         {standing.gf}
                       </td>
-                      <td className="px-6 py-4 text-sm text-white">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                         {standing.ga}
                       </td>
-                      <td className="px-6 py-4 text-sm text-white">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                         {standing.gd! > 0 ? "+" : ""}
                         {standing.gd}
                       </td>
                     </>
                   ) : (
-                    <td className="px-6 py-4 text-sm text-white">
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm text-white">
                       {standing.gamesPlayed}
                     </td>
                   )}
-                  <td className="px-6 py-4 text-sm font-bold text-[#CCFF00]">
+                  <td className="px-3 sm:px-6 py-3 sm:py-4 text-sm font-bold text-[#CCFF00]">
                     {standing.points}
                   </td>
                 </tr>
