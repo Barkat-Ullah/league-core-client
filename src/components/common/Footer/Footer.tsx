@@ -1,4 +1,4 @@
-import logo from "@/assets/remobile.png";
+import logo from "@/assets/mobilelogo-removebg-preview.png";
 import { Facebook, Instagram, Mail, Phone, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -160,8 +160,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="mt-10 border-t border-[#333] pt-6 sm:mt-12">
           <p className="text-center text-xs text-gray-500 sm:text-sm">
-            © {new Date().getFullYear()} League Core, LLC. All rights
-            reserved.
+            © {new Date().getFullYear()} League Core, LLC. All rights reserved.
           </p>
         </div>
       </div>

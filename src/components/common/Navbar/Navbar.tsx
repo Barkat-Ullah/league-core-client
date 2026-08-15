@@ -20,7 +20,7 @@ import { ChevronDown, LayoutDashboard, LogOut, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // Correct hook for App Router
-import logo from "@/assets/remobile.png";
+import logo from "@/assets/mobilelogo-removebg-preview.png";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { useCallback, useMemo, useState } from "react";
@@ -203,9 +203,9 @@ export const Navbar = () => {
               src={logo}
               alt="Crown & Pitch"
               width={300}
-              height={150}
+              height={200}
               priority
-              className="w-50 h-10"
+              className="w-50 h-16"
             />
           </Link>
           {/* <p className="uppercase font-semibold">
