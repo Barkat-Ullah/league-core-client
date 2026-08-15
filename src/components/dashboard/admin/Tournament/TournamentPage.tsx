@@ -5,6 +5,7 @@ import {
   useDeleteTournamentMutation,
   useGetTournamentsQuery,
 } from "@/redux/apiHooks/tournament/tournamentApi";
+import Spinner from "@/components/common/Spinner";
 import {
   ChevronDown,
   ExternalLink,
@@ -309,11 +310,9 @@ export default function TournamentsListPage() {
           </div>
         )}
 
-        {/* Loading */}
+                {/* Loading */}
         {isLoading && (
-          <div className="border border-gray-700 rounded-xl px-6 py-10 text-center text-gray-400">
-            Loading tournaments...
-          </div>
+          <Spinner />
         )}
 
         {/* Error */}

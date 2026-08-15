@@ -246,7 +246,7 @@ export default function VerificationQueue() {
       {/* Verification Queue */}
       <div className="lg:col-span-1">
         {/* Search Bar and Filter */}
-        <div className="mb-4 flex gap-3">
+                <div className="mb-4 flex flex-col gap-3 sm:flex-row">
           <div className="flex-1 relative">
             <Search
               size={18}
@@ -362,13 +362,13 @@ export default function VerificationQueue() {
         </div>
       ) : selectedPlayer ? (
         <div className="lg:col-span-2 bg-gray-900/40 border border-gray-700 rounded-2xl p-8">
-          <div className="flex items-center justify-between gap-4 mb-8">
+                  <div className="flex flex-col items-start gap-4 mb-8 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-2xl font-bold">Player Information</h2>
             {getAgeMatchBadge()}
           </div>
 
           {/* Profile Header */}
-          <div className="flex items-center gap-4 mb-8">
+                  <div className="flex flex-col items-center gap-4 mb-8 sm:flex-row sm:items-center">
             {selectedPlayer.profileImage ? (
               <img
                 src={selectedPlayer.profileImage}
@@ -390,7 +390,7 @@ export default function VerificationQueue() {
           </div>
 
           <div className="space-y-6 mb-8">
-            <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label className="text-gray-400 text-sm font-semibold block mb-3">
                   📊 Status
@@ -422,7 +422,7 @@ export default function VerificationQueue() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label className="text-gray-400 text-sm font-semibold block mb-3">
                   🗓️ Date of Birth
@@ -464,7 +464,7 @@ export default function VerificationQueue() {
             />
           </div>
 
-          <div className="flex gap-4">
+                    <div className="flex flex-col gap-4 sm:flex-row">
             {selectedPlayer?.ageVerified !== "verified" && (
               <>
                 <button

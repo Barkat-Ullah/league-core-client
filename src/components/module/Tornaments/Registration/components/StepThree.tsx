@@ -132,7 +132,7 @@ export default function StepThree({
           <div className="space-y-3 text-sm text-gray-300">
             <div>
               <p className="text-gray-400">Tournament:</p>
-              <p className="text-white font-semibold break-words">
+              <p className="text-white font-semibold wrap-break-word">
                 {tournamentName}
               </p>
             </div>
@@ -144,7 +144,7 @@ export default function StepThree({
 
             <div>
               <p className="text-gray-400">Location:</p>
-              <p className="text-white font-semibold break-words">
+              <p className="text-white font-semibold wrap-break-word">
                 {tournamentLocation}
               </p>
             </div>
@@ -164,7 +164,7 @@ export default function StepThree({
 
             <div>
               <p className="text-gray-400">Team:</p>
-              <p className="text-white font-semibold break-words">{teamName}</p>
+              <p className="text-white font-semibold wrap-break-word">{teamName}</p>
             </div>
 
             <div className="border-t border-gray-700 pt-3">
