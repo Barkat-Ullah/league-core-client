@@ -520,18 +520,18 @@ function RegistrationInner() {
           disabled={isSubmitting}
         />
 
-        {isSubmitting ? (
+        {/* {isSubmitting ? (
           <p className="text-center text-gray-300 mt-4">Submitting...</p>
-        ) : null}
+        ) : null} */}
 
-        <div className="text-center mt-8">
+        {/* <div className="text-center mt-8">
           <Link
             href="/"
             className="px-4 py-2 text-sm bg-transparent text-[#CCFF00] border border-[#CCFF00] hover:bg-[#CCFF00] hover:text-black focus:ring-[#CCFF00] rounded transition-all duration-150"
           >
             Back to Home
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

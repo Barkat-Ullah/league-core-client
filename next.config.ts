@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "nyc3.digitaloceanspaces.com",
       },
+      {
+        protocol: "https",
+        hostname: "tailwindcss.com",
+      },
     ],
   },
   logging: {

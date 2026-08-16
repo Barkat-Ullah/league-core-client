@@ -2,8 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import { X, Check, Search } from "lucide-react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { X, Check, Search, Loader2 } from "lucide-react";
 import {
   useGetTeamPlayersQuery,
   useUpdateTeamPlayerStatusMutation,
@@ -22,10 +22,32 @@ interface SelectedPlayer {
   dob: string;
 }
 
+// Fade/slide duration for the "item leaves the queue" animation. Kept in one
+// place so the setTimeout below and the CSS transition duration always match.
+const REMOVE_ANIM_MS = 280;
+const PAGE_LIMIT = 10;
+
+// Lightweight pulse skeleton for the very first load only — avoids ever
+// showing a blank/spinner-only panel again once real data has arrived once.
+function QueueRowSkeleton() {
+  return (
+    <div className="w-full p-4 rounded-lg border-2 border-gray-800 bg-gray-900/40">
+      <div className="flex items-start justify-between gap-2 animate-pulse">
+        <div className="flex-1 space-y-2">
+          <div className="h-4 w-32 bg-gray-700/70 rounded" />
+          <div className="h-3 w-20 bg-gray-800 rounded" />
+          <div className="h-5 w-24 bg-gray-800 rounded" />
+        </div>
+        <div className="h-5 w-16 bg-gray-700/70 rounded" />
+      </div>
+    </div>
+  );
+}
+
 export default function VerificationQueue() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [ageVerifiedFilter, setAgeVerifiedFilter] =
     useState<string>("Check_in_required");
   const [actionLoading, setActionLoading] = useState<
@@ -37,13 +59,42 @@ export default function VerificationQueue() {
   const {
     data: response,
     isLoading,
+    isFetching,
     error,
-  } = useGetTeamPlayersQuery({ page: currentPage, limit: 10 });
+  } = useGetTeamPlayersQuery({ page: currentPage, limit: PAGE_LIMIT });
 
   const [updateStatus, { isLoading: isUpdating }] =
     useUpdateTeamPlayerStatusMutation();
 
   const teamPlayers: TeamPlayer[] = response?.data || [];
+
+  // Pagination meta from the API (falls back gracefully if the backend
+  // doesn't send `meta` yet, so this never throws).
+  const totalCount: number =
+    (response as any)?.meta?.total ?? teamPlayers.length;
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_LIMIT));
+  const canGoPrev = currentPage > 1;
+  const canGoNext = currentPage < totalPages;
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+    setSelectedId(null); // previous selection won't exist on the new page
+  };
+
+  // Only true for the very first fetch that has never resolved. Later
+  // background refetches (e.g. after approve/reject invalidates the cache)
+  // won't flip this back on, so the panel never "reloads" from scratch again.
+  const hasLoadedOnceRef = useRef(false);
+  const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
+  useEffect(() => {
+    if (!isLoading && !hasLoadedOnceRef.current) {
+      hasLoadedOnceRef.current = true;
+      setHasLoadedOnce(true);
+    }
+  }, [isLoading]);
+
+  const isInitialLoading = isLoading && !hasLoadedOnce;
 
   const calculateAge = (dobISO?: string) => {
     if (!dobISO) return null;
@@ -116,9 +167,40 @@ export default function VerificationQueue() {
     return matchesAge && matchesSearch;
   });
 
+  // --------------------------------------------------------------------
+  // Smooth removal: when a player is approved/rejected they usually drop
+  // out of `filteredQueue` on the next server refetch (status no longer
+  // matches the filter). Instead of letting them vanish instantly the
+  // moment fresh data arrives, we keep a short-lived local snapshot of any
+  // item mid-animation and render it until the fade-out finishes.
+  // --------------------------------------------------------------------
+  const [removingIds, setRemovingIds] = useState<Set<string>>(new Set());
+  const [pendingSnapshots, setPendingSnapshots] = useState<TeamPlayer[]>([]);
+
+  const displayQueue: TeamPlayer[] = useMemo(() => {
+    const visibleIds = new Set(filteredQueue.map((f) => f.id));
+    const stillPending = pendingSnapshots.filter((p) => !visibleIds.has(p.id));
+    return [...filteredQueue, ...stillPending];
+  }, [filteredQueue, pendingSnapshots]);
+
+  const beginRemoveAnimation = (item: TeamPlayer) => {
+    setRemovingIds((prev) => new Set(prev).add(item.id));
+    setPendingSnapshots((prev) =>
+      prev.some((p) => p.id === item.id) ? prev : [...prev, item],
+    );
+    window.setTimeout(() => {
+      setRemovingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(item.id);
+        return next;
+      });
+      setPendingSnapshots((prev) => prev.filter((p) => p.id !== item.id));
+    }, REMOVE_ANIM_MS);
+  };
+
   const selectedRaw =
-    filteredQueue.find((p: TeamPlayer) => p.id === selectedId) ||
-    filteredQueue[0];
+    displayQueue.find((p: TeamPlayer) => p.id === selectedId) ||
+    displayQueue[0];
 
   const selectedPlayer: SelectedPlayer | null = selectedRaw
     ? (() => {
@@ -201,6 +283,7 @@ export default function VerificationQueue() {
 
   const handleApprove = async () => {
     if (!selectedPlayer) return;
+    const target = selectedRaw;
     try {
       setActionLoading("approve");
       await updateStatus({
@@ -208,7 +291,9 @@ export default function VerificationQueue() {
         ageVerified: "verified",
       }).unwrap();
 
-      const remaining = filteredQueue.filter(
+      if (target) beginRemoveAnimation(target);
+
+      const remaining = displayQueue.filter(
         (p: TeamPlayer) => p.id !== selectedPlayer.id,
       );
       setSelectedId(remaining[0]?.id ?? null);
@@ -221,6 +306,7 @@ export default function VerificationQueue() {
 
   const handleReject = async () => {
     if (!selectedPlayer) return;
+    const target = selectedRaw;
     try {
       setActionLoading("reject");
       await updateStatus({
@@ -229,7 +315,9 @@ export default function VerificationQueue() {
         note: rejectNote.trim() || undefined,
       }).unwrap();
 
-      const remaining = filteredQueue.filter(
+      if (target) beginRemoveAnimation(target);
+
+      const remaining = displayQueue.filter(
         (p: TeamPlayer) => p.id !== selectedPlayer.id,
       );
       setSelectedId(remaining[0]?.id ?? null);
@@ -246,7 +334,7 @@ export default function VerificationQueue() {
       {/* Verification Queue */}
       <div className="lg:col-span-1">
         {/* Search Bar and Filter */}
-                <div className="mb-4 flex flex-col gap-3 sm:flex-row">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row">
           <div className="flex-1 relative">
             <Search
               size={18}
@@ -274,18 +362,24 @@ export default function VerificationQueue() {
 
         {/* Queue Title */}
         <h2 className="text-gray-400 text-xs font-bold tracking-wider mb-4">
-          VERIFICATION QUEUE ({filteredQueue.length})
+          VERIFICATION QUEUE ({displayQueue.length})
+          {isFetching && !isInitialLoading && (
+            <span className="ml-2 inline-block h-1.5 w-1.5 rounded-full bg-[#CCFF00] animate-pulse align-middle" />
+          )}
         </h2>
 
-        {/* Loading State */}
-        {isLoading && (
-          <div className="h-150 flex items-center justify-center">
-            <Spinner />
+        {/* Initial Loading State — skeleton rows instead of a blank spinner box,
+            and only ever shown once, before the first successful fetch. */}
+        {isInitialLoading && (
+          <div className="space-y-3">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <QueueRowSkeleton key={i} />
+            ))}
           </div>
         )}
 
         {/* Error State */}
-        {error && (
+        {error && !isInitialLoading && (
           <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-4">
             <p className="text-red-400 text-sm">
               Failed to load verification queue
@@ -293,17 +387,24 @@ export default function VerificationQueue() {
           </div>
         )}
 
-        {/* Player List */}
-        {!isLoading && (
+        {/* Player List — background refetches never replace this with a
+            spinner again; items only ever fade out individually. */}
+        {!isInitialLoading && (
           <div className="space-y-3 max-h-150 overflow-y-auto no-scrollbar pr-1">
-            {filteredQueue.length > 0 ? (
-              filteredQueue.map((item: TeamPlayer) => {
+            {displayQueue.length > 0 ? (
+              displayQueue.map((item: TeamPlayer) => {
                 const p = item.player as any;
+                const isRemoving = removingIds.has(item.id);
                 return (
                   <button
                     key={item.id}
-                    onClick={() => setSelectedId(item.id)}
-                    className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+                    onClick={() => !isRemoving && setSelectedId(item.id)}
+                    disabled={isRemoving}
+                    className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-[${REMOVE_ANIM_MS}ms] ease-out ${
+                      isRemoving
+                        ? "opacity-0 -translate-x-2 scale-95 pointer-events-none"
+                        : "opacity-100 translate-x-0 scale-100"
+                    } ${
                       (selectedPlayer?.id ?? null) === item.id
                         ? "border-[#CCFF00] bg-[#CCFF00]/10"
                         : "border-gray-700 bg-gray-900/40 hover:border-gray-600"
@@ -353,22 +454,51 @@ export default function VerificationQueue() {
             )}
           </div>
         )}
+
+        {/* Pagination — server-side paging, so this is the only way to reach
+            players beyond the first PAGE_LIMIT results. */}
+        {!isInitialLoading && totalPages > 1 && (
+          <div className="mt-4 flex items-center justify-between">
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={!canGoPrev || isFetching}
+              className="px-4 py-2 rounded-lg text-sm font-semibold bg-gray-800 border border-gray-700 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:border-gray-600 transition-colors"
+            >
+              Previous
+            </button>
+
+            <span className="text-xs text-gray-400">
+              Page {currentPage} of {totalPages}
+            </span>
+
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={!canGoNext || isFetching}
+              className="px-4 py-2 rounded-lg text-sm font-semibold bg-gray-800 border border-gray-700 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:border-gray-600 transition-colors"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Player Information */}
-      {isLoading ? (
+      {isInitialLoading ? (
         <div className="lg:col-span-2 bg-gray-900/40 border border-gray-700 rounded-2xl p-8 flex items-center justify-center min-h-150">
           <Spinner />
         </div>
       ) : selectedPlayer ? (
-        <div className="lg:col-span-2 bg-gray-900/40 border border-gray-700 rounded-2xl p-8">
-                  <div className="flex flex-col items-start gap-4 mb-8 sm:flex-row sm:items-center sm:justify-between">
+        <div
+          key={selectedPlayer.id}
+          className="lg:col-span-2 bg-gray-900/40 border border-gray-700 rounded-2xl p-8 animate-[fadein_.25s_ease-out]"
+        >
+          <div className="flex flex-col items-start gap-4 mb-8 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-2xl font-bold">Player Information</h2>
             {getAgeMatchBadge()}
           </div>
 
           {/* Profile Header */}
-                  <div className="flex flex-col items-center gap-4 mb-8 sm:flex-row sm:items-center">
+          <div className="flex flex-col items-center gap-4 mb-8 sm:flex-row sm:items-center">
             {selectedPlayer.profileImage ? (
               <img
                 src={selectedPlayer.profileImage}
@@ -390,7 +520,7 @@ export default function VerificationQueue() {
           </div>
 
           <div className="space-y-6 mb-8">
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label className="text-gray-400 text-sm font-semibold block mb-3">
                   📊 Status
@@ -422,7 +552,7 @@ export default function VerificationQueue() {
               </div>
             </div>
 
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label className="text-gray-400 text-sm font-semibold block mb-3">
                   🗓️ Date of Birth
@@ -459,38 +589,49 @@ export default function VerificationQueue() {
               onChange={(e) => setRejectNote(e.target.value)}
               placeholder="Add a note for why verification is rejected..."
               rows={3}
-              disabled={selectedPlayer.ageVerified === "verified"}
+              disabled={
+                selectedPlayer.ageVerified === "verified" ||
+                actionLoading !== null
+              }
               className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#CCFF00] disabled:opacity-60"
             />
           </div>
 
-                    <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="flex flex-col gap-4 sm:flex-row">
             {selectedPlayer?.ageVerified !== "verified" && (
               <>
                 <button
                   onClick={handleApprove}
                   disabled={isUpdating || actionLoading !== null}
-                  className="flex-1 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  className="flex-1 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
                   {actionLoading === "approve" ? (
-                    <Spinner />
+                    <Loader2
+                      size={20}
+                      strokeWidth={3}
+                      className="animate-spin"
+                    />
                   ) : (
                     <Check size={20} strokeWidth={3} />
                   )}
-                  {actionLoading === "approve" ? "Processing..." : "Approve"}
+                  {actionLoading === "approve" ? "Approving..." : "Approve"}
                 </button>
 
                 <button
                   onClick={handleReject}
                   disabled={isUpdating || actionLoading !== null}
-                  className="flex-1 bg-red-500 hover:bg-red-600 disabled:bg-gray-600 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  className="flex-1 bg-red-500 hover:bg-red-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
                   {actionLoading === "reject" ? (
-                    <Spinner />
+                    <Loader2
+                      size={20}
+                      strokeWidth={3}
+                      className="animate-spin"
+                    />
                   ) : (
                     <X size={20} strokeWidth={3} />
                   )}
-                  {actionLoading === "reject" ? "Processing..." : "Reject"}
+                  {actionLoading === "reject" ? "Rejecting..." : "Reject"}
                 </button>
               </>
             )}
@@ -516,6 +657,19 @@ export default function VerificationQueue() {
           </div>
         </div>
       )}
+
+      <style jsx global>{`
+        @keyframes fadein {
+          from {
+            opacity: 0;
+            transform: translateY(4px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }

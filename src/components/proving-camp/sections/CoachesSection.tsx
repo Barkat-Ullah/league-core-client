@@ -5,6 +5,7 @@ import { useState } from "react";
 import SectionHeading from "@/components/proving-camp/sections/SectionHeading";
 import { useGetCampCoachListQuery } from "@/redux/apiHooks/camp/coachApi";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const coachImageSizes =
   "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 20vw";
 
@@ -38,7 +39,7 @@ export default function CoachesSection() {
 
   return (
     <section className="py-14 md:py-20">
-      <div className="mx-auto w-full max-w-368 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-368 px-4 lg:px-17.25">
         <SectionHeading
           title="Coached by People Who Have Been There"
           subtitle="Every Crown & Pitch Proving Camp session is staffed by coaches with real
@@ -143,7 +144,7 @@ and NTX Lions head coach."
                     {hasLongBio ? (
                       <button
                         type="button"
-                        className="mt-auto inline-flex w-fit items-center gap-1 text-sm font-medium text-[#ccff00] transition-colors duration-300 hover: text-[#ccff00]"
+                        className="mt-auto inline-flex w-fit items-center gap-1 text-sm font-medium text-[#ccff00] transition-colors duration-300 hover:text-[#ccff00]"
                         onClick={() =>
                           setExpandedCoach((prev) =>
                             prev === coach.id ? null : coach.id,
