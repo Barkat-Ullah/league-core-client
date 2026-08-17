@@ -113,7 +113,7 @@ const UpcomingTournaments = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-[#F5F5F5] font-['Oswald'] text-[36px] sm:text-[44px] md:text-[56px] font-extrabold leading-[120%]">
-            Upcoming Tournaments
+            Upcoming <span className="text-[#CCFF00]">Tournaments</span>
           </h2>
           <div className="bg-[#CCFF00] w-24 h-1 mx-auto my-3 rounded-lg" />
           <p className="text-gray-300 text-lg">Where players rise</p>
@@ -147,6 +147,7 @@ const UpcomingTournaments = () => {
                       src={tournament?.logo || "/champ.png"}
                       alt={tournament?.name || "Tournament"}
                       fill
+                      sizes="176px"
                       className="object-contain rounded-lg shadow-lg"
                     />
                   </div>

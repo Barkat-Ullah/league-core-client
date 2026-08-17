@@ -141,6 +141,7 @@ export default function ForgetVerificationPage() {
             src="/auth.png"
             alt="Verification"
             fill
+            sizes="(max-width: 1024px) 0px, 50vw"
             className="object-cover"
             priority
           />

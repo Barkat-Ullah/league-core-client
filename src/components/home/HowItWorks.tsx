@@ -40,7 +40,7 @@ const HowItWorks = () => {
     <section className="w-full bg-black py-16">
       <div className="text-center mb-12">
         <h2 className="text-[#F5F5F5] font-['Oswald'] text-[36px] sm:text-[44px] md:text-[56px] font-extrabold leading-[120%]">
-          How It Works
+          How It <span className="text-[#CCFF00]">Works</span>
         </h2>
         <div className="w-24 h-1 bg-[#CCFF00] mx-auto rounded"></div>
       </div>

@@ -177,6 +177,7 @@ export default function StandingsPage() {
             src="/standing.png"
             alt="Standings background"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />

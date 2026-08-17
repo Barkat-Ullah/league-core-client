@@ -77,6 +77,7 @@ export default function ChangePasswordPage() {
             src="/auth.png"
             alt="Change Password"
             fill
+            sizes="(max-width: 1024px) 0px, 50vw"
             className="object-cover"
             priority
           />

@@ -141,6 +141,7 @@ export default function VerificationPage() {
             src="/auth.png"
             alt="Verification"
             fill
+            sizes="(max-width: 1024px) 0px, 50vw"
             className="object-cover"
             priority
           />

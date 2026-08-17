@@ -132,6 +132,7 @@ const MyFormInput = ({
                         src={preview || "/placeholder.svg"}
                         alt="Preview"
                         fill
+                        sizes="100vw"
                         className="object-contain p-2"
                       />
                     </div>

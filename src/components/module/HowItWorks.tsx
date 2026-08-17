@@ -62,6 +62,7 @@ export default function HowItWorksPage() {
             src="/howitswork.png"
             alt="How It Works background"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />

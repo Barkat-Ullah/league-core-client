@@ -117,7 +117,7 @@ const ConcreteFieldStory = () => {
             <h2
               className={`font-oswald mb-4 text-4xl sm:text-5xl lg:text-[72px] leading-[1.2] font-bold`}
             >
-              The concrete field story
+              The concrete <span className="text-[#CCFF00]">field story</span>
             </h2>
             <p
               className="text-[16px] mb-8"

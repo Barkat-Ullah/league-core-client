@@ -14,6 +14,7 @@ export default function AboutPage() {
             src="/abouth.png"
             alt="About background"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/60" />
@@ -248,6 +249,7 @@ export default function AboutPage() {
                 src="/team1.png"
                 alt="Team photo 1"
                 fill
+                sizes="(max-width: 768px) 90vw, 45vw"
                 className="object-fill"
               />
             </div>
@@ -256,6 +258,7 @@ export default function AboutPage() {
                 src="/team2.png"
                 alt="Team photo 2"
                 fill
+                sizes="(max-width: 768px) 90vw, 45vw"
                 className="object-fill"
               />
             </div>

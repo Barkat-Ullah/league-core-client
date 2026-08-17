@@ -17,6 +17,7 @@ const WhySmallSidedSoccer = () => {
           src="/players.png"
           alt="Soccer background"
           fill
+          sizes="100vw"
           className="object-cover object-center w-full h-full"
         />
         {/* Dark overlay to match Figma contrast */}
@@ -27,8 +28,8 @@ const WhySmallSidedSoccer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-['Oswald'] font-bold text-white mb-4">
-              Why Small-Sided Soccer
+            <h2 className="text-2xl md:text-5xl font-['Oswald'] font-bold text-white mb-4">
+              Why <span className="text-[#CCFF00]">Small-Sided</span> Soccer
             </h2>
             {/* Heading underline */}
             <p className="bg-[#CCFF00] w-24 h-1 mb-6 rounded"></p>

@@ -218,6 +218,7 @@ export default function CoachSettingsPage() {
                     src={avatarSrc}
                     alt="Profile"
                     fill
+                    sizes="(max-width: 640px) 112px, 128px"
                     className="object-cover"
                   />
                 ) : (

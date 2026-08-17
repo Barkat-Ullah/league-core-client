@@ -165,6 +165,7 @@ export default function AdminSettingsPage() {
                     src={(previewUrl || profileImage) as string}
                     alt="Profile"
                     fill
+                    sizes="128px"
                     className="object-cover"
                   />
                 ) : (

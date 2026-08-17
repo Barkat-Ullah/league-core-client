@@ -60,6 +60,7 @@ export default function ForgotPasswordPage() {
             src="/auth.png"
             alt="Forgot Password"
             fill
+            sizes="(max-width: 1024px) 0px, 50vw"
             className="object-cover"
             priority
           />

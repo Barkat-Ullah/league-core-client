@@ -88,6 +88,7 @@ export default function TournamentsPage() {
             src="/thero.png"
             alt="Tournaments background"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />
@@ -218,6 +219,7 @@ export default function TournamentsPage() {
                         src={tournament?.logo || "/champ.png"}
                         alt={tournament?.name || "Tournament"}
                         fill
+                        sizes="176px"
                         className="object-contain rounded-lg shadow-lg"
                       />
                     </div>

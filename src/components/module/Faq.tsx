@@ -157,6 +157,7 @@ export default function FAQPage() {
             src="/faq.png"
             alt="FAQ background"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/60 to-black/80" />

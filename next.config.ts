@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
+    // Cloudinary is already serving optimized images (CDN transforms), so we
+    // bypass Next.js image optimization entirely to avoid double-processing
+    // and proxy issues with remote (Cloudinary / DigitalOcean Spaces) images.
+    unoptimized: true,
+    qualities: [75, 80],
     remotePatterns: [
       {
         protocol: "https",

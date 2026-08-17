@@ -1,6 +1,5 @@
 import Home from "@/components/home/Home";
 import type { Metadata } from "next";
-import Script from "next/script";
 
 const homeStructuredData = {
   "@context": "https://schema.org",
@@ -58,13 +57,18 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div>
-      <Script
+      {/* JSON-LD structured data: intentionally a plain <script> tag with
+          dangerouslySetInnerHTML, NOT next/script. This is Next.js's own
+          recommended pattern for structured data (it's inert JSON, not a
+          script that needs loading/executing) — and next/script's
+          "beforeInteractive" strategy is only valid inside the root
+          layout.tsx, not here, which was the source of the earlier
+          "script tag" console warning. */}
+      <script
         id="home-sports-organization-schema"
         type="application/ld+json"
-        strategy="beforeInteractive"
-      >
-        {JSON.stringify(homeStructuredData)}
-      </Script>
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeStructuredData) }}
+      />
       <Home />
     </div>
   );

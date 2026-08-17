@@ -32,68 +32,85 @@ export interface StoreTile {
 /* ────────────────────────────────────────────────────────────
    Demo data (swap with @/assets imports or API data later)
 ──────────────────────────────────────────────────────────── */
-const tileUrl = (n: number) =>
-  `https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-0${n}.jpg`;
+const jerseyUrl = (name: string) => `/jersey/jer-${name}.webp`;
 
 export const heroTiles: StoreTile[][] = [
-  [{ image: tileUrl(1), className: "hidden lg:block" }, { image: tileUrl(2) }],
-  [{ image: tileUrl(3) }, { image: tileUrl(4) }, { image: tileUrl(5) }],
-  [{ image: tileUrl(6) }, { image: tileUrl(7) }],
+  [
+    { image: jerseyUrl("01"), className: "hidden lg:block" },
+    { image: jerseyUrl("03") },
+  ],
+  [
+    { image: jerseyUrl("04") },
+    { image: jerseyUrl("05") },
+    { image: jerseyUrl("06") },
+  ],
+  [
+    { image: jerseyUrl("07") },
+    { image: jerseyUrl("2") },
+  ],
 ];
 
 export const storeProducts: StoreProduct[] = [
   {
-    id: "team-jersey",
-    name: "Team Jersey",
-    category: "Apparel",
-    price: 49.99,
-    compareAtPrice: 59.99,
-    image: tileUrl(1),
+    id: "jersey-01",
+    name: "Matchday Home Jersey",
+    category: "Jersey",
+    price: 39.99,
+    compareAtPrice: 49.99,
+    image: jerseyUrl("01"),
     badge: "New",
     rating: 4.8,
   },
   {
-    id: "training-top",
-    name: "Training Top",
-    category: "Apparel",
+    id: "jersey-03",
+    name: "Away Kit Jersey",
+    category: "Jersey",
     price: 39.99,
-    image: tileUrl(2),
-    rating: 4.6,
-  },
-  {
-    id: "match-kit",
-    name: "Match Kit",
-    category: "Kits",
-    price: 89.99,
-    image: tileUrl(3),
-    badge: "Sale",
-    rating: 4.9,
-  },
-  {
-    id: "sport-shorts",
-    name: "Sport Shorts",
-    category: "Apparel",
-    price: 29.99,
-    image: tileUrl(4),
-    rating: 4.4,
-  },
-  {
-    id: "warm-up-set",
-    name: "Warm-Up Set",
-    category: "Kits",
-    price: 59.99,
-    compareAtPrice: 74.99,
-    image: tileUrl(5),
+    image: jerseyUrl("03"),
     rating: 4.7,
   },
   {
-    id: "travel-bag",
-    name: "Travel Bag",
-    category: "Accessories",
+    id: "jersey-04",
+    name: "Pro Training Jersey",
+    category: "Jersey",
+    price: 34.99,
+    image: jerseyUrl("04"),
+    badge: "Sale",
+    rating: 4.6,
+  },
+  {
+    id: "jersey-05",
+    name: "Fan Edition Jersey",
+    category: "Jersey",
     price: 44.99,
-    image: tileUrl(6),
-    badge: "New",
+    image: jerseyUrl("05"),
+    rating: 4.9,
+  },
+  {
+    id: "jersey-06",
+    name: "Third Kit Jersey",
+    category: "Jersey",
+    price: 39.99,
+    compareAtPrice: 54.99,
+    image: jerseyUrl("06"),
     rating: 4.5,
+  },
+  {
+    id: "jersey-07",
+    name: "Goalkeeper Jersey",
+    category: "Jersey",
+    price: 42.99,
+    image: jerseyUrl("07"),
+    badge: "New",
+    rating: 4.4,
+  },
+  {
+    id: "jersey-2",
+    name: "Limited Edition Jersey",
+    category: "Jersey",
+    price: 49.99,
+    image: jerseyUrl("2"),
+    rating: 4.8,
   },
 ];
 
@@ -298,7 +315,7 @@ export function StoreSection({
           <div className="mb-8 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
             <div>
               <h3 className="font-oswald text-2xl font-semibold text-white sm:text-3xl">
-                Best Sellers
+                Best Selling Jerseys
               </h3>
               <div className="mt-3 h-1 w-16 rounded bg-[#CCFF00]" />
             </div>

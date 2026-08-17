@@ -63,7 +63,8 @@ const ForEveryPlayer = () => {
         {/* Header */}
         <div className="text-center mb-10 md:mb-12">
           <h2 className="font-['Oswald'] font-bold text-white text-3xl sm:text-4xl md:text-5xl leading-tight mb-2">
-            For Every Player, Every Level
+            For Every Player,{" "}
+            <span className="text-[#CCFF00]">Every Level</span>
           </h2>
           <div className="w-24 h-1 bg-[#CCFF00] mx-auto rounded"></div>
         </div>

@@ -62,6 +62,7 @@ const SignUpPage = () => {
             src="/auth.png"
             alt="Soccer Player"
             fill
+            sizes="(max-width: 1024px) 0px, 50vw"
             className="object-cover"
             priority
           />

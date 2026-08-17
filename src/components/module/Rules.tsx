@@ -35,6 +35,7 @@ export default function RulesPage() {
             src="/standing.png"
             alt="Rules background"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />
